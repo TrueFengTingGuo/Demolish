@@ -3,5 +3,5 @@
 
 
 
-[Download the game](https://github.com/TrueFengTingGuo/Demolish/raw/main/Export/Demolish.exe)
-[Download the following file](https://github.com/TrueFengTingGuo/Demolish/raw/main/Export/Demolish.pck)
+[Download the game](https://github.com/TrueFengTingGuo/Demolish/raw/main/Export.zip)
+
