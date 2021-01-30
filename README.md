@@ -3,4 +3,4 @@
 
 
 
-[Download the game](https://github.com/TrueFengTingGuo/Demolish/raw/main/Export/.exe)
+[Download the game](https://github.com/TrueFengTingGuo/Demolish/blob/main/Export/Demolish.exe)
