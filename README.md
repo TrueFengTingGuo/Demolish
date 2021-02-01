@@ -36,7 +36,7 @@ UI:
 
 
 
-# In game footage
+# In Game Footage
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/Game_demo.gif)
 
 
