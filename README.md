@@ -32,7 +32,7 @@ tasks to be implemented:
   -	Game Setting(maybe)
 
 # Try It Out
-[Download the game](https://github.com/TrueFengTingGuo/Demolish/releases/tag/v0.1.2)
+[Download the game](https://github.com/TrueFengTingGuo/Demolish/releases/tag/v0.2.8)
 
 
 
