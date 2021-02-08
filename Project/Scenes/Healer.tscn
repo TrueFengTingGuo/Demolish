@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/character Pack 8/shadow of storms/heal charge up.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Healer.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+height = 12.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "Heal"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 7 ]
+}
+
+[node name="Healer" type="KinematicBody2D" groups=[
+"Enemy",
+]]
+collision_layer = 4
+collision_mask = 2147483648
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 26.6697, -24.6674 )
+texture = ExtResource( 1 )
+vframes = 8
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Heal"
+anims/Heal = SubResource( 2 )
