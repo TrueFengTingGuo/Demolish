@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Heavy Running  Grass footsteps 5.wav-c2cb00c0743ff95ea39347a509254840.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Footstep/Heavy Running  Grass footsteps 5.wav"
+dest_files=[ "res://.import/Heavy Running  Grass footsteps 5.wav-c2cb00c0743ff95ea39347a509254840.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

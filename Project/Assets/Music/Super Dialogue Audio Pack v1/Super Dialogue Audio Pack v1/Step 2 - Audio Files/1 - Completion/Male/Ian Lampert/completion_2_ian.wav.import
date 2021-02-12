@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/completion_2_ian.wav-715be98d188b9a9e9b2ccdd20599d469.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Male/Ian Lampert/completion_2_ian.wav"
+dest_files=[ "res://.import/completion_2_ian.wav-715be98d188b9a9e9b2ccdd20599d469.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/damage_7_karen.wav-78ebd6a9520cd29c59a5afd839a04083.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Female/Karen Cenon/damage_7_karen.wav"
+dest_files=[ "res://.import/damage_7_karen.wav-78ebd6a9520cd29c59a5afd839a04083.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

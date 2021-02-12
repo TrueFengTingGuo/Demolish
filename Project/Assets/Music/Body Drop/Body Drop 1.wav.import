@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Body Drop 1.wav-cbec695e941bdb516660cc1e8a9c033a.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Body Drop/Body Drop 1.wav"
+dest_files=[ "res://.import/Body Drop 1.wav-cbec695e941bdb516660cc1e8a9c033a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

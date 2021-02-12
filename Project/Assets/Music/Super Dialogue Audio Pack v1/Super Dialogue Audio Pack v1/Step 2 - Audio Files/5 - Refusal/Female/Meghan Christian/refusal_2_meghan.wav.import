@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/refusal_2_meghan.wav-9e123c6341c859ed57462b21d9e4e0bb.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/5 - Refusal/Female/Meghan Christian/refusal_2_meghan.wav"
+dest_files=[ "res://.import/refusal_2_meghan.wav-9e123c6341c859ed57462b21d9e4e0bb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

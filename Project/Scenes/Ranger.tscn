@@ -1,0 +1,414 @@
+[gd_scene load_steps=64 format=2]
+
+[ext_resource path="res://Assets/explosions and impact (extract.me)/impact5/png-sequence/spritesheet_ver1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Huntress 2/Sprites/Character/Idle.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/Ranger.gd" type="Script" id=3]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion10.png" type="Texture" id=4]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion11.png" type="Texture" id=7]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion7.png" type="Texture" id=8]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion17.png" type="Texture" id=9]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion16.png" type="Texture" id=10]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion14.png" type="Texture" id=11]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion18.png" type="Texture" id=12]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion19.png" type="Texture" id=13]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion3.png" type="Texture" id=14]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion5.png" type="Texture" id=15]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion8.png" type="Texture" id=16]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion9.png" type="Texture" id=17]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion13.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Music/Body_damage/Sword hit another sword 9.wav" type="AudioStream" id=19]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion15.png" type="Texture" id=20]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion12.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Male/Alex Brodie/damage_4_alex.wav" type="AudioStream" id=22]
+[ext_resource path="res://Assets/Huntress 2/Sprites/Character/Get Hit.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Huntress 2/Sprites/Character/Death.png" type="Texture" id=24]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 17.5222 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 378, 0, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 756, 0, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1134, 0, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1512, 0, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 378, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 378, 378, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 756, 378, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1134, 378, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1512, 378, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 756, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 378, 756, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 756, 756, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1134, 756, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1512, 756, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1134, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 378, 1134, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 756, 1134, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=20]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1134, 1134, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=21]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1512, 1134, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=22]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 1512, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=23]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 378, 1512, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=24]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 756, 1512, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=25]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1134, 1512, 378, 378 )
+
+[sub_resource type="AtlasTexture" id=26]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 1512, 1512, 378, 378 )
+
+[sub_resource type="SpriteFrames" id=27]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 60.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "Hit",
+"speed": 40.0
+} ]
+
+[sub_resource type="Animation" id=28]
+resource_name = "Die"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 3.36359 ),
+"update": 1,
+"values": [ ExtResource( 24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animations:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 9 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "remove_from_targetable"
+}, {
+"args": [  ],
+"method": "on_died"
+} ]
+}
+
+[sub_resource type="Animation" id=29]
+resource_name = "Hurt"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 3.03143 ),
+"update": 1,
+"values": [ ExtResource( 23 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animations:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 2 ]
+}
+
+[sub_resource type="Animation" id=30]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 10 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animations:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 9 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=31]
+animation = "Die"
+
+[sub_resource type="AnimationNodeAnimation" id=32]
+animation = "Hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=33]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id=38]
+states/Die/node = SubResource( 31 )
+states/Die/position = Vector2( 546, 151 )
+states/Hurt/node = SubResource( 32 )
+states/Hurt/position = Vector2( 315, 52 )
+states/Idle/node = SubResource( 33 )
+states/Idle/position = Vector2( 184, 132 )
+transitions = [ "Idle", "Hurt", SubResource( 34 ), "Hurt", "Idle", SubResource( 35 ), "Idle", "Die", SubResource( 36 ), "Hurt", "Die", SubResource( 37 ) ]
+start_node = "Idle"
+end_node = "Die"
+graph_offset = Vector2( -53, 0 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
+
+[node name="Ranger" type="KinematicBody2D" groups=[
+"Enemy",
+"Ranger",
+]]
+collision_layer = 4
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Effect" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 0.707092, -16.2635 )
+scale = Vector2( 0.2, 0.2 )
+frames = SubResource( 27 )
+animation = "Hit"
+
+[node name="Animations" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+hframes = 10
+frame = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Die = SubResource( 28 )
+anims/Hurt = SubResource( 29 )
+anims/Idle = SubResource( 30 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 38 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 39 )
+
+[node name="damage_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 19 )
+volume_db = 5.0
+max_distance = 1000.0
+
+[node name="character_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 22 )
+max_distance = 1000.0
+[connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/greeting_8_meghan.wav-01ac4609a7f455a747c8169affcda476.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/3 - Greeting/Female/Meghan Christian/greeting_8_meghan.wav"
+dest_files=[ "res://.import/greeting_8_meghan.wav-01ac4609a7f455a747c8169affcda476.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

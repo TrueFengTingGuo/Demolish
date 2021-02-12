@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shouting_7_meghan.wav-9ee0c7a30a8d0c1cd18d1441dc719bc6.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/10 - Shouting/Female/Meghan Christian/shouting_7_meghan.wav"
+dest_files=[ "res://.import/shouting_7_meghan.wav-9ee0c7a30a8d0c1cd18d1441dc719bc6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

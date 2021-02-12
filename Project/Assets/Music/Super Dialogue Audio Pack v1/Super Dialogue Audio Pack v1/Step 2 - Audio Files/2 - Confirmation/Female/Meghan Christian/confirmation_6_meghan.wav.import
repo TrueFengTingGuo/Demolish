@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/confirmation_6_meghan.wav-4e7b68d6c8f83364081e18342314d2b4.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Female/Meghan Christian/confirmation_6_meghan.wav"
+dest_files=[ "res://.import/confirmation_6_meghan.wav-4e7b68d6c8f83364081e18342314d2b4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Heavy sword woosh 17.wav-b2f9b8bbd1b2fd37964d764ba0f69c47.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Sword Wooshes/Heavy sword woosh 17.wav"
+dest_files=[ "res://.import/Heavy sword woosh 17.wav-b2f9b8bbd1b2fd37964d764ba0f69c47.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

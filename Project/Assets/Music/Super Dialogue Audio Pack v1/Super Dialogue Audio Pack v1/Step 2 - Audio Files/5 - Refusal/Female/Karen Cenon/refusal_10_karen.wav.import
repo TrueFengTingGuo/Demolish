@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/refusal_10_karen.wav-b1bd50d7008301f59e876085d8cd1653.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/5 - Refusal/Female/Karen Cenon/refusal_10_karen.wav"
+dest_files=[ "res://.import/refusal_10_karen.wav-b1bd50d7008301f59e876085d8cd1653.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

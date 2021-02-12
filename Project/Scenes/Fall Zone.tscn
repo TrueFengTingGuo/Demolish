@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Fall Zone.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 175.496, 33.2682 )
+
+[node name="Fall Zone" type="Area2D"]
+position = Vector2( 435.4, 353.487 )
+z_index = -1
+space_override = 1
+monitorable = false
+collision_layer = 32
+collision_mask = 2147483650
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+region_enabled = true

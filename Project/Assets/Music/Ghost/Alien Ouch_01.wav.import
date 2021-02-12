@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Alien Ouch_01.wav-4c83562c5e32bf9f2b0063c10339234a.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Ghost/Alien Ouch_01.wav"
+dest_files=[ "res://.import/Alien Ouch_01.wav-4c83562c5e32bf9f2b0063c10339234a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

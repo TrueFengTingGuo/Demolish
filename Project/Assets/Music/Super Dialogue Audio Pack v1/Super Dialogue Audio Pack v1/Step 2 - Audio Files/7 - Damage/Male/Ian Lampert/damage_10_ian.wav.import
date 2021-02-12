@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/damage_10_ian.wav-3c4135291a8a1ee3142354c88361f26b.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Male/Ian Lampert/damage_10_ian.wav"
+dest_files=[ "res://.import/damage_10_ian.wav-3c4135291a8a1ee3142354c88361f26b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

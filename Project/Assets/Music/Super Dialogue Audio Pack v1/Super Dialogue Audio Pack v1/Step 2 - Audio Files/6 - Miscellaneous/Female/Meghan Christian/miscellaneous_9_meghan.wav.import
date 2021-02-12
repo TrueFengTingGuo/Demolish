@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/miscellaneous_9_meghan.wav-e34817ed7f2d3dff6bd5a785af2aec9f.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/6 - Miscellaneous/Female/Meghan Christian/miscellaneous_9_meghan.wav"
+dest_files=[ "res://.import/miscellaneous_9_meghan.wav-e34817ed7f2d3dff6bd5a785af2aec9f.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

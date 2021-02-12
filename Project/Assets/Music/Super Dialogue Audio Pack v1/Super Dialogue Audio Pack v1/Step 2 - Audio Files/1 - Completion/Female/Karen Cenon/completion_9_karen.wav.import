@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/completion_9_karen.wav-300fdccdb3ef253bfba5d6714734cb05.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Female/Karen Cenon/completion_9_karen.wav"
+dest_files=[ "res://.import/completion_9_karen.wav-300fdccdb3ef253bfba5d6714734cb05.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

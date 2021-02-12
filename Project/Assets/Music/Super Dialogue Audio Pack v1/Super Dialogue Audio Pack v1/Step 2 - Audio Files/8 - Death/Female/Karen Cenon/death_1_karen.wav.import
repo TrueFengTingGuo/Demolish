@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death_1_karen.wav-43f6a90f3b2aa1eeefa7cd8a328cd73e.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/8 - Death/Female/Karen Cenon/death_1_karen.wav"
+dest_files=[ "res://.import/death_1_karen.wav-43f6a90f3b2aa1eeefa7cd8a328cd73e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

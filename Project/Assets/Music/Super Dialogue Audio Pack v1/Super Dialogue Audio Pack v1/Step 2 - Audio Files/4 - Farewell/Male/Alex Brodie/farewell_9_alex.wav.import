@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/farewell_9_alex.wav-851c2caec957ece8a5d2aed1969a88d7.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/4 - Farewell/Male/Alex Brodie/farewell_9_alex.wav"
+dest_files=[ "res://.import/farewell_9_alex.wav-851c2caec957ece8a5d2aed1969a88d7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shouting_1_sean.wav-3e6fda5933a6c946cf3ebbb1e641f1ab.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/10 - Shouting/Male/Sean Lenhart/shouting_1_sean.wav"
+dest_files=[ "res://.import/shouting_1_sean.wav-3e6fda5933a6c946cf3ebbb1e641f1ab.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

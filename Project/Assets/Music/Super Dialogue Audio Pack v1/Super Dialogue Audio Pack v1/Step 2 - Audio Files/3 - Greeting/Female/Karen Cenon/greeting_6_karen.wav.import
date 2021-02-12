@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/greeting_6_karen.wav-f6db93ae4c9e2c8bba57a12a2f8586be.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/3 - Greeting/Female/Karen Cenon/greeting_6_karen.wav"
+dest_files=[ "res://.import/greeting_6_karen.wav-f6db93ae4c9e2c8bba57a12a2f8586be.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

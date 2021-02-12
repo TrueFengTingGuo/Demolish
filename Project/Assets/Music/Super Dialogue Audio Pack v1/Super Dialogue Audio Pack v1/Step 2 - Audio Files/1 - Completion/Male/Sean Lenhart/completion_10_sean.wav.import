@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/completion_10_sean.wav-02bbcdac7707abbf8c8afe8dcf293fe1.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/1 - Completion/Male/Sean Lenhart/completion_10_sean.wav"
+dest_files=[ "res://.import/completion_10_sean.wav-02bbcdac7707abbf8c8afe8dcf293fe1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

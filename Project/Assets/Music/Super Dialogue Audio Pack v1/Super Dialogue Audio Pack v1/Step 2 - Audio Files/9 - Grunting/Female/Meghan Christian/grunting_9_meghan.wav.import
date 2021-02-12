@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/grunting_9_meghan.wav-c6057ab4ceabb8121be2fb02ac6454ce.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/9 - Grunting/Female/Meghan Christian/grunting_9_meghan.wav"
+dest_files=[ "res://.import/grunting_9_meghan.wav-c6057ab4ceabb8121be2fb02ac6454ce.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

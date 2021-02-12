@@ -1,0 +1,909 @@
+[gd_scene load_steps=71 format=2]
+
+[ext_resource path="res://Assets/Warrior/SpriteSheet/Warrior_Sheet-Effect.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Chain.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/sparkles/spritesheet.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/10 - Shouting/Female/Meghan Christian/shouting_2_meghan.wav" type="AudioStream" id=5]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/9 - Grunting/Female/Meghan Christian/grunting_8_meghan.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/9 - Grunting/Female/Meghan Christian/grunting_9_meghan.wav" type="AudioStream" id=7]
+[ext_resource path="res://Assets/Music/Sword Wooshes/Heavy sword woosh 17.wav" type="AudioStream" id=8]
+[ext_resource path="res://Assets/Music/Buff/Buff 4.wav" type="AudioStream" id=9]
+[ext_resource path="res://Assets/Music/Sword Wooshes/Sword Woosh 4.wav" type="AudioStream" id=10]
+[ext_resource path="res://Assets/Music/Earth Bolts/Earth Bolt 20.wav" type="AudioStream" id=11]
+[ext_resource path="res://Assets/explosions and impact (extract.me)/impact5/png-sequence/spritesheet_ver1.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Female/Meghan Christian/damage_4_meghan.wav" type="AudioStream" id=13]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12.447, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 18.9967, 10 )
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 8.42329
+height = 13.3007
+
+[sub_resource type="Animation" id=4]
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 77, 78 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_attack_animation_Start"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/On_hit_effect:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 29.8571 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite/On_hit_effect:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -25.1984, 12.9142 ), Vector2( -22.3636, 7.87451 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/On_hit_effect:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/On_hit_effect:frame")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.026646, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 24, 0, 24 ]
+}
+tracks/6/type = "audio"
+tracks/6/path = NodePath("Player_audio")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/7/type = "audio"
+tracks/7/path = NodePath("Weapon_audio")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.1,
+"stream": ExtResource( 9 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite/On_hit_effect:vframes")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Sprite/On_hit_effect:hframes")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Weapon_audio:volume_db")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Weapon_audio:pitch_scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=5]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 79, 85 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.475487 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_attack_animation_End"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Dash_attack_area/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Weapon_audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.2,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite/On_hit_effect:texture")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 12 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Sprite/On_hit_effect:vframes")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Sprite/On_hit_effect:hframes")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 5 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Sprite/On_hit_effect:frame")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 13 ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Sprite/On_hit_effect:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 16.13, 5.96144 ) ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Weapon_audio:volume_db")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ -3.274 ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Weapon_audio:pitch_scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Sprite/On_hit_effect:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 14, 25 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_attack_animation_Start"
+}, {
+"args": [  ],
+"method": "on_attack_animation_End"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Attack_area/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25, 0.35, 0.45, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Player_audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0.15 )
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("Weapon_audio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 10 )
+} ],
+"times": PoolRealArray( 0.05, 0.25 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Weapon_audio:volume_db")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Weapon_audio:pitch_scale")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 76, 85 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_attack_animation_Start"
+}, {
+"args": [  ],
+"method": "on_attack_animation_End"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Dash_attack_area/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true ]
+}
+tracks/3/type = "audio"
+tracks/3/path = NodePath("Player_audio")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 7 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("Weapon_audio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 8 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Weapon_audio:pitch_scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Weapon_audio:volume_db")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 9.0 ]
+}
+
+[sub_resource type="Animation" id=8]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 45, 48 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "Hurt"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 37, 40 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("Player_audio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 13 )
+} ],
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "on_hurt_animation_Start"
+}, {
+"args": [  ],
+"method": "on_hurt_animation_End"
+} ]
+}
+
+[sub_resource type="Animation" id=10]
+length = 1.5
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 5 ]
+}
+
+[sub_resource type="Animation" id=11]
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 41, 44 ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/On_hit_effect:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 24 ]
+}
+
+[sub_resource type="Animation" id=13]
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 6, 13 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 85, 89 ]
+}
+
+[sub_resource type="Animation" id=15]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 86, 90 ]
+}
+
+[sub_resource type="Animation" id=16]
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 60, 62 ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=17]
+animation = "Air_attack"
+
+[sub_resource type="AnimationNodeAnimation" id=18]
+animation = "Air_attack_end"
+
+[sub_resource type="AnimationNodeAnimation" id=19]
+animation = "Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=20]
+animation = "Dash_Attack"
+
+[sub_resource type="AnimationNodeAnimation" id=21]
+animation = "Fall"
+
+[sub_resource type="AnimationNodeAnimation" id=65]
+animation = "Hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=23]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeAnimation" id=24]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=25]
+animation = "Run"
+
+[sub_resource type="AnimationNodeAnimation" id=26]
+animation = "Slide_begin"
+
+[sub_resource type="AnimationNodeAnimation" id=27]
+animation = "Slide_end"
+
+[sub_resource type="AnimationNodeAnimation" id=28]
+animation = "Wall_slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=31]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=32]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=33]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=34]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=35]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=36]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=37]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=66]
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=67]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=68]
+priority = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=69]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=63]
+states/Air_attack/node = SubResource( 17 )
+states/Air_attack/position = Vector2( 904, 4.252 )
+states/Air_attack_end/node = SubResource( 18 )
+states/Air_attack_end/position = Vector2( 904, 148.252 )
+states/Attack/node = SubResource( 19 )
+states/Attack/position = Vector2( 94, 94 )
+states/Dash_attack/node = SubResource( 20 )
+states/Dash_attack/position = Vector2( -45, 269.252 )
+states/Fall/node = SubResource( 21 )
+states/Fall/position = Vector2( 377, -69 )
+states/Hurt/node = SubResource( 65 )
+states/Hurt/position = Vector2( 495, 324 )
+states/Idle/node = SubResource( 23 )
+states/Idle/position = Vector2( 495, 148.252 )
+states/Jump/node = SubResource( 24 )
+states/Jump/position = Vector2( 630, -69 )
+states/Run/node = SubResource( 25 )
+states/Run/position = Vector2( 291, 269.252 )
+states/Slide_begin/node = SubResource( 26 )
+states/Slide_begin/position = Vector2( 762, 269.252 )
+states/Slide_end/node = SubResource( 27 )
+states/Slide_end/position = Vector2( 1063, 269.252 )
+states/Wall_slide/node = SubResource( 28 )
+states/Wall_slide/position = Vector2( 505, -235 )
+transitions = [ "Idle", "Attack", SubResource( 29 ), "Attack", "Idle", SubResource( 30 ), "Idle", "Jump", SubResource( 31 ), "Jump", "Idle", SubResource( 32 ), "Idle", "Fall", SubResource( 33 ), "Fall", "Idle", SubResource( 34 ), "Jump", "Fall", SubResource( 35 ), "Idle", "Run", SubResource( 36 ), "Run", "Idle", SubResource( 37 ), "Run", "Slide_begin", SubResource( 38 ), "Slide_begin", "Slide_end", SubResource( 39 ), "Slide_end", "Idle", SubResource( 40 ), "Jump", "Wall_slide", SubResource( 41 ), "Wall_slide", "Jump", SubResource( 42 ), "Wall_slide", "Fall", SubResource( 43 ), "Fall", "Wall_slide", SubResource( 44 ), "Dash_attack", "Run", SubResource( 46 ), "Air_attack_end", "Idle", SubResource( 47 ), "Fall", "Air_attack", SubResource( 48 ), "Jump", "Air_attack", SubResource( 49 ), "Slide_begin", "Idle", SubResource( 50 ), "Air_attack", "Air_attack_end", SubResource( 51 ), "Run", "Dash_attack", SubResource( 45 ), "Run", "Hurt", SubResource( 66 ), "Hurt", "Run", SubResource( 67 ), "Idle", "Hurt", SubResource( 68 ), "Hurt", "Idle", SubResource( 69 ) ]
+start_node = "Idle"
+graph_offset = Vector2( -99, 67 )
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=64]
+
+[node name="Player" type="KinematicBody2D" groups=[
+"Player",
+]]
+collision_layer = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.471939, -4.24744 )
+texture = ExtResource( 1 )
+vframes = 17
+hframes = 6
+frame = 3
+
+[node name="On_hit_effect" type="Sprite" parent="Sprite"]
+position = Vector2( -25.1984, 12.9142 )
+scale = Vector2( 0.3, 0.3 )
+texture = ExtResource( 4 )
+vframes = 5
+hframes = 5
+frame = 24
+
+[node name="Attack_area" type="Area2D" parent="Sprite"]
+position = Vector2( 2.12372, 5.42729 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Attack_area"]
+position = Vector2( 14.5053, -1.26988 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Dash_attack_area" type="Area2D" parent="Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Dash_attack_area"]
+position = Vector2( 16.064, 7.55952 )
+shape = SubResource( 2 )
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.479034, 0.844513 )
+shape = SubResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.5, 0.5 )
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+
+[node name="Chain" parent="." instance=ExtResource( 3 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Air_attack = SubResource( 4 )
+anims/Air_attack_end = SubResource( 5 )
+anims/Attack = SubResource( 6 )
+anims/Dash_Attack = SubResource( 7 )
+anims/Fall = SubResource( 8 )
+anims/Hurt = SubResource( 9 )
+anims/Idle = SubResource( 10 )
+anims/Jump = SubResource( 11 )
+anims/Power_up = SubResource( 12 )
+anims/Run = SubResource( 13 )
+anims/Slide_begin = SubResource( 14 )
+anims/Slide_end = SubResource( 15 )
+anims/Wall_slide = SubResource( 16 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 63 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 64 )
+
+[node name="Weapon_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+volume_db = 1.0
+
+[node name="Player_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 13 )
+[connection signal="body_entered" from="Sprite/Attack_area" to="." method="_on_Attack_area_body_entered"]
+[connection signal="body_entered" from="Sprite/Dash_attack_area" to="." method="_on_Dash_attack_area_body_entered"]

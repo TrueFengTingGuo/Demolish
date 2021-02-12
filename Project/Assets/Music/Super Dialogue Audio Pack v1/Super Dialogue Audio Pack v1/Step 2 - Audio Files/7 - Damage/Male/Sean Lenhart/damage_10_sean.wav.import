@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/damage_10_sean.wav-4e2efd31a4e03e9c907d105a63d0bcbe.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Male/Sean Lenhart/damage_10_sean.wav"
+dest_files=[ "res://.import/damage_10_sean.wav-4e2efd31a4e03e9c907d105a63d0bcbe.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
