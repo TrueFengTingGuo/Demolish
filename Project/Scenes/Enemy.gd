@@ -58,7 +58,7 @@ func follow_target_sequence():
 		
 func process_died():
 	if hp <= 0:
-		print("died")
+
 		animation_state_machine.travel("Die")
 		set_physics_process(false)
 		
@@ -83,7 +83,7 @@ func take_heavy_damage(amplifier):
 		#animation_state_machine.travel("Shield_self")
 		hurt = true
 		var damage = 1 * amplifier
-		print("damage is " + str(damage))
+
 		if damage > 5:
 			hp -= damage
 		else:
@@ -93,7 +93,8 @@ func take_heavy_damage(amplifier):
 
 #grab by player
 func on_grabed(force):
-	velocity += force	
+	velocity += force
+	
 	
 func on_died():
 	queue_free()

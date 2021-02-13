@@ -13,6 +13,9 @@ var tip := Vector2(0,0)			# The global position the tip should be in
 
 const SPEED = 10	# The speed with which the chain moves
 const LINK_LENGTH = 200
+
+
+var impulse_force = true
 var flying = false	# Whether the chain is moving through the air
 var hooked = false	# Whether the chain has connected to a wall
 var reload = false
@@ -38,7 +41,8 @@ func release() -> void:
 	reload = true
 	hooked_enemy = false
 	enemy_enity = null
-
+	impulse_force = true
+	
 func _process(_delta: float) -> void:
 	
 	#if the hook is flying or hook to something
@@ -85,8 +89,11 @@ func _physics_process(_delta: float) -> void:
 	if enemy_enity != null:
 		$Tip.global_position = enemy_enity.global_position
 
-		var pull_dir = -0.1 * player_dir.direction_to(tip) *player_dir.distance_to(tip)
-		enemy_enity.on_grabed( pull_dir)
+		if impulse_force:
+			var pull_dir = -2 * player_dir.direction_to(tip) *player_dir.distance_to(tip)
+			impulse_force = false
+			enemy_enity.on_grabed( pull_dir)
+			
 	else:
 		$Tip.set_collision_mask_bit( 2, true )
 		

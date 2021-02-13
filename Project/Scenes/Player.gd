@@ -26,6 +26,10 @@ var space = false
 var attack = false
 var air_attack = false
 var hurt = false
+
+var bow = false
+var sword = true
+
 var coins = 0
 var air_attack_amp = 0
 var hp = 100
@@ -92,6 +96,11 @@ func _input(event):
 			space = true
 		else:
 			space = false
+			
+		if Input.is_action_just_pressed("Switch_weapon"):
+			bow = !bow
+			sword = !sword
+
 		
 		
 func _physics_process(delta):
@@ -165,11 +174,8 @@ func _physics_process(delta):
 				velocity.x = lerp(velocity.x,0,0.09)
 			
 			if attack:
-
-				if(abs(velocity.x) > 100):
-					animation_state_machine.travel("Dash_attack")
-				else:
-					animation_state_machine.travel("Attack")
+				attack()
+				
 			
 			if hurt:
 				animation_state_machine.travel("Hurt")
@@ -189,19 +195,18 @@ func _physics_process(delta):
 			if hurt:
 				animation_state_machine.travel("Hurt")
 			else:
+				
+				#on the floor and attack
 				if attack:
-					if(abs(velocity.x) > 150):
-						animation_state_machine.travel("Dash_attack")
-					else:
-						animation_state_machine.travel("Attack")
-					if go_right:
-						velocity.x += SPEED
-						#Sprite image flip is equal to false
-						$Sprite.scale.x = 1
-						
-					elif go_left:
-						velocity.x -= SPEED
-						$Sprite.scale.x = -1
+					
+					attack()
+				
+				#on the floor can jump
+				elif jump:
+					velocity.y = JUMPFORCE	
+					snap_vector = Vector2.ZERO * SNAP_LENGTH
+				
+				#go left or right
 				else:	
 					
 					if go_right:
@@ -212,73 +217,82 @@ func _physics_process(delta):
 					elif go_left:
 						velocity.x -= SPEED
 						$Sprite.scale.x = -1
-				if jump:
-					velocity.y = JUMPFORCE	
-					snap_vector = Vector2.ZERO * SNAP_LENGTH
+				
 							
 				
 		velocity = move_and_slide_with_snap(velocity, snap_vector ,FLOOR_NORMAL,true)	
 		snap_vector = SNAP_DIRECTION * SNAP_LENGTH
 		
-	else:
-		# if player is not on the floor
-		
-		if is_on_wall():
+	elif is_on_wall():
 			
 
-			animation_state_machine.travel("Wall_slide")
+		animation_state_machine.travel("Wall_slide")
 			
-			if velocity.x < 0:
-					$Sprite.scale.x = -1
-			elif velocity.x > 0:
-					$Sprite.scale.x = 1
-			if go_right and jump and velocity.x < 0:
-
-				velocity.y = JUMPFORCE
-				velocity.x = 3.5 * SPEED
-				#Sprite image flip is equal to false
-				$Sprite.scale.x = 1
-					
-			elif go_left and jump and velocity.x > 0:
-				velocity.x = 0
-				velocity.y = JUMPFORCE
-				velocity.x =  -3.5 *  SPEED
+		if velocity.x < 0:
 				$Sprite.scale.x = -1
+		elif velocity.x > 0:
+				$Sprite.scale.x = 1
+		if go_right and jump and velocity.x < 0:
 			
-			elif jump and not go_left and not go_right:
-				velocity.y = lerp(velocity.y,0,0.3)
-		
-			if attack:
-				if velocity.x < 0:
-
-					attack = false
-					air_attack = false
-		else:
-			
-			
-			if attack:
-				air_attack = true
-				animation_state_machine.travel("Air_attack")
-				if velocity.y > 0:
-					air_attack_amp += abs(velocity.y )
-
-			else:
-				if go_right:
-					$Sprite.scale.x = 1
-				if go_left:
-					$Sprite.scale.x = -1
+			velocity.y = JUMPFORCE
+			velocity.x = 3.5 * SPEED
+			#Sprite image flip is equal to false
+			$Sprite.scale.x = 1
 					
-				if velocity.y > 0:
-					animation_state_machine.travel("Fall")
-				else:
-					animation_state_machine.travel("Jump")
-	#give extra force
-		velocity.y += GARAVITY
-		#slow down speed	
-		velocity.x = lerp(velocity.x,0,0.01)
-		velocity.y = move_and_slide(velocity, Vector2.UP).y
+		elif go_left and jump and velocity.x > 0:
+			velocity.x = 0
+			velocity.y = JUMPFORCE
+			velocity.x =  -3.5 *  SPEED
+			$Sprite.scale.x = -1
+			
+		elif jump and not go_left and not go_right:
+			velocity.y = lerp(velocity.y,0,0.3)
+		
+		if attack:
+			attack = false
+			air_attack = false
+			
+		give_gravity()
+	else:
+			
+			
+		if attack:
+			air_attack = true
+			animation_state_machine.travel("Air_attack")
+			
+			# determine how powerful is this attack
+			if velocity.y > 0:
+				air_attack_amp += abs(velocity.y )
 
-
+		else:
+			if go_right:
+				$Sprite.scale.x = 1
+			if go_left:
+				$Sprite.scale.x = -1
+				
+			if velocity.y > 0:
+				animation_state_machine.travel("Fall")
+			else:
+				animation_state_machine.travel("Jump")
+				
+		give_gravity()
+		
+func give_gravity():
+	#give extra force while in air
+	velocity.y += GARAVITY
+	#slow down speed	
+	velocity.x = lerp(velocity.x,0,0.01)
+	velocity.y = move_and_slide(velocity, Vector2.UP).y
+	
+func attack():
+	if sword:
+		if(abs(velocity.x) > 100):
+			animation_state_machine.travel("Dash_attack")
+		else:
+			animation_state_machine.travel("Attack")
+	elif bow:
+		animation_state_machine.travel("Bow")
+		
 func take_damage():
 	if (hp > 0):
 		hurt = true
