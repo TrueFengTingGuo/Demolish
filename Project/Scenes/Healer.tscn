@@ -566,15 +566,15 @@ region = Rect2( 1512, 1512, 378, 378 )
 
 [sub_resource type="SpriteFrames" id=40]
 animations = [ {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
-"loop": true,
-"name": "New Anim",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 8 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 3 ), ExtResource( 24 ), ExtResource( 21 ), ExtResource( 17 ), ExtResource( 1 ), ExtResource( 12 ), ExtResource( 5 ), ExtResource( 20 ), ExtResource( 7 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 10 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "Hit",
 "speed": 40.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 60.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=41]
