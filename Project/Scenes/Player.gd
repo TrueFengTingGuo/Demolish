@@ -10,6 +10,9 @@ const SNAP_DIRECTION = Vector2.DOWN
 const SNAP_LENGTH = 12.0
 const FLOOR_ANGLE = deg2rad(45)
 const CHAIN_PULL = 20
+const ARROW_SCENE = preload("res://Scenes/Player_Arrow.tscn")
+const ARROW_SPEED = Vector2(20,0)
+
 
 var animation_state_machine
 var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
@@ -26,6 +29,7 @@ var space = false
 var attack = false
 var air_attack = false
 var hurt = false
+var invincible = false
 
 var bow = false
 var sword = true
@@ -145,7 +149,7 @@ func _physics_process(delta):
 		chain_velocity = Vector2(0,0)
 
 
-	
+
 
 		
 	velocity += chain_velocity
@@ -161,7 +165,7 @@ func _physics_process(delta):
 			
 		#lerp: doing Linear Interpolation (make small changes between two variable)		
 		if get_down:
-				
+			
 			if abs(velocity.x) > 50:
 				velocity.x = lerp(velocity.x,0,0.02)
 				animation_state_machine.travel("Slide_begin")
@@ -175,14 +179,14 @@ func _physics_process(delta):
 			
 			if attack:
 				attack()
-				
+
+			invincible_toggle(true) #player takes no damage
 			
-			if hurt:
-				animation_state_machine.travel("Hurt")
 		#if player is not sliding
 		else:
 			
 			velocity.x = lerp(velocity.x,0,0.05)
+			invincible_toggle(false)#player taks damage
 			
 			#if the speed is high enough than run
 			if(abs(velocity.x) > 40):
@@ -225,55 +229,58 @@ func _physics_process(delta):
 		
 	elif is_on_wall():
 			
-
-		animation_state_machine.travel("Wall_slide")
-			
-		if velocity.x < 0:
-				$Sprite.scale.x = -1
-		elif velocity.x > 0:
-				$Sprite.scale.x = 1
-		if go_right and jump and velocity.x < 0:
-			
-			velocity.y = JUMPFORCE
-			velocity.x = 3.5 * SPEED
-			#Sprite image flip is equal to false
-			$Sprite.scale.x = 1
+		if not hurt:
+			animation_state_machine.travel("Wall_slide")
+				
+			if velocity.x < 0:
+					$Sprite.scale.x = -1
+			elif velocity.x > 0:
+					$Sprite.scale.x = 1
 					
-		elif go_left and jump and velocity.x > 0:
-			velocity.x = 0
-			velocity.y = JUMPFORCE
-			velocity.x =  -3.5 *  SPEED
-			$Sprite.scale.x = -1
+			if go_right and jump and velocity.x < 0:
+				
+				velocity.y = JUMPFORCE
+				velocity.x = 3.5 * SPEED
+				#Sprite image flip is equal to false
+
+						
+			elif go_left and jump and velocity.x > 0:
+
+				velocity.y = JUMPFORCE
+				velocity.x =  -3.5 *  SPEED
+
+				
+			elif jump and not go_left and not go_right:
+				velocity.y = lerp(velocity.y,0,0.3)
 			
-		elif jump and not go_left and not go_right:
-			velocity.y = lerp(velocity.y,0,0.3)
-		
-		if attack:
-			attack = false
-			air_attack = false
+			if attack:
+				attack = false
+				air_attack = false
 			
 		give_gravity()
 	else:
 			
-			
-		if attack:
-			air_attack = true
-			animation_state_machine.travel("Air_attack")
-			
-			# determine how powerful is this attack
-			if velocity.y > 0:
-				air_attack_amp += abs(velocity.y )
-
-		else:
-			if go_right:
-				$Sprite.scale.x = 1
-			if go_left:
-				$Sprite.scale.x = -1
+		#if in the air
+		if not hurt:
+			if attack and sword:
+				air_attack = true
+				animation_state_machine.travel("Air_attack")
 				
-			if velocity.y > 0:
-				animation_state_machine.travel("Fall")
+				# determine how powerful is this attack
+				if velocity.y > 0:
+					air_attack_amp += abs(velocity.y )
+			elif attack and bow:
+				animation_state_machine.travel("Bow")
 			else:
-				animation_state_machine.travel("Jump")
+				if go_right:
+					$Sprite.scale.x = 1
+				if go_left:
+					$Sprite.scale.x = -1
+					
+				if velocity.y > 0:
+					animation_state_machine.travel("Fall")
+				else:
+					animation_state_machine.travel("Jump")
 				
 		give_gravity()
 		
@@ -294,16 +301,36 @@ func attack():
 		animation_state_machine.travel("Bow")
 		
 func take_damage():
-	if (hp > 0):
+	if (hp > 0) and not invincible:
 		hurt = true
 		hp -= 2
 		if $Chain.hooked:
 			$Chain.release()
+			
+		get_down = false
+		go_right = false
+		go_left = false
+		jump = false
+		just_jump = false
+		space = false
+		attack = false
+		air_attack = false
+
+func invincible_toggle(input):
+	invincible = input
+	
+func create_a_force_on_player(force):
+	if not invincible:
+		velocity += force
+
+
+
 
 func _on_Fall_Zone_body_entered(body):
 	if body == self:
 		var sceneName = get_tree().current_scene.name
 		get_tree().change_scene("res://Scenes/" + sceneName + ".tscn")
+
 
 func on_hurt_animation_Start():
 	#player state
@@ -333,6 +360,13 @@ func on_attack_animation_End():
 	attack = false
 	air_attack= false
 	air_attack_amp = 0
+
+func fire_arrow():
+	var arrow_instnace = ARROW_SCENE.instance()
+	arrow_instnace.set_arrow_init_info($Sprite/Arrow_Fire_Point.global_position,$Sprite.scale.x,ARROW_SPEED * $Sprite.scale.x)
+	get_parent().add_child(arrow_instnace)
+	
+	
 	
 func _on_Attack_area_body_entered(body):
 
