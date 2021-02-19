@@ -484,12 +484,8 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 13 )
-} ],
-"times": PoolRealArray( 0.1 )
+"clips": [  ],
+"times": PoolRealArray(  )
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath(".")
@@ -924,18 +920,18 @@ graph_offset = Vector2( -136, -262 )
 "Player",
 ]]
 collision_layer = 2
+collision_mask = 65
 script = ExtResource( 2 )
+push = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.471939, -4.24744 )
 texture = ExtResource( 1 )
 vframes = 17
 hframes = 6
-frame = 1
 
 [node name="On_hit_effect" type="Sprite" parent="Sprite"]
-visible = false
-position = Vector2( -22.3636, 7.87451 )
+position = Vector2( -25.1984, 12.9142 )
 scale = Vector2( 0.3, 0.3 )
 texture = ExtResource( 4 )
 vframes = 5

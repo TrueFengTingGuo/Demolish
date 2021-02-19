@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/Push_Cargo_Quest.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Cargo.tscn" type="PackedScene" id=2]
+
+[node name="Push_Cargo_Quest" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Cargo" parent="." instance=ExtResource( 2 )]

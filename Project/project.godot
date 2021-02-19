@@ -95,6 +95,8 @@ Switch_weapon={
 2d_physics/layer_4="coins"
 2d_physics/layer_5="Hook"
 2d_physics/layer_6="Fall Zone"
+2d_physics/layer_7="cargo"
+2d_physics/layer_8="Arrow"
 
 [rendering]
 

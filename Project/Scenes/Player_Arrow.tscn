@@ -8,12 +8,12 @@ radius = 0.875
 height = 11.5883
 
 [node name="Player_Arrow" type="KinematicBody2D"]
-collision_layer = 64
+collision_layer = 128
 collision_mask = 5
 script = ExtResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 4.71239
+rotation = -1.5708
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]

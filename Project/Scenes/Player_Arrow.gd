@@ -25,7 +25,7 @@ func _physics_process(delta):
 			collider.take_damage()
 			collider.velocity += 30* self.global_position.direction_to(collider.global_position).normalized()
 			queue_free()
-		elif collider.is_in_group('Wall'):
+		elif collider.is_in_group('Wall') or collider.is_in_group('Cargo'):
 			queue_free()
 			
 

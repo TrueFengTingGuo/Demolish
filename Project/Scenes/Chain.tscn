@@ -22,7 +22,7 @@ region_rect = Rect2( 3.468, 0, 10, 36 )
 
 [node name="Tip" type="KinematicBody2D" parent="."]
 collision_layer = 2147483664
-collision_mask = 2147483653
+collision_mask = 2147483717
 
 [node name="Hook" type="Sprite" parent="Tip"]
 position = Vector2( 1.12246, 1.40308 )

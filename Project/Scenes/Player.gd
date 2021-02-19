@@ -11,13 +11,14 @@ const SNAP_LENGTH = 12.0
 const FLOOR_ANGLE = deg2rad(45)
 const CHAIN_PULL = 20
 const ARROW_SCENE = preload("res://Scenes/Player_Arrow.tscn")
-const ARROW_SPEED = Vector2(20,0)
+const ARROW_SPEED = Vector2(15,0)
 
 
 var animation_state_machine
 var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
 var chain_velocity = Vector2(0,0)
 var velocity = Vector2(0,0)
+export (int, 0, 500) var push = 100
 
 #player state
 var get_down = false
@@ -63,12 +64,14 @@ func _input(event):
 			$Chain.shoot(position.direction_to(target) * 0.5,self.global_position)
 		else:
 			# We released the mouse -> release()
-			$Chain.release()
+			if $Chain.hooked:
+				$Chain.release()
 		
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			
 			attack = true
-			$Chain.release()
+			if $Chain.hooked:
+				$Chain.release()
 			
 	else:
 		if Input.is_action_pressed("ui_down"):
@@ -87,6 +90,7 @@ func _input(event):
 			go_left = false
 			
 		if Input.is_action_just_pressed("ui_up"):	
+			
 			just_jump = true
 		else:
 			just_jump = false
@@ -119,15 +123,19 @@ func _physics_process(delta):
 		velocity.y = 0
 
 		# Hook physics
+	$Chain.player_position = self.global_position
 	if $Chain.hooked:
 		snap_vector = Vector2.ZERO * SNAP_LENGTH
 		
 		# `to_local($Chain.tip).normalized()` is the direction that the chain is pulling
 		chain_velocity = to_local($Chain.tip).normalized() * CHAIN_PULL
 
-		if$Chain.hooked_enemy:
+		if $Chain.hooked_enemy:
 			if abs(chain_velocity.y) < 3:
 				chain_velocity.y -= 5
+		
+		elif $Chain.hooked_cargo:
+			chain_velocity.y = 5
 		else:
 			if chain_velocity.y > 1:
 				# Pulling down isn't as strong
@@ -148,12 +156,9 @@ func _physics_process(delta):
 		# Not hooked -> no chain velocity
 		chain_velocity = Vector2(0,0)
 
-
-
-
 		
 	velocity += chain_velocity
-
+	pushing_rigidbody()
 
 	
 	# if the player on the floor
@@ -185,12 +190,12 @@ func _physics_process(delta):
 		#if player is not sliding
 		else:
 			
-			velocity.x = lerp(velocity.x,0,0.05)
+			velocity.x = lerp(velocity.x,0,0.1)
 			invincible_toggle(false)#player taks damage
 			
 			#if the speed is high enough than run
-			if(abs(velocity.x) > 40):
-				velocity.x = lerp(velocity.x,0,0.05)
+			if go_left or go_right:
+
 				animation_state_machine.travel("Run")
 			else:
 				#play idle animation
@@ -224,7 +229,7 @@ func _physics_process(delta):
 				
 							
 				
-		velocity = move_and_slide_with_snap(velocity, snap_vector ,FLOOR_NORMAL,true)	
+		velocity = move_and_slide_with_snap(velocity, snap_vector ,FLOOR_NORMAL,false, 4, PI/4, false)
 		snap_vector = SNAP_DIRECTION * SNAP_LENGTH
 		
 	elif is_on_wall():
@@ -289,8 +294,15 @@ func give_gravity():
 	velocity.y += GARAVITY
 	#slow down speed	
 	velocity.x = lerp(velocity.x,0,0.01)
-	velocity.y = move_and_slide(velocity, Vector2.UP).y
-	
+	velocity.y = move_and_slide(velocity, Vector2.UP,
+					false, 4, PI/4, false).y
+
+func pushing_rigidbody():
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		if collision.collider.is_in_group("Cargo"):
+			collision.collider.apply_central_impulse(-collision.normal * push)
+				
 func attack():
 	if sword:
 		if(abs(velocity.x) > 100):
@@ -322,8 +334,6 @@ func invincible_toggle(input):
 func create_a_force_on_player(force):
 	if not invincible:
 		velocity += force
-
-
 
 
 func _on_Fall_Zone_body_entered(body):
