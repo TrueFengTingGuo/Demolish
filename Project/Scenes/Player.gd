@@ -333,7 +333,7 @@ func invincible_toggle(input):
 	
 func create_a_force_on_player(force):
 	if not invincible:
-		velocity += force
+		velocity.x += force
 
 
 func _on_Fall_Zone_body_entered(body):

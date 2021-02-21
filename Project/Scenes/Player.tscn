@@ -453,7 +453,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -929,14 +929,16 @@ position = Vector2( 0.471939, -4.24744 )
 texture = ExtResource( 1 )
 vframes = 17
 hframes = 6
+frame = 2
 
 [node name="On_hit_effect" type="Sprite" parent="Sprite"]
-position = Vector2( -25.1984, 12.9142 )
+visible = false
+position = Vector2( 16.13, 5.96144 )
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 4 )
+texture = ExtResource( 12 )
 vframes = 5
 hframes = 5
-frame = 24
+frame = 13
 
 [node name="Attack_area" type="Area2D" parent="Sprite"]
 position = Vector2( 2.12372, 5.42729 )
@@ -993,7 +995,7 @@ parameters/playback = SubResource( 63 )
 
 [node name="Weapon_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 14 )
-volume_db = 1.0
+volume_db = -3.274
 
 [node name="Player_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 13 )

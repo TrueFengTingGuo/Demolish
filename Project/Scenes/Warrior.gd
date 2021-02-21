@@ -70,19 +70,19 @@ func _on_Vision_body_exited(body):
 func _on_Attack_Area_body_entered(body):
 	if body.is_in_group("Player"):
 		body.take_damage()
-		body.velocity.x += 150* self.global_position.direction_to(body.global_position).normalized().x
+		body.create_a_force_on_player(100 * self.global_position.direction_to(body.global_position).normalized().x)
 
 
 func _on_Attack_area2_body_entered(body):
 	if body.is_in_group("Player"):
 		body.take_damage()
-		body.velocity.x += 300* self.global_position.direction_to(body.global_position).normalized().x
+		body.create_a_force_on_player(300 * self.global_position.direction_to(body.global_position).normalized().x)
 
 
 func _on_Attack_area3_body_entered(body):
 	if body.is_in_group("Player"):
 		body.take_damage()
-		body.velocity.x += 600 * self.global_position.direction_to(body.global_position).normalized().x
+		body.create_a_force_on_player(600 * self.global_position.direction_to(body.global_position).normalized().x)
 
 
 func attack_dash():
@@ -100,6 +100,9 @@ func _on_attack_start():
 	is_attacking  = true
 	
 func _on_attack_finish():
+	$Animations/Attack_Area/CollisionShape2D.disabled = true
+	$Animations/Attack_area2/CollisionShape2D.disabled = true
+	$Animations/Attack_area3/CollisionShape2D.disabled = true
 	is_attacking  = false
 	attack = false
 

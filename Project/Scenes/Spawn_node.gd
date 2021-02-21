@@ -6,6 +6,10 @@ var randomNumberGenerator
 export var spawn_type = "Warrior"
 export var warrior_number = 20
 
+
+export var active = false
+
+
 var warrior_instance
 var warrior_instance_timer
 
@@ -27,6 +31,9 @@ func _ready():
 
 func  _physics_process(_delta: float) -> void:
 	
+	if not active:
+		
+		return
 	#warrior_instance_timer += _delta
 	#$AnimatedSprite.play("Idle")
 	var not_exist = true

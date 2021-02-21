@@ -1,3 +1,188 @@
-[gd_scene format=2]
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://Assets/Villagers NPC Character Pack by RgsDev/16x16 Villager male 2.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Cargo_waypoint.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Male/Alex Brodie/confirmation_6_alex.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/6 - Miscellaneous/Male/Alex Brodie/miscellaneous_3_alex.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Fonts/Mini3x5.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Assets/Background/Layers/2.png" type="Texture" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 10
+font_data = ExtResource( 5 )
+
+[sub_resource type="RectangleShape2D" id=15]
+extents = Vector2( 392.036, 34.1227 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 58.4075, 29.7845 )
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "Cargo_not_inside"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "Completion"
+
+[sub_resource type="AnimationNodeAnimation" id=5]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=10]
+states/Cargo_not_inside/node = SubResource( 3 )
+states/Cargo_not_inside/position = Vector2( 220, 133 )
+states/Completion/node = SubResource( 4 )
+states/Completion/position = Vector2( 533, 133 )
+states/Idle/node = SubResource( 5 )
+states/Idle/position = Vector2( 377, 44 )
+transitions = [ "Idle", "Cargo_not_inside", SubResource( 6 ), "Cargo_not_inside", "Idle", SubResource( 7 ), "Idle", "Completion", SubResource( 8 ), "Completion", "Idle", SubResource( 9 ) ]
+start_node = "Idle"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 4 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 4 )
+} ],
+"times": PoolRealArray( 0.3 )
+}
+
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 4 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 3 )
+} ],
+"times": PoolRealArray( 0.3 )
+}
+
+[sub_resource type="Animation" id=14]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 4 ]
+}
 
 [node name="Cargo_waypoint" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Character_dialog" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -76.7438
+margin_top = -11.5882
+margin_right = 75.2562
+margin_bottom = 4.41175
+grow_horizontal = 2
+custom_fonts/font = SubResource( 1 )
+text = "I need to find all the cargos"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2( -0.22348, -3.30695 )
+shape = SubResource( 15 )
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2147483648
+collision_mask = 66
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 2 )
+
+[node name="Character" type="Sprite" parent="."]
+process_priority = 1
+position = Vector2( -0.500565, 14.0158 )
+z_index = 1
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 8
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 10 )
+anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/playback = SubResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Cargo_not_inside = SubResource( 12 )
+anims/Completion = SubResource( 13 )
+anims/Idle = SubResource( 14 )
+
+[node name="Background" type="Sprite" parent="."]
+visible = false
+position = Vector2( 16.315, -131.816 )
+z_index = -1
+texture = ExtResource( 6 )
+[connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
+[connection signal="body_exited" from="Area2D2" to="." method="_on_Area2D2_body_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
