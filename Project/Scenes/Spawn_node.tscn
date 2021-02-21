@@ -19,7 +19,6 @@
 [ext_resource path="res://Assets/explosions and impact (extract.me)/explosion7/png-sequence/explosion18.png" type="Texture" id=17]
 [ext_resource path="res://Assets/explosions and impact (extract.me)/explosion3/png-sequence/ver2/explosion3.png" type="Texture" id=32]
 
-
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 32 ) ],
@@ -33,7 +32,9 @@ animations = [ {
 "speed": 30.0
 } ]
 
-[node name="Spawn_node" type="Node2D"]
+[node name="Spawn_node" type="Node2D" groups=[
+"Enemy_Spawning_Point",
+]]
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

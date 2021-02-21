@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Arrow Flying Past 1.wav-21900cfe3edbb3d0f3f7d4796b799ba4.sample"
+
+[deps]
+
+source_file="res://Assets/Music/Bow/Arrow Flying Past 1.wav"
+dest_files=[ "res://.import/Arrow Flying Past 1.wav-21900cfe3edbb3d0f3f7d4796b799ba4.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
