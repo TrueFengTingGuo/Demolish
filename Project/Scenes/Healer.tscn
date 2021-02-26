@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion11.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Healer.gd" type="Script" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Assets/Music/Ghost/Ghost Death_02.wav" type="AudioStream" id=25]
 [ext_resource path="res://Assets/character Pack 8/shadow of storms/heal charge up.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Music/Buff/Buff 17.wav" type="AudioStream" id=27]
+[ext_resource path="res://Scenes/Follow_Target.gd" type="Script" id=28]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "Die"
@@ -580,12 +581,18 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 11.2255, 13.3858 )
 
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 76.6916, 11.5937 )
+
 [node name="Healer" type="KinematicBody2D" groups=[
 "Enemy",
 "Healer",
 ]]
 collision_layer = 4
 script = ExtResource( 2 )
+
+[node name="Follow_Target" type="Node2D" parent="."]
+script = ExtResource( 28 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 8 )
@@ -623,4 +630,12 @@ max_distance = 1000.0
 [node name="character_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 25 )
 max_distance = 1000.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -0.140305, 0.288956 )
+shape = SubResource( 42 )
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
