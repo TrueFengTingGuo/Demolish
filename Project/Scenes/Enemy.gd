@@ -56,6 +56,14 @@ func follow_target_sequence():
 		velocity.y = JUMPFORCE	
 		snap_vector = Vector2.ZERO * SNAP_LENGTH
 		
+
+func escape_from_target():
+	$Follow_Target.follow_the_object(global_position)
+	velocity.x += $Follow_Target.dircetion * SPEED * -1
+	if $Follow_Target.jump == 1 :
+		velocity.y = JUMPFORCE	
+		snap_vector = Vector2.ZERO * SNAP_LENGTH
+		
 func process_died():
 	if hp <= 0:
 
