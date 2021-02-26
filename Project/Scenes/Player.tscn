@@ -912,7 +912,7 @@ states/Wall_slide/node = SubResource( 30 )
 states/Wall_slide/position = Vector2( 505, -235 )
 transitions = [ "Idle", "Attack", SubResource( 31 ), "Attack", "Idle", SubResource( 32 ), "Idle", "Jump", SubResource( 33 ), "Jump", "Idle", SubResource( 34 ), "Idle", "Fall", SubResource( 35 ), "Fall", "Idle", SubResource( 36 ), "Jump", "Fall", SubResource( 37 ), "Idle", "Run", SubResource( 38 ), "Run", "Idle", SubResource( 39 ), "Run", "Slide_begin", SubResource( 40 ), "Slide_begin", "Slide_end", SubResource( 41 ), "Slide_end", "Idle", SubResource( 42 ), "Jump", "Wall_slide", SubResource( 43 ), "Wall_slide", "Jump", SubResource( 44 ), "Wall_slide", "Fall", SubResource( 45 ), "Fall", "Wall_slide", SubResource( 46 ), "Dash_attack", "Run", SubResource( 47 ), "Air_attack_end", "Idle", SubResource( 48 ), "Fall", "Air_attack", SubResource( 49 ), "Jump", "Air_attack", SubResource( 50 ), "Slide_begin", "Idle", SubResource( 51 ), "Air_attack", "Air_attack_end", SubResource( 52 ), "Run", "Dash_attack", SubResource( 53 ), "Run", "Hurt", SubResource( 54 ), "Hurt", "Run", SubResource( 55 ), "Idle", "Hurt", SubResource( 56 ), "Hurt", "Idle", SubResource( 57 ), "Idle", "Bow", SubResource( 58 ), "Bow", "Idle", SubResource( 59 ), "Fall", "Hurt", SubResource( 60 ), "Jump", "Hurt", SubResource( 61 ) ]
 start_node = "Idle"
-graph_offset = Vector2( -136, -262 )
+graph_offset = Vector2( -93, -64 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=63]
 
@@ -922,7 +922,6 @@ graph_offset = Vector2( -136, -262 )
 collision_layer = 2
 collision_mask = 65
 script = ExtResource( 2 )
-push = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.471939, -4.24744 )
@@ -932,13 +931,12 @@ hframes = 6
 frame = 2
 
 [node name="On_hit_effect" type="Sprite" parent="Sprite"]
-visible = false
-position = Vector2( 16.13, 5.96144 )
+position = Vector2( -25.1984, 12.9142 )
 scale = Vector2( 0.3, 0.3 )
-texture = ExtResource( 12 )
+texture = ExtResource( 4 )
 vframes = 5
 hframes = 5
-frame = 13
+frame = 24
 
 [node name="Attack_area" type="Area2D" parent="Sprite"]
 position = Vector2( 2.12372, 5.42729 )
@@ -995,7 +993,7 @@ parameters/playback = SubResource( 63 )
 
 [node name="Weapon_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 14 )
-volume_db = -3.274
+volume_db = 1.0
 
 [node name="Player_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 13 )
