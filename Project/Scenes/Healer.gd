@@ -37,8 +37,10 @@ func _physics_process(delta):
 				else:			
 					#he is not moving
 					animation_state_machine.travel("Idle")	
-					
-				follow_target_sequence()
+				if ($Follow_Target.is_in_group("Enemy") ):	
+					follow_target_sequence()
+				else:
+					escape_from_target()
 	else:	
 		
 		in_air_physics()
@@ -106,3 +108,11 @@ func _on_attack_finish():
 	is_attacking  = false
 	attack = false
 
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Enemy") and  hp/healer_init_hp < 0.2:
+		$Follow_Target.set_target(body)
+
+	elif body.is_in_group("Player"):
+		$Follow_Target.set_target(body)
