@@ -1,26 +1,12 @@
-extends KinematicBody2D
-
-const SPEED = 30
-const GARAVITY = 5
-const JUMPFORCE = -200
-const VELOCITY_X_LIMIT = 180
-const FLOOR_NORMAL = Vector2.UP
-const SNAP_DIRECTION = Vector2.DOWN
-const SNAP_LENGTH = 12.0
-const FLOOR_ANGLE = deg2rad(45)
+#Credit for making a platformer AI https://www.youtube.com/watch?v=WXC8eBCEbho
 
 
-var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
-var velocity = Vector2(0,0)
-var animation_state_machine
-var hp = 8
+extends "res://Scenes/Enemy.gd"
 
-
-
-var hurt = false
-
+var healer_init_hp = 10
 func _ready():
-
+	hp = healer_init_hp
+	init_hp = healer_init_hp
 	animation_state_machine =$AnimationTree.get("parameters/playback")
 	
 func _physics_process(delta):
@@ -30,70 +16,93 @@ func _physics_process(delta):
 	if is_on_ceiling():
 		velocity.y = 0
 	
-	
-	if hurt:
-		$Effect.visible = true
-		$Effect.frame = 0
-		$Effect.play("Hit")
-		print($Effect.animation)
-		animation_state_machine.travel("Hurt")
-		hurt = false
+	#change the direction of the sprite
+	fliping()
 		
-	else:
-		if is_on_floor():
+	process_hurt()
+	
+	if is_on_floor():
+		
+		on_floor_physics()
+
+		#print("attack " + str(attack) + "attack_finished " + str(attack_finished))		
 			
-			velocity.x = lerp(velocity.x,0,0.05)
-			animation_state_machine.travel("Idle")
-			velocity = move_and_slide(velocity, Vector2.UP)
-			snap_vector = SNAP_DIRECTION * SNAP_LENGTH
-		else:
-			velocity.y += GARAVITY
-			#slow down speed	
-			velocity.x = lerp(velocity.x,0,0.01)
-			velocity = move_and_slide(velocity, Vector2.UP)
-	
-
-	if hp <= 0:
-		print("died")
-		animation_state_machine.travel("Die")
-		set_physics_process(false)
-	
-func take_damage():
-	if (hp > 0):
-		hurt = true
-		hp -= 2
-
-		#animation_state_machine.travel("Shield_self")
-	
-func take_heavy_damage(amplifier):
-	if (hp > 0):
-		#animation_state_machine.travel("Shield_self")
-		hurt = true
-		var damage = 1 * amplifier
-		print("damage is " + str(damage))
-		if damage > 5:
-			hp -= damage
-		else:
-			hp -= 5
+		if !is_attacking:
+			if attack and !hurt :
+				animation_state_machine.travel("Attack")
+			else:
+				if(abs(velocity.x) > 40):
+					#he is running	
+					animation_state_machine.travel("Run")			
+				else:			
+					#he is not moving
+					animation_state_machine.travel("Idle")	
+					
+				follow_target_sequence()
+	else:	
+		
+		in_air_physics()
+		
+	process_died()
+		
 
 
 func _on_Effect_animation_finished():
-	#print("?")
 	$Effect.visible = false
-	pass
 
-#grab by player
-func on_grabed(force):
-	velocity += force
-	print(velocity)
-	
-	
-func on_died():
-	queue_free()
-	
 func remove_from_targetable():
 	remove_from_group("Enemy")
-	remove_from_group("Healer")
+	remove_from_group("Warrior")
+	set_collision_layer_bit( 2, false )
 
-	set_collision_layer_bit(2, false )
+func _on_Vision_body_entered(body):
+	
+	if body.is_in_group("Healer") and  hp/healer_init_hp < 0.2:
+		$Follow_Target.set_target(body)
+
+	elif body.is_in_group("Player"):
+		$Follow_Target.set_target(body)
+		
+func _on_Vision_body_exited(body):
+	if $Follow_Target.target_node == body:
+		$Follow_Target.deselcet_target()
+
+func _on_Attack_Area_body_entered(body):
+	if body.is_in_group("Player"):
+		body.take_damage()
+		body.create_a_force_on_player(100 * self.global_position.direction_to(body.global_position).normalized().x)
+
+
+func _on_Attack_area2_body_entered(body):
+	if body.is_in_group("Player"):
+		body.take_damage()
+		body.create_a_force_on_player(300 * self.global_position.direction_to(body.global_position).normalized().x)
+
+
+func _on_Attack_area3_body_entered(body):
+	if body.is_in_group("Player"):
+		body.take_damage()
+		body.create_a_force_on_player(600 * self.global_position.direction_to(body.global_position).normalized().x)
+
+
+func attack_dash():
+	velocity.x +=  $Animations.scale.x  * 20* SPEED	
+	
+	
+func _on_Attack_range_body_entered(body):	
+
+	attack = true
+
+func _on_Attack_range_body_exited(body):
+	attack = false
+
+func _on_attack_start():
+	is_attacking  = true
+	
+func _on_attack_finish():
+	$Animations/Attack_Area/CollisionShape2D.disabled = true
+	$Animations/Attack_area2/CollisionShape2D.disabled = true
+	$Animations/Attack_area3/CollisionShape2D.disabled = true
+	is_attacking  = false
+	attack = false
 
