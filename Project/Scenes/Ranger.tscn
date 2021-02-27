@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://Assets/explosions and impact (extract.me)/impact5/png-sequence/spritesheet_ver1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Idle.png" type="Texture" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Male/Alex Brodie/damage_4_alex.wav" type="AudioStream" id=22]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Get Hit.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Death.png" type="Texture" id=24]
+[ext_resource path="res://Scenes/Follow_Target.tscn" type="PackedScene" id=25]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 17.5222 )
@@ -370,6 +371,9 @@ graph_offset = Vector2( -53, 0 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=39]
 
+[sub_resource type="RectangleShape2D" id=40]
+extents = Vector2( 144.5, 15.5 )
+
 [node name="Ranger" type="KinematicBody2D" groups=[
 "Enemy",
 "Ranger",
@@ -411,4 +415,12 @@ max_distance = 1000.0
 [node name="character_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 22 )
 max_distance = 1000.0
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 40 )
+
+[node name="Follow_Target" parent="." instance=ExtResource( 25 )]
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

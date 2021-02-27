@@ -94,3 +94,8 @@ func remove_from_targetable():
 	remove_from_group("Enemy")
 	remove_from_group("Ranger")
 	set_collision_layer_bit( 2, false )
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Player"):
+		$Follow_Target.set_target(body)

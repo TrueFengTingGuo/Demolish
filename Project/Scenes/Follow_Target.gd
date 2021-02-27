@@ -93,3 +93,4 @@ func set_target(body):
 func deselcet_target():
 		target_node = null
 		found_target = false
+		
