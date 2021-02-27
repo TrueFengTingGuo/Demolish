@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/heal charge up.png-13f696df6364f128f7b99b6c8fcbf610.stex"
+path="res://.import/run.png-23cca128e50b31e810bd196d8e10c697.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character Pack 8/shadow of storms/heal charge up.png"
-dest_files=[ "res://.import/heal charge up.png-13f696df6364f128f7b99b6c8fcbf610.stex" ]
+source_file="res://Assets/healer/sword of storms/run.png"
+dest_files=[ "res://.import/run.png-23cca128e50b31e810bd196d8e10c697.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

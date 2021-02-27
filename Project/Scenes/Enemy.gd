@@ -97,8 +97,16 @@ func take_heavy_damage(amplifier):
 		else:
 			hp -= 5
 
-
-
+func get_healing():
+	print("1")
+	if (hp < 20):
+		print("2")
+		hp+=1
+		if (hp == 20):
+			hurt = false
+		else:
+			hurt = true
+			
 #grab by player
 func on_grabed(force):
 	velocity += force

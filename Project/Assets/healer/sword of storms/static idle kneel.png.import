@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/idle.png-cfcbf4b2a5867c65a9cca99be8c4c4e7.stex"
+path="res://.import/static idle kneel.png-c2fb687636af18bcf69bb1a49e093aaf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character Pack 8/sword of storms/idle.png"
-dest_files=[ "res://.import/idle.png-cfcbf4b2a5867c65a9cca99be8c4c4e7.stex" ]
+source_file="res://Assets/healer/sword of storms/static idle kneel.png"
+dest_files=[ "res://.import/static idle kneel.png-c2fb687636af18bcf69bb1a49e093aaf.stex" ]
 
 [params]
 
