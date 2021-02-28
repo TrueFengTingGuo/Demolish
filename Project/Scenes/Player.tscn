@@ -928,7 +928,7 @@ position = Vector2( 0.471939, -4.24744 )
 texture = ExtResource( 1 )
 vframes = 17
 hframes = 6
-frame = 2
+frame = 4
 
 [node name="On_hit_effect" type="Sprite" parent="Sprite"]
 position = Vector2( -25.1984, 12.9142 )
