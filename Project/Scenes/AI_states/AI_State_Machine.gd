@@ -32,13 +32,8 @@ var go_left = false
 var jump = false
 var just_jump = false
 var space = false
-var attack = false
-var air_attack = false
 var hurt = false
 var invincible = false
-
-var bow = false
-var sword = true
 
 var coins = 0
 var air_attack_amp = 0
@@ -114,7 +109,23 @@ func _input(event):
 				$Chain.release()
 				
 				
-				
+	
+	if Input.is_action_just_pressed("ui_up"):
+		jump = true
+	else:
+		jump = false
+		
+	if Input.is_action_pressed("ui_right"):
+		go_right = true
+	else:
+		go_right = false
+		
+	if Input.is_action_pressed("ui_left"):
+		go_left = true
+	else:
+		go_left = false	
+		
+					
 	current_state.handle_input(self,event)
 
 

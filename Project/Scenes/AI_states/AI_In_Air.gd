@@ -15,17 +15,13 @@ func enter(host):
 
 func handle_input(host,event):
 		
-		if Input.is_action_pressed("ui_right"):
+		if host.go_right:
 
 			host.flip_sprite(1)
 
-		if Input.is_action_pressed("ui_left"):	
+		if host.go_left:	
 
 			host.flip_sprite(-1)
-			
-		if Input.is_action_just_pressed("Switch_weapon"):
-			host.bow = !host.bow
-			host.sword = !host.sword
 
 			
 func update(host, _delta):
