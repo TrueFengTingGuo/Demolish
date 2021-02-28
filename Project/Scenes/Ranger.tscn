@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://Assets/explosions and impact (extract.me)/impact5/png-sequence/spritesheet_ver1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Idle.png" type="Texture" id=2]
@@ -26,138 +26,139 @@
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Death.png" type="Texture" id=24]
 [ext_resource path="res://Scenes/Follow_Target.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Run.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Huntress 2/Sprites/Character/Attack.png" type="Texture" id=27]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=55]
 extents = Vector2( 10, 17.5222 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=56]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=57]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=58]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=59]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=6]
+[sub_resource type="AtlasTexture" id=60]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=61]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=62]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=9]
+[sub_resource type="AtlasTexture" id=63]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=10]
+[sub_resource type="AtlasTexture" id=64]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=11]
+[sub_resource type="AtlasTexture" id=65]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=12]
+[sub_resource type="AtlasTexture" id=66]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=67]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=68]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=69]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=70]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=71]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=72]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=73]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=74]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=75]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=76]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=23]
+[sub_resource type="AtlasTexture" id=77]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=78]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=79]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=26]
+[sub_resource type="AtlasTexture" id=80]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 1512, 378, 378 )
 
-[sub_resource type="SpriteFrames" id=27]
+[sub_resource type="SpriteFrames" id=81]
 animations = [ {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ) ],
 "loop": true,
 "name": "New Anim",
 "speed": 60.0
@@ -168,7 +169,50 @@ animations = [ {
 "speed": 40.0
 } ]
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="RectangleShape2D" id=91]
+extents = Vector2( 167.325, 17.2116 )
+
+[sub_resource type="Animation" id=82]
+resource_name = "Attack"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 27 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0036819 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 6, 6 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animations:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 5 ]
+}
+
+[sub_resource type="Animation" id=83]
 resource_name = "Die"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animations:texture")
@@ -236,7 +280,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=84]
 resource_name = "Hurt"
 length = 0.5
 tracks/0/type = "value"
@@ -288,7 +332,7 @@ tracks/3/keys = {
 "values": [ 0, 2 ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=85]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animations:texture")
 tracks/0/interp = 1
@@ -338,7 +382,7 @@ tracks/3/keys = {
 "values": [ 0, 9 ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=86]
 resource_name = "Run"
 loop = true
 tracks/0/type = "value"
@@ -390,6 +434,9 @@ tracks/3/keys = {
 "values": [ ExtResource( 26 ) ]
 }
 
+[sub_resource type="AnimationNodeAnimation" id=48]
+animation = "Attack"
+
 [sub_resource type="AnimationNodeAnimation" id=32]
 animation = "Die"
 
@@ -423,23 +470,41 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=49]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=50]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=89]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=90]
+switch_mode = 2
+auto_advance = true
+
 [sub_resource type="AnimationNodeStateMachine" id=44]
+states/Attack/node = SubResource( 48 )
+states/Attack/position = Vector2( 343, 487.71 )
 states/Die/node = SubResource( 32 )
-states/Die/position = Vector2( 795, 2 )
+states/Die/position = Vector2( 982, 261 )
 states/Hurt/node = SubResource( 33 )
-states/Hurt/position = Vector2( 395, -29 )
+states/Hurt/position = Vector2( 654, 138 )
 states/Idle/node = SubResource( 34 )
-states/Idle/position = Vector2( 176, 126 )
+states/Idle/position = Vector2( 280, 261 )
 states/Run/node = SubResource( 35 )
-states/Run/position = Vector2( 629, 216 )
-transitions = [ "Idle", "Hurt", SubResource( 36 ), "Hurt", "Idle", SubResource( 37 ), "Idle", "Die", SubResource( 38 ), "Hurt", "Die", SubResource( 39 ), "Idle", "Run", SubResource( 40 ), "Run", "Idle", SubResource( 41 ), "Hurt", "Run", SubResource( 42 ), "Run", "Hurt", SubResource( 43 ) ]
+states/Run/position = Vector2( 994, 498 )
+transitions = [ "Idle", "Hurt", SubResource( 36 ), "Hurt", "Idle", SubResource( 37 ), "Idle", "Die", SubResource( 38 ), "Hurt", "Die", SubResource( 39 ), "Idle", "Run", SubResource( 40 ), "Run", "Idle", SubResource( 41 ), "Hurt", "Run", SubResource( 42 ), "Run", "Hurt", SubResource( 43 ), "Attack", "Hurt", SubResource( 49 ), "Hurt", "Attack", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Run", "Attack", SubResource( 52 ), "Attack", "Idle", SubResource( 89 ), "Attack", "Run", SubResource( 90 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -53, -5.3207 )
+graph_offset = Vector2( -258.577, 226.516 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=87]
 
-[sub_resource type="RectangleShape2D" id=46]
+[sub_resource type="RectangleShape2D" id=88]
 extents = Vector2( 144.5, 15.5 )
 
 [node name="Ranger" type="KinematicBody2D" groups=[
@@ -450,31 +515,38 @@ collision_layer = 4
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 55 )
 
 [node name="Effect" type="AnimatedSprite" parent="."]
 visible = false
 position = Vector2( 0.707092, -16.2635 )
 scale = Vector2( 0.2, 0.2 )
-frames = SubResource( 27 )
+frames = SubResource( 81 )
 animation = "Hit"
 
 [node name="Animations" type="Sprite" parent="."]
-texture = ExtResource( 26 )
-hframes = 8
-frame = 6
+texture = ExtResource( 27 )
+hframes = 6
 region_rect = Rect2( 366, 37, 1, 0 )
 
+[node name="Attach_Area" type="Area2D" parent="Animations"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animations/Attach_Area"]
+position = Vector2( 171.633, -0.52977 )
+shape = SubResource( 91 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Die = SubResource( 28 )
-anims/Hurt = SubResource( 29 )
-anims/Idle = SubResource( 30 )
-anims/Run = SubResource( 31 )
+anims/Attack = SubResource( 82 )
+anims/Die = SubResource( 83 )
+anims/Hurt = SubResource( 84 )
+anims/Idle = SubResource( 85 )
+anims/Run = SubResource( 86 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource( 44 )
 anim_player = NodePath("../AnimationPlayer")
-parameters/playback = SubResource( 45 )
+active = true
+parameters/playback = SubResource( 87 )
 
 [node name="damage_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 19 )
@@ -488,8 +560,10 @@ max_distance = 1000.0
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 46 )
+position = Vector2( 0.529725, -3.57628e-07 )
+shape = SubResource( 88 )
 
 [node name="Follow_Target" parent="." instance=ExtResource( 25 )]
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
