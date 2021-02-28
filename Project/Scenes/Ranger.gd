@@ -98,3 +98,7 @@ func remove_from_targetable():
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Player"):
 		$Follow_Target.set_target(body)
+
+func _on_Area2D_body_exited(body):
+	if $Follow_Target.target_node == body:
+		$Follow_Target.deselcet_target()
