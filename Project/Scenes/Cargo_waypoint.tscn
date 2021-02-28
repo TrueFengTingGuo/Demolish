@@ -11,46 +11,46 @@
 size = 10
 font_data = ExtResource( 5 )
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=16]
 extents = Vector2( 392.036, 34.1227 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=17]
 extents = Vector2( 58.4075, 29.7845 )
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=18]
 animation = "Cargo_not_inside"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=19]
 animation = "Completion"
 
-[sub_resource type="AnimationNodeAnimation" id=5]
+[sub_resource type="AnimationNodeAnimation" id=20]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=8]
+[sub_resource type="AnimationNodeStateMachineTransition" id=23]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=9]
+[sub_resource type="AnimationNodeStateMachineTransition" id=24]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=10]
-states/Cargo_not_inside/node = SubResource( 3 )
+[sub_resource type="AnimationNodeStateMachine" id=25]
+states/Cargo_not_inside/node = SubResource( 18 )
 states/Cargo_not_inside/position = Vector2( 220, 133 )
-states/Completion/node = SubResource( 4 )
+states/Completion/node = SubResource( 19 )
 states/Completion/position = Vector2( 533, 133 )
-states/Idle/node = SubResource( 5 )
+states/Idle/node = SubResource( 20 )
 states/Idle/position = Vector2( 377, 44 )
-transitions = [ "Idle", "Cargo_not_inside", SubResource( 6 ), "Cargo_not_inside", "Idle", SubResource( 7 ), "Idle", "Completion", SubResource( 8 ), "Completion", "Idle", SubResource( 9 ) ]
+transitions = [ "Idle", "Cargo_not_inside", SubResource( 21 ), "Cargo_not_inside", "Idle", SubResource( 22 ), "Idle", "Completion", SubResource( 23 ), "Completion", "Idle", SubResource( 24 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=11]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=27]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Character:frame")
 tracks/0/interp = 1
@@ -78,7 +78,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.3 )
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=28]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Character:frame")
 tracks/0/interp = 1
@@ -106,7 +106,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.3 )
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=15]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Character:frame")
@@ -146,14 +146,14 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2( -0.22348, -3.30695 )
-shape = SubResource( 15 )
+shape = SubResource( 16 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2147483648
 collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 2 )
+shape = SubResource( 17 )
 
 [node name="Character" type="Sprite" parent="."]
 process_priority = 1
@@ -162,20 +162,21 @@ z_index = 1
 texture = ExtResource( 1 )
 vframes = 2
 hframes = 8
+frame = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 10 )
+tree_root = SubResource( 25 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 11 )
+parameters/playback = SubResource( 26 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Cargo_not_inside = SubResource( 12 )
-anims/Completion = SubResource( 13 )
-anims/Idle = SubResource( 14 )
+anims/Cargo_not_inside = SubResource( 27 )
+anims/Completion = SubResource( 28 )
+anims/Idle = SubResource( 15 )
 
 [node name="Background" type="Sprite" parent="."]
 visible = false

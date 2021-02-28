@@ -1,0 +1,23 @@
+{
+    "1":{
+        "name": "NPC",
+        "expression":"Question",
+        "dialogue":"Can I do this",
+        "next_conversation": "",
+        "decisions":{
+            "Ok":"1",
+            "No":"-1"
+        }
+    },
+
+    "2":{
+        "name": "Player",
+        "expression":"Natrual",
+        "dialogue":"Sure",
+        "decisions":{
+            "Ok":"2",
+            "No":"-1"
+        }
+    }
+
+}

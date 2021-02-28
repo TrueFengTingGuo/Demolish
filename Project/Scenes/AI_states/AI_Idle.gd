@@ -10,16 +10,13 @@ func enter(host):
 
 func handle_input(host,event):	
 	
-	if Input.is_action_just_pressed("ui_up"):		
+	if host.jump:		
 		emit_signal("finished", "Jump")
 		
-	if Input.is_action_just_pressed("Switch_weapon"):
-		host.bow = !host.bow
-		host.sword = !host.sword
 			
 func update(host, _delta):
 	
-	if Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):	
+	if host.go_right or host.go_left:	
 		emit_signal("finished", "Run")
 		
 	host.velocity.x = lerp(host.velocity.x,0,0.1)

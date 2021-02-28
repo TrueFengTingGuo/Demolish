@@ -1,0 +1,57 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/DialogueSystem/Dialogue_box.gd" type="Script" id=2]
+
+[node name="Dialogue" type="Panel"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -412.0
+margin_top = -110.0
+margin_right = 412.0
+margin_bottom = -10.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 756.0
+margin_top = -42.0
+margin_right = 820.0
+margin_bottom = 14.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" type="Label" parent="."]
+margin_left = 4.0
+margin_top = -18.0
+margin_right = 140.0
+margin_bottom = -4.0
+text = "Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -412.0
+margin_top = -51.0
+margin_right = 408.0
+margin_bottom = 51.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Text" type="Label" parent="Container"]
+margin_right = 820.0
+margin_bottom = 31.0
+text = "Dialogue Text, For example this is a very long conversation. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+align = 1
+autowrap = true
+[connection signal="on_next_conversation" from="." to="." method="_on_Dialogue_on_next_conversation"]
