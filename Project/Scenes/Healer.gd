@@ -3,8 +3,11 @@
 
 extends "res://Scenes/Enemy.gd"
 
-var healer_init_hp = 10
+var healer_init_hp = 20
 var heal = false
+var running = true
+var is_hurt = false
+
 func _ready():
 	hp = healer_init_hp
 	init_hp = healer_init_hp
@@ -22,26 +25,35 @@ func _physics_process(delta):
 		
 	process_hurt()
 	
+	if (hp < healer_init_hp):
+		self.get_healing()
+		animation_state_machine.travel("Healing")
+	
 	if is_on_floor():
 		
 		on_floor_physics()
 
 		#print("attack " + str(attack) + "attack_finished " + str(attack_finished))		
-			
-		if !is_attacking:
-			if heal:
-				animation_state_machine.travel("Healing")
-			
-			if(abs(velocity.x) > 40):
-				#he is running	
-				animation_state_machine.travel("Run")			
-			else:			
-				#he is not moving
-				animation_state_machine.travel("Idle")	
-			if ($Follow_Target.is_in_group("Enemy") ):	
-				follow_target_sequence()
-			else:
-				escape_from_target()
+		
+		
+		if heal :
+			#print("HHH")		
+			running = false
+			animation_state_machine.travel("Healing")
+		elif(abs(velocity.x) > 40) and running :
+			#he is running	
+			#print("RRR")
+			animation_state_machine.travel("Run")	
+			heal = false		
+		else:			
+			#he is not moving
+			#print("Idle")
+			animation_state_machine.travel("Idle")	
+		if ($Follow_Target.is_in_group("Warrior") ):	
+			#print("follow")
+			follow_target_sequence()
+		else:
+			escape_from_target()
 	else:	
 		
 		in_air_physics()
@@ -62,12 +74,13 @@ func remove_from_targetable():
 
 	
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("Warrior") :
-		
+	if body.is_in_group("Warrior") and !heal:
+		running = true
 		$Follow_Target.set_target(body)
 		
 
-	elif body.is_in_group("Player"):
+	elif body.is_in_group("Player") and running:
+		
 		$Follow_Target.set_target(body)
 
 
@@ -78,6 +91,11 @@ func _on_Area2D_body_exited(body):
 
 func _on_Healing_area_body_entered(body):
 	if body.is_in_group("Warrior") :
-		heal = true
-		body.get_healing()
+		
+		if (body.hp < body.init_hp):
+			print(body.hp)
+			body.get_healing()
+			heal = true
+		else:
+			heal = false
 		
