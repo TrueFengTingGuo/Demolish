@@ -6,27 +6,21 @@ func enter(host):
 func handle_input(host,event):
 			
 				
-	if Input.is_action_just_pressed("ui_up"):	
+	if host.jump:	
 		emit_signal("finished", "Jump")
-			
-	if Input.is_action_just_pressed("Switch_weapon"):
-		host.bow = !host.bow
-		host.sword = !host.sword
-			
-	if Input.is_action_pressed("ui_down"):
+						
+	if host.get_down:
 		pass
 		
 		
-			
-			
 func update(host, _delta):
 
-	if Input.is_action_pressed("ui_right"):
+	if host.go_right:
 
 			host.velocity.x += host.SPEED
 			host.flip_sprite(1)#Sprite image flip 
 
-	elif Input.is_action_pressed("ui_left"):	
+	elif host.go_left:	
 			
 			host.velocity.x -= host.SPEED
 			host.flip_sprite(-1)	#Sprite image flip
@@ -39,8 +33,6 @@ func update(host, _delta):
 	
 	host.velocity = host.move_and_slide_with_snap(host.velocity, host.snap_vector ,host.FLOOR_NORMAL,false, 4, PI/4, false)
 	host.snap_vector = host.SNAP_DIRECTION * host.SNAP_LENGTH
-
-	print(host.velocity.y)
 			
 	if !host.is_on_floor():
 		emit_signal("finished", "In_Air")
