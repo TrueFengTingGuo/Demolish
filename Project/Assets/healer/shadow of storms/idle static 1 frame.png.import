@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/damaged.png-830c098dfbcda400f8bf38b26eda31dc.stex"
+path="res://.import/idle static 1 frame.png-c07534c8adeaede70006e6972f1a775c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character Pack 8/stormhead/damaged.png"
-dest_files=[ "res://.import/damaged.png-830c098dfbcda400f8bf38b26eda31dc.stex" ]
+source_file="res://Assets/healer/shadow of storms/idle static 1 frame.png"
+dest_files=[ "res://.import/idle static 1 frame.png-c07534c8adeaede70006e6972f1a775c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

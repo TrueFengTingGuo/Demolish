@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/attack.png-c09b833e3e36af584c1b369db9b37089.stex"
+path="res://.import/heal charge up.png-26aed2c9ef359646f46dfc090a25189e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character Pack 8/stormhead/attack.png"
-dest_files=[ "res://.import/attack.png-c09b833e3e36af584c1b369db9b37089.stex" ]
+source_file="res://Assets/healer/shadow of storms/heal charge up.png"
+dest_files=[ "res://.import/heal charge up.png-26aed2c9ef359646f46dfc090a25189e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

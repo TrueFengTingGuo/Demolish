@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/death.png-47a9eda9eb0202b7b3c55d0107f40492.stex"
+path="res://.import/attack1.png-5981ff86ff358efcf160b0716eacf374.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character Pack 8/stormhead/death.png"
-dest_files=[ "res://.import/death.png-47a9eda9eb0202b7b3c55d0107f40492.stex" ]
+source_file="res://Assets/healer/sword of storms/attack1.png"
+dest_files=[ "res://.import/attack1.png-5981ff86ff358efcf160b0716eacf374.stex" ]
 
 [params]
 
