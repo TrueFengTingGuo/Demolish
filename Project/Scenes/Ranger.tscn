@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Assets/explosions and impact (extract.me)/impact5/png-sequence/spritesheet_ver1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Idle.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Get Hit.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Death.png" type="Texture" id=24]
 [ext_resource path="res://Scenes/Follow_Target.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Assets/Huntress 2/Sprites/Character/Run.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 17.5222 )
@@ -337,41 +338,108 @@ tracks/3/keys = {
 "values": [ 0, 9 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=31]
-animation = "Die"
+[sub_resource type="Animation" id=31]
+resource_name = "Run"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:vframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 8 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animations:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 7 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Animations:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 0.870551 ),
+"update": 1,
+"values": [ ExtResource( 26 ) ]
+}
 
 [sub_resource type="AnimationNodeAnimation" id=32]
-animation = "Hurt"
+animation = "Die"
 
 [sub_resource type="AnimationNodeAnimation" id=33]
+animation = "Hurt"
+
+[sub_resource type="AnimationNodeAnimation" id=34]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=34]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=35]
-switch_mode = 2
-auto_advance = true
+[sub_resource type="AnimationNodeAnimation" id=35]
+animation = "Run"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
 switch_mode = 2
+auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=38]
-states/Die/node = SubResource( 31 )
-states/Die/position = Vector2( 546, 151 )
-states/Hurt/node = SubResource( 32 )
-states/Hurt/position = Vector2( 315, 52 )
-states/Idle/node = SubResource( 33 )
-states/Idle/position = Vector2( 184, 132 )
-transitions = [ "Idle", "Hurt", SubResource( 34 ), "Hurt", "Idle", SubResource( 35 ), "Idle", "Die", SubResource( 36 ), "Hurt", "Die", SubResource( 37 ) ]
+[sub_resource type="AnimationNodeStateMachineTransition" id=38]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=40]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=41]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=42]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachine" id=44]
+states/Die/node = SubResource( 32 )
+states/Die/position = Vector2( 795, 2 )
+states/Hurt/node = SubResource( 33 )
+states/Hurt/position = Vector2( 395, -29 )
+states/Idle/node = SubResource( 34 )
+states/Idle/position = Vector2( 176, 126 )
+states/Run/node = SubResource( 35 )
+states/Run/position = Vector2( 629, 216 )
+transitions = [ "Idle", "Hurt", SubResource( 36 ), "Hurt", "Idle", SubResource( 37 ), "Idle", "Die", SubResource( 38 ), "Hurt", "Die", SubResource( 39 ), "Idle", "Run", SubResource( 40 ), "Run", "Idle", SubResource( 41 ), "Hurt", "Run", SubResource( 42 ), "Run", "Hurt", SubResource( 43 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -53, 0 )
+graph_offset = Vector2( -53, -5.3207 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=39]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=45]
 
-[sub_resource type="RectangleShape2D" id=40]
+[sub_resource type="RectangleShape2D" id=46]
 extents = Vector2( 144.5, 15.5 )
 
 [node name="Ranger" type="KinematicBody2D" groups=[
@@ -392,20 +460,21 @@ frames = SubResource( 27 )
 animation = "Hit"
 
 [node name="Animations" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-hframes = 10
-frame = 9
+texture = ExtResource( 26 )
+hframes = 8
+frame = 6
+region_rect = Rect2( 366, 37, 1, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Die = SubResource( 28 )
 anims/Hurt = SubResource( 29 )
 anims/Idle = SubResource( 30 )
+anims/Run = SubResource( 31 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 38 )
+tree_root = SubResource( 44 )
 anim_player = NodePath("../AnimationPlayer")
-active = true
-parameters/playback = SubResource( 39 )
+parameters/playback = SubResource( 45 )
 
 [node name="damage_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 19 )
@@ -419,7 +488,7 @@ max_distance = 1000.0
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 40 )
+shape = SubResource( 46 )
 
 [node name="Follow_Target" parent="." instance=ExtResource( 25 )]
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]

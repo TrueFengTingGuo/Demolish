@@ -1,27 +1,10 @@
-extends KinematicBody2D
+extends "res://Scenes/Enemy.gd"
 
-const SPEED = 30
-const GARAVITY = 5
-const JUMPFORCE = -200
-const VELOCITY_X_LIMIT = 180
-const FLOOR_NORMAL = Vector2.UP
-const SNAP_DIRECTION = Vector2.DOWN
-const SNAP_LENGTH = 12.0
-const FLOOR_ANGLE = deg2rad(45)
-
-
-var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
-var velocity = Vector2(0,0)
-var animation_state_machine
-var hp = 12
-
-
-
-
-var hurt = false
+var warrior_init_hp = 20
 
 func _ready():
-
+	hp = warrior_init_hp
+	init_hp = warrior_init_hp
 	animation_state_machine =$AnimationTree.get("parameters/playback")
 	
 func _physics_process(delta):
@@ -30,6 +13,10 @@ func _physics_process(delta):
 	
 	if is_on_ceiling():
 		velocity.y = 0
+	
+	fliping()
+	
+	process_hurt()
 	
 	if hurt:
 		$Effect.visible = true
@@ -46,6 +33,18 @@ func _physics_process(delta):
 			animation_state_machine.travel("Idle")
 			velocity = move_and_slide(velocity, Vector2.UP)
 			snap_vector = SNAP_DIRECTION * SNAP_LENGTH
+			if !is_attacking:
+				if attack and !hurt :
+					animation_state_machine.travel("Attack")
+				else:
+					if(abs(velocity.x) > 40):
+						#he is running	
+						animation_state_machine.travel("Run")			
+					else:			
+						#he is not moving
+						animation_state_machine.travel("Idle")	
+						
+					follow_target_sequence()
 		else:
 			velocity.y += GARAVITY
 			#slow down speed	
