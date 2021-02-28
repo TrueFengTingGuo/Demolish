@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/damaged and death.png-d46271d8265edc0ad973744b534d867a.stex"
+path="res://.import/idle.png-7baffa8f59e3561db92e97a9cf08339f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/character Pack 8/shadow of storms/damaged and death.png"
-dest_files=[ "res://.import/damaged and death.png-d46271d8265edc0ad973744b534d867a.stex" ]
+source_file="res://Assets/healer/sword of storms/idle.png"
+dest_files=[ "res://.import/idle.png-7baffa8f59e3561db92e97a9cf08339f.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -3,7 +3,11 @@
 
 extends "res://Scenes/Enemy.gd"
 
-var healer_init_hp = 10
+var healer_init_hp = 20
+var heal = false
+var running = true
+var is_hurt = false
+
 func _ready():
 	hp = healer_init_hp
 	init_hp = healer_init_hp
@@ -21,26 +25,35 @@ func _physics_process(delta):
 		
 	process_hurt()
 	
+	if (hp < healer_init_hp):
+		self.get_healing()
+		animation_state_machine.travel("Healing")
+	
 	if is_on_floor():
 		
 		on_floor_physics()
 
 		#print("attack " + str(attack) + "attack_finished " + str(attack_finished))		
-			
-		if !is_attacking:
-			if attack and !hurt :
-				animation_state_machine.travel("Attack")
-			else:
-				if(abs(velocity.x) > 40):
-					#he is running	
-					animation_state_machine.travel("Run")			
-				else:			
-					#he is not moving
-					animation_state_machine.travel("Idle")	
-				if ($Follow_Target.is_in_group("Enemy") ):	
-					follow_target_sequence()
-				else:
-					escape_from_target()
+		
+		
+		if heal :
+			#print("HHH")		
+			running = false
+			animation_state_machine.travel("Healing")
+		elif(abs(velocity.x) > 40) and running :
+			#he is running	
+			#print("RRR")
+			animation_state_machine.travel("Run")	
+			heal = false		
+		else:			
+			#he is not moving
+			#print("Idle")
+			animation_state_machine.travel("Idle")	
+		if ($Follow_Target.is_in_group("Warrior") ):	
+			#print("follow")
+			follow_target_sequence()
+		else:
+			escape_from_target()
 	else:	
 		
 		in_air_physics()
@@ -54,65 +67,35 @@ func _on_Effect_animation_finished():
 
 func remove_from_targetable():
 	remove_from_group("Enemy")
-	remove_from_group("Warrior")
+	#remove_from_group("Warrior")
 	set_collision_layer_bit( 2, false )
 
-func _on_Vision_body_entered(body):
-	
-	if body.is_in_group("Healer") and  hp/healer_init_hp < 0.2:
-		$Follow_Target.set_target(body)
 
-	elif body.is_in_group("Player"):
+
+	
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Warrior") and !heal:
+		running = true
 		$Follow_Target.set_target(body)
 		
-func _on_Vision_body_exited(body):
+
+	elif body.is_in_group("Player") and running:
+		
+		$Follow_Target.set_target(body)
+
+
+func _on_Area2D_body_exited(body):
 	if $Follow_Target.target_node == body:
 		$Follow_Target.deselcet_target()
 
-func _on_Attack_Area_body_entered(body):
-	if body.is_in_group("Player"):
-		body.take_damage()
-		body.create_a_force_on_player(100 * self.global_position.direction_to(body.global_position).normalized().x)
 
-
-func _on_Attack_area2_body_entered(body):
-	if body.is_in_group("Player"):
-		body.take_damage()
-		body.create_a_force_on_player(300 * self.global_position.direction_to(body.global_position).normalized().x)
-
-
-func _on_Attack_area3_body_entered(body):
-	if body.is_in_group("Player"):
-		body.take_damage()
-		body.create_a_force_on_player(600 * self.global_position.direction_to(body.global_position).normalized().x)
-
-
-func attack_dash():
-	velocity.x +=  $Animations.scale.x  * 20* SPEED	
-	
-	
-func _on_Attack_range_body_entered(body):	
-
-	attack = true
-
-func _on_Attack_range_body_exited(body):
-	attack = false
-
-func _on_attack_start():
-	is_attacking  = true
-	
-func _on_attack_finish():
-	$Animations/Attack_Area/CollisionShape2D.disabled = true
-	$Animations/Attack_area2/CollisionShape2D.disabled = true
-	$Animations/Attack_area3/CollisionShape2D.disabled = true
-	is_attacking  = false
-	attack = false
-
-
-
-func _on_Area2D_body_entered(body):
-	if body.is_in_group("Enemy") and  hp/healer_init_hp < 0.2:
-		$Follow_Target.set_target(body)
-
-	elif body.is_in_group("Player"):
-		$Follow_Target.set_target(body)
+func _on_Healing_area_body_entered(body):
+	if body.is_in_group("Warrior") :
+		
+		if (body.hp < body.init_hp):
+			print(body.hp)
+			body.get_healing()
+			heal = true
+		else:
+			heal = false
+		

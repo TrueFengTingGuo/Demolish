@@ -60,9 +60,7 @@ func follow_target_sequence():
 func escape_from_target():
 	$Follow_Target.follow_the_object(global_position)
 	velocity.x += $Follow_Target.dircetion * SPEED * -1
-	if $Follow_Target.jump == 1 :
-		velocity.y = JUMPFORCE	
-		snap_vector = Vector2.ZERO * SNAP_LENGTH
+	
 		
 func process_died():
 	if hp <= 0:
@@ -97,8 +95,17 @@ func take_heavy_damage(amplifier):
 		else:
 			hp -= 5
 
+func get_healing():
+	print("healing")
+	hp+=1
+	
+	if (hp == init_hp):
+		hurt = false
+	else:
+		hurt = true
 
 
+					
 #grab by player
 func on_grabed(force):
 	velocity += force
