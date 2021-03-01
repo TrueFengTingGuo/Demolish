@@ -26,9 +26,11 @@ func _physics_process(delta):
 		var collider = objectHit.get_collider()
 
 		if collider.is_in_group('Player'):# if hook collide with a enemy
-			collider.take_damage()
-			collider.velocity += self.global_position.direction_to(collider.global_position).normalized()
-			queue_free()
+			if collider.take_damage():
+				collider.velocity += self.global_position.direction_to(collider.global_position).normalized()
+				queue_free()
+			else:
+				set_collision_mask_bit(1,false)
 		elif collider.is_in_group('Wall') or collider.is_in_group('Cargo'):
 			queue_free()
 			
