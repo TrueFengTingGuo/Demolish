@@ -1,6 +1,8 @@
 extends "res://Scenes/Enemy.gd"
 
 var warrior_init_hp = 20
+const ARROW_SCENE = preload("res://Scenes/Ranger_arrow.tscn")
+const ARROW_SPEED = Vector2(0.3,0)
 
 func _ready():
 	hp = warrior_init_hp
@@ -33,8 +35,10 @@ func _physics_process(delta):
 			animation_state_machine.travel("Idle")
 			velocity = move_and_slide(velocity, Vector2.UP)
 			snap_vector = SNAP_DIRECTION * SNAP_LENGTH
+			
 			if !is_attacking:
 				if attack and !hurt :
+					print("Ranger Attack!!!")
 					animation_state_machine.travel("Attack")
 				else:
 					if(abs(velocity.x) > 40):
@@ -44,7 +48,7 @@ func _physics_process(delta):
 						#he is not moving
 						animation_state_machine.travel("Idle")	
 						
-					follow_target_sequence()
+					escape_from_target()
 		else:
 			velocity.y += GARAVITY
 			#slow down speed	
@@ -88,12 +92,26 @@ func on_grabed(force):
 	
 func on_died():
 	queue_free()
+	
+func fire_arrow():
+	var arrow_instnace = ARROW_SCENE.instance()
+	# arrow_instnace.set_arrow_init_info($Animations/Arrow_Fire_Point.global_position,$Animations.scale.x, ARROW_SPEED * $Animations.scale.x)
+	print(self.global_position)
+	get_parent().add_child(arrow_instnace)
 
 func remove_from_targetable():
 	remove_from_group("Enemy")
 	remove_from_group("Ranger")
 	set_collision_layer_bit( 2, false )
 
+func _on_attack_start():
+	is_attacking  = true
+	fire_arrow()
+	
+	
+func _on_attack_finish():
+	is_attacking  = false
+	
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Player"):
@@ -102,3 +120,14 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if $Follow_Target.target_node == body:
 		$Follow_Target.deselcet_target()
+		fliping()
+
+
+func _on_Attack_Area_body_entered(body):
+	if body.is_in_group("Player"):
+		attack = true
+
+
+func _on_Attack_Area_body_exited(body):
+	if body.is_in_group("Player"):
+		attack = false
