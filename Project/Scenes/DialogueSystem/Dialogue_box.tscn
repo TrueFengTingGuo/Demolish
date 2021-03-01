@@ -54,4 +54,3 @@ margin_bottom = 31.0
 text = "Dialogue Text, For example this is a very long conversation. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 align = 1
 autowrap = true
-[connection signal="on_next_conversation" from="." to="." method="_on_Dialogue_on_next_conversation"]

@@ -36,6 +36,7 @@ func dialogue_start():
 	update_context()
 	
 func dialogue_next(next_conversation) -> bool:
+
 	if next_conversation == -1: # there is no more conversation
 		return false
 	current_index = next_conversation
