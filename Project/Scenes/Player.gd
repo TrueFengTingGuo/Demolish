@@ -300,8 +300,9 @@ func give_gravity():
 func pushing_rigidbody():
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
-		if collision.collider.is_in_group("Cargo"):
-			collision.collider.apply_central_impulse(-collision.normal * push)
+		if collision.collider!= null:
+			if collision.collider.is_in_group("Cargo"):
+				collision.collider.apply_central_impulse(-collision.normal * push)
 				
 func attack():
 	if sword:
@@ -327,7 +328,9 @@ func take_damage():
 		space = false
 		attack = false
 		air_attack = false
-
+		return true
+	else:
+		return false
 func invincible_toggle(input):
 	invincible = input
 	
