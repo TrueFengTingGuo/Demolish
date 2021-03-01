@@ -2,7 +2,7 @@ extends "res://Scenes/Enemy.gd"
 
 var warrior_init_hp = 20
 const ARROW_SCENE = preload("res://Scenes/Ranger_arrow.tscn")
-const ARROW_SPEED = Vector2(0.3,0)
+const ARROW_SPEED = Vector2(10,0)
 
 func _ready():
 	hp = warrior_init_hp
@@ -95,10 +95,8 @@ func on_died():
 	
 func fire_arrow():
 	var arrow_instnace = ARROW_SCENE.instance()
-	# arrow_instnace.set_arrow_init_info($Animations/Arrow_Fire_Point.global_position,$Animations.scale.x, ARROW_SPEED * $Animations.scale.x)
-	print(self.global_position)
 	get_parent().add_child(arrow_instnace)
-
+	arrow_instnace.set_arrow_init_info($Animations/Arrow_Fire_Point.global_position,$Animations.scale.x, ARROW_SPEED * $Animations.scale.x)
 func remove_from_targetable():
 	remove_from_group("Enemy")
 	remove_from_group("Ranger")
