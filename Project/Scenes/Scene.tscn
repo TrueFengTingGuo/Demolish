@@ -15,7 +15,7 @@
 [ext_resource path="res://Scenes/Spawn_node.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Assets/Music/Abstraction - Ludum Dare 28 Loops/Ludum Dare 28 - Track 6.wav" type="AudioStream" id=14]
 [ext_resource path="res://Scenes/Cargo_spawn_node.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Scenes/Cargo_waypoint.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Cargo_NPC.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Scenes/DialogueSystem/Dialogue_box.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Scenes/DialogueSystem/Dialogue_player.tscn" type="PackedScene" id=19]
 
@@ -512,7 +512,7 @@ centered = false
 motion_scale = Vector2( 0.1, 0.1 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/Back Tree"]
-position = Vector2( -288, -784 )
+position = Vector2( -296.409, -787.364 )
 scale = Vector2( 3.72019, 3.7384 )
 texture = ExtResource( 5 )
 centered = false
@@ -640,6 +640,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Dialogue" parent="UI" instance=ExtResource( 17 )]
+visible = false
+margin_top = -100.0
+margin_bottom = 0.0
+
+[node name="Dialogue_Player" parent="UI/Dialogue" instance=ExtResource( 19 )]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -10.0
@@ -648,7 +655,7 @@ autoplay = true
 [node name="Push_Cargo_Quest" parent="." instance=ExtResource( 12 )]
 position = Vector2( 291.341, 354.423 )
 
-[node name="Cargo_waypoint" parent="Push_Cargo_Quest" instance=ExtResource( 16 )]
+[node name="Cargo_NPC" parent="Push_Cargo_Quest" instance=ExtResource( 16 )]
 
 [node name="Spawn_node4" parent="Push_Cargo_Quest" instance=ExtResource( 13 )]
 position = Vector2( 244.392, 15.8325 )
@@ -659,15 +666,6 @@ position = Vector2( 468.091, -94.6008 )
 [node name="Cargo_spawn_node" parent="Push_Cargo_Quest" instance=ExtResource( 15 )]
 position = Vector2( 205.469, -39.2787 )
 cargot_num = 2
-
-[node name="CanvasLayer" type="CanvasLayer" parent="Push_Cargo_Quest"]
-
-[node name="Dialogue" parent="Push_Cargo_Quest/CanvasLayer" instance=ExtResource( 17 )]
-visible = false
-margin_top = -100.0
-margin_bottom = 0.0
-
-[node name="Dialogue_Player" parent="Push_Cargo_Quest/CanvasLayer/Dialogue" instance=ExtResource( 19 )]
 [connection signal="coin_collected" from="Coins/Coin6" to="UI" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Coins/Coin7" to="UI" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Coins/Coin8" to="UI" method="_on_coin_collected"]
@@ -684,3 +682,5 @@ margin_bottom = 0.0
 [connection signal="coin_collected" from="Coins/Coin17" to="UI" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Coins/Coin2" to="UI" method="_on_coin_collected"]
 [connection signal="body_entered" from="Fall Zone" to="Player" method="_on_Fall_Zone_body_entered"]
+[connection signal="endThisConversation" from="Push_Cargo_Quest/Cargo_NPC" to="UI/Dialogue" method="_on_Cargo_NPC_endThisConversation"]
+[connection signal="startThisConverstion" from="Push_Cargo_Quest/Cargo_NPC" to="UI/Dialogue" method="_on_Cargo_NPC_startThisConverstion"]

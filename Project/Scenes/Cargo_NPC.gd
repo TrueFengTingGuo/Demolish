@@ -1,6 +1,6 @@
 extends Node2D
-
-
+signal startThisConverstion(conversation_jason_file_path)
+signal endThisConversation()
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -11,6 +11,7 @@ var see_cargo_leave = false
 var see_player_enter = false
 var task_completed = false
 var npc_is_safe = true
+const jason_file_for_conversation = "res://Scenes/DialogueSystem/Dialogues.json"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation_state_machine =$AnimationTree.get("parameters/playback")
@@ -50,6 +51,7 @@ func _on_Area2D_body_entered(body):
 		
 	elif body.is_in_group("Player"):
 		see_player_enter = true
+		emit_signal("startThisConverstion",jason_file_for_conversation)
 		#$Character_dialog.text = "Help me find all the cargo"
 
 func _on_Area2D_body_exited(body):
@@ -58,7 +60,11 @@ func _on_Area2D_body_exited(body):
 		see_cargo_leave = true
 		$Character_dialog.text = "Please bring that back"
 
+	elif body.is_in_group("Player"):
+		see_player_enter = false
+		emit_signal("endThisConversation")
 
+		
 func _on_Area2D2_body_entered(body):
 	if body.is_in_group("Enemy"):
 		npc_is_safe = false

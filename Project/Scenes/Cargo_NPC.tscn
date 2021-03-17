@@ -1,56 +1,84 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Assets/Villagers NPC Character Pack by RgsDev/16x16 Villager male 2.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Cargo_waypoint.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Male/Alex Brodie/confirmation_6_alex.wav" type="AudioStream" id=3]
-[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/6 - Miscellaneous/Male/Alex Brodie/miscellaneous_3_alex.wav" type="AudioStream" id=4]
-[ext_resource path="res://Assets/Fonts/Mini3x5.ttf" type="DynamicFontData" id=5]
-[ext_resource path="res://Assets/Background/Layers/2.png" type="Texture" id=6]
+[ext_resource path="res://Scenes/Cargo_NPC.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Background/Layers/2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Fonts/Mini3x5.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Male/Alex Brodie/confirmation_6_alex.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Villagers NPC Character Pack by RgsDev/16x16 Villager male 2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/6 - Miscellaneous/Male/Alex Brodie/miscellaneous_3_alex.wav" type="AudioStream" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 10
-font_data = ExtResource( 5 )
+font_data = ExtResource( 3 )
 
-[sub_resource type="RectangleShape2D" id=16]
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 392.036, 34.1227 )
 
-[sub_resource type="RectangleShape2D" id=17]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 58.4075, 29.7845 )
 
-[sub_resource type="AnimationNodeAnimation" id=18]
+[sub_resource type="AnimationNodeAnimation" id=4]
 animation = "Cargo_not_inside"
 
-[sub_resource type="AnimationNodeAnimation" id=19]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "Completion"
 
-[sub_resource type="AnimationNodeAnimation" id=20]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
+[sub_resource type="AnimationNodeStateMachineTransition" id=9]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
+[sub_resource type="AnimationNodeStateMachineTransition" id=10]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=25]
-states/Cargo_not_inside/node = SubResource( 18 )
+[sub_resource type="AnimationNodeStateMachine" id=11]
+states/Cargo_not_inside/node = SubResource( 4 )
 states/Cargo_not_inside/position = Vector2( 220, 133 )
-states/Completion/node = SubResource( 19 )
+states/Completion/node = SubResource( 5 )
 states/Completion/position = Vector2( 533, 133 )
-states/Idle/node = SubResource( 20 )
+states/Idle/node = SubResource( 6 )
 states/Idle/position = Vector2( 377, 44 )
-transitions = [ "Idle", "Cargo_not_inside", SubResource( 21 ), "Cargo_not_inside", "Idle", SubResource( 22 ), "Idle", "Completion", SubResource( 23 ), "Completion", "Idle", SubResource( 24 ) ]
+transitions = [ "Idle", "Cargo_not_inside", SubResource( 7 ), "Cargo_not_inside", "Idle", SubResource( 8 ), "Idle", "Completion", SubResource( 9 ), "Completion", "Idle", SubResource( 10 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=26]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=12]
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=13]
+tracks/0/type = "value"
+tracks/0/path = NodePath("Character:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 4 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 6 )
+} ],
+"times": PoolRealArray( 0.3 )
+}
+
+[sub_resource type="Animation" id=14]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Character:frame")
 tracks/0/interp = 1
@@ -78,34 +106,6 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.3 )
 }
 
-[sub_resource type="Animation" id=28]
-tracks/0/type = "value"
-tracks/0/path = NodePath("Character:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0, 4 ]
-}
-tracks/1/type = "audio"
-tracks/1/path = NodePath("AudioStreamPlayer2D")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"clips": [ {
-"end_offset": 0.0,
-"start_offset": 0.0,
-"stream": ExtResource( 3 )
-} ],
-"times": PoolRealArray( 0.3 )
-}
-
 [sub_resource type="Animation" id=15]
 loop = true
 tracks/0/type = "value"
@@ -121,8 +121,8 @@ tracks/0/keys = {
 "values": [ 0, 4 ]
 }
 
-[node name="Cargo_waypoint" type="Node2D"]
-script = ExtResource( 2 )
+[node name="Cargo_NPC" type="Node2D"]
+script = ExtResource( 1 )
 
 [node name="Character_dialog" type="Label" parent="."]
 anchor_left = 0.5
@@ -146,43 +146,42 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2( -0.22348, -3.30695 )
-shape = SubResource( 16 )
+shape = SubResource( 2 )
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2147483648
 collision_mask = 66
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 17 )
+shape = SubResource( 3 )
 
 [node name="Character" type="Sprite" parent="."]
 process_priority = 1
 position = Vector2( -0.500565, 14.0158 )
 z_index = 1
-texture = ExtResource( 1 )
+texture = ExtResource( 5 )
 vframes = 2
 hframes = 8
-frame = 3
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 25 )
+tree_root = SubResource( 11 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 26 )
+parameters/playback = SubResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Cargo_not_inside = SubResource( 27 )
-anims/Completion = SubResource( 28 )
+anims/Cargo_not_inside = SubResource( 13 )
+anims/Completion = SubResource( 14 )
 anims/Idle = SubResource( 15 )
 
 [node name="Background" type="Sprite" parent="."]
 visible = false
 position = Vector2( 16.315, -131.816 )
 z_index = -1
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 [connection signal="body_entered" from="Area2D2" to="." method="_on_Area2D2_body_entered"]
 [connection signal="body_exited" from="Area2D2" to="." method="_on_Area2D2_body_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

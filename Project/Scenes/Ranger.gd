@@ -24,7 +24,6 @@ func _physics_process(delta):
 		$Effect.visible = true
 		$Effect.frame = 0
 		$Effect.play("Hit")
-		print($Effect.animation)
 		animation_state_machine.travel("Hurt")
 		hurt = false
 		
@@ -38,7 +37,6 @@ func _physics_process(delta):
 			
 			if !is_attacking:
 				if attack and !hurt :
-					print("Ranger Attack!!!")
 					animation_state_machine.travel("Attack")
 				else:
 					if(abs(velocity.x) > 40):
@@ -57,7 +55,6 @@ func _physics_process(delta):
 	
 
 	if hp <= 0:
-		print("died")
 		animation_state_machine.travel("Die")
 		set_physics_process(false)
 	
@@ -73,7 +70,7 @@ func take_heavy_damage(amplifier):
 		#animation_state_machine.travel("Shield_self")
 		hurt = true
 		var damage = 1 * amplifier
-		print("damage is " + str(damage))
+
 		if damage > 5:
 			hp -= damage
 		else:
@@ -81,14 +78,13 @@ func take_heavy_damage(amplifier):
 
 
 func _on_Effect_animation_finished():
-	#print("?")
+
 	$Effect.visible = false
 	pass
 
 #grab by player
 func on_grabed(force):
 	velocity += force
-	print(velocity)
 	
 func on_died():
 	queue_free()
