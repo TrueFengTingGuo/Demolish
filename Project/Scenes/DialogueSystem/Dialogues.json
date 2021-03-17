@@ -2,77 +2,23 @@
     "0":{
         "name": "NPC",
         "expression":"Natrual",
-        "dialogue":"Let me tell you how to play this game",
-        "next_conversation": "",
+        "dialogue":"I need you to find all the cargos for me",
         "decisions":{
-            "Ok":"1",
-            "No":"-1"
+            "How ?":"1",
+            "Fine":"-1"
         }
     },
 
     "1":{
         "name": "Player",
         "expression":"Natrual",
-        "dialogue":"Ok, please be quick",
+        "dialogue":"but,how ?",
         "decisions":{
-            "...":"2"
-        }
-    },
-
-    "2":{
-        "name": "NPC",
-        "expression":"Natrual",
-        "dialogue":"Press WAD to control",
-        "decisions":{
-            "...":"3"
-        }
-    },
-
-    "3":{
-        "name": "Player",
-        "expression":"Question",
-        "dialogue":"Just that?",
-        "decisions":{
-            "...":"4"
-        }
-    },
-
-    "4":{
-        "name": "NPC",
-        "expression":"Natrual",
-        "dialogue":"What else do you wanna learn ?",
-        "decisions":{
-            "I have grab hook. Can I use it?":"5",
-            "I have two weapons. How to use them":"6",
-            "Any cool tricks?":"7"
-        }
-    },
-
-    "5":{
-        "name": "Player",
-        "expression":"Natrual",
-        "dialogue":"Tell me how to use this grab hook",
-        "decisions":{
-            "...":"-1"
-        }
-    },
-
-    "6":{
-        "name": "Player",
-        "expression":"Natrual",
-        "dialogue":"How do I use weapons?",
-        "decisions":{
-            "...":"-1"
-        }
-    },
-     "7":{
-        "name": "Player",
-        "expression":"Natrual",
-        "dialogue":"Tell some cool tricks",
-        "decisions":{
-            "...":"-1"
+            "Ok":"-1"
         }
     }
+
+   
 
 
 }
