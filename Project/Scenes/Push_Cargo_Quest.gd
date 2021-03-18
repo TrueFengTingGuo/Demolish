@@ -13,8 +13,7 @@ func _ready():
 		if child.is_in_group("Cargo_spawning_node"):
 			cargos_spawning_nodes.append(child)
 			numOfCargo += child.cargot_num
-		elif child.is_in_group("Enemy_Spawning_Point"):
-			
+		elif child.is_in_group("Enemy_Spawning_Point"):	
 			enemy_spawning_point.append(child)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -23,7 +22,7 @@ func _ready():
 func _physics_process(delta):
 	
 	#active the quest by player reach to the npc
-	if $Cargo_waypoint.see_player_enter:
+	if $Cargo_NPC.see_player_enter:
 		quest_active = true
 		
 	if quest_active:
@@ -34,13 +33,12 @@ func _physics_process(delta):
 			node.active = true
 			
 	if quest_completed:
-	
-		$Cargo_waypoint.task_completed = true
+		$Cargo_NPC.task_completed = true
 		
-	if $Cargo_waypoint.cargo_count == numOfCargo:
+	if $Cargo_NPC.cargo_count == numOfCargo:
 		for point in enemy_spawning_point:
 			point.active = false
-			$Cargo_waypoint.check_nearby_enemy()
-	if $Cargo_waypoint.cargo_count == numOfCargo and $Cargo_waypoint.npc_is_safe:
+			$Cargo_NPC.check_nearby_enemy()
+	if $Cargo_NPC.cargo_count == numOfCargo and $Cargo_NPC.npc_is_safe:
 		quest_completed = true
 	

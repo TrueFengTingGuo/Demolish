@@ -28,153 +28,153 @@
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Run.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Attack.png" type="Texture" id=27]
 
-[sub_resource type="RectangleShape2D" id=55]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 17.5222 )
 
-[sub_resource type="AtlasTexture" id=56]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=57]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=58]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=59]
+[sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=60]
+[sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 0, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=61]
+[sub_resource type="AtlasTexture" id=7]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=62]
+[sub_resource type="AtlasTexture" id=8]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=63]
+[sub_resource type="AtlasTexture" id=9]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=64]
+[sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=65]
+[sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 378, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=66]
+[sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=67]
+[sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=68]
+[sub_resource type="AtlasTexture" id=14]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=69]
+[sub_resource type="AtlasTexture" id=15]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=70]
+[sub_resource type="AtlasTexture" id=16]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 756, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=71]
+[sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=72]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=73]
+[sub_resource type="AtlasTexture" id=19]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=74]
+[sub_resource type="AtlasTexture" id=20]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=75]
+[sub_resource type="AtlasTexture" id=21]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 1134, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=76]
+[sub_resource type="AtlasTexture" id=22]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=77]
+[sub_resource type="AtlasTexture" id=23]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 378, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=78]
+[sub_resource type="AtlasTexture" id=24]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 756, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=79]
+[sub_resource type="AtlasTexture" id=25]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1134, 1512, 378, 378 )
 
-[sub_resource type="AtlasTexture" id=80]
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 1512, 1512, 378, 378 )
 
-[sub_resource type="SpriteFrames" id=81]
+[sub_resource type="SpriteFrames" id=27]
 animations = [ {
-"frames": [ SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 59 ), SubResource( 60 ), SubResource( 61 ), SubResource( 62 ), SubResource( 63 ), SubResource( 64 ), SubResource( 65 ), SubResource( 66 ), SubResource( 67 ), SubResource( 68 ), SubResource( 69 ), SubResource( 70 ), SubResource( 71 ), SubResource( 72 ), SubResource( 73 ), SubResource( 74 ), SubResource( 75 ), SubResource( 76 ), SubResource( 77 ), SubResource( 78 ), SubResource( 79 ), SubResource( 80 ) ],
-"loop": true,
-"name": "New Anim",
-"speed": 60.0
-}, {
 "frames": [ ExtResource( 5 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 15 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 4 ), ExtResource( 7 ), ExtResource( 21 ), ExtResource( 18 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "Hit",
 "speed": 40.0
+}, {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
+"loop": true,
+"name": "New Anim",
+"speed": 60.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=91]
+[sub_resource type="RectangleShape2D" id=28]
 extents = Vector2( 167.325, 17.2116 )
 
-[sub_resource type="Animation" id=82]
+[sub_resource type="Animation" id=29]
 resource_name = "Attack"
-loop = true
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animations:texture")
 tracks/0/interp = 1
@@ -206,13 +206,30 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0, 5 ]
+"values": [ 0, 5, 5 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.8, 1.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_on_attack_start"
+}, {
+"args": [  ],
+"method": "_on_attack_finish"
+} ]
 }
 
-[sub_resource type="Animation" id=83]
+[sub_resource type="Animation" id=30]
 resource_name = "Die"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animations:texture")
@@ -280,7 +297,7 @@ tracks/4/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=84]
+[sub_resource type="Animation" id=31]
 resource_name = "Hurt"
 length = 0.5
 tracks/0/type = "value"
@@ -332,7 +349,7 @@ tracks/3/keys = {
 "values": [ 0, 2 ]
 }
 
-[sub_resource type="Animation" id=85]
+[sub_resource type="Animation" id=32]
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animations:texture")
 tracks/0/interp = 1
@@ -382,7 +399,7 @@ tracks/3/keys = {
 "values": [ 0, 9 ]
 }
 
-[sub_resource type="Animation" id=86]
+[sub_resource type="Animation" id=33]
 resource_name = "Run"
 loop = true
 tracks/0/type = "value"
@@ -434,77 +451,77 @@ tracks/3/keys = {
 "values": [ ExtResource( 26 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=48]
+[sub_resource type="AnimationNodeAnimation" id=34]
 animation = "Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=32]
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "Die"
 
-[sub_resource type="AnimationNodeAnimation" id=33]
+[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "Hurt"
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=38]
 animation = "Run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=36]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=37]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=38]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=39]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=40]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=44]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=46]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=47]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=48]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=49]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=51]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=52]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=89]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=90]
-switch_mode = 2
-auto_advance = true
-
-[sub_resource type="AnimationNodeStateMachine" id=44]
-states/Attack/node = SubResource( 48 )
+[sub_resource type="AnimationNodeStateMachine" id=53]
+states/Attack/node = SubResource( 34 )
 states/Attack/position = Vector2( 343, 487.71 )
-states/Die/node = SubResource( 32 )
+states/Die/node = SubResource( 35 )
 states/Die/position = Vector2( 982, 261 )
-states/Hurt/node = SubResource( 33 )
+states/Hurt/node = SubResource( 36 )
 states/Hurt/position = Vector2( 654, 138 )
-states/Idle/node = SubResource( 34 )
+states/Idle/node = SubResource( 37 )
 states/Idle/position = Vector2( 280, 261 )
-states/Run/node = SubResource( 35 )
+states/Run/node = SubResource( 38 )
 states/Run/position = Vector2( 994, 498 )
-transitions = [ "Idle", "Hurt", SubResource( 36 ), "Hurt", "Idle", SubResource( 37 ), "Idle", "Die", SubResource( 38 ), "Hurt", "Die", SubResource( 39 ), "Idle", "Run", SubResource( 40 ), "Run", "Idle", SubResource( 41 ), "Hurt", "Run", SubResource( 42 ), "Run", "Hurt", SubResource( 43 ), "Attack", "Hurt", SubResource( 49 ), "Hurt", "Attack", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Run", "Attack", SubResource( 52 ), "Attack", "Idle", SubResource( 89 ), "Attack", "Run", SubResource( 90 ) ]
+transitions = [ "Idle", "Hurt", SubResource( 39 ), "Hurt", "Idle", SubResource( 40 ), "Idle", "Die", SubResource( 41 ), "Hurt", "Die", SubResource( 42 ), "Idle", "Run", SubResource( 43 ), "Run", "Idle", SubResource( 44 ), "Hurt", "Run", SubResource( 45 ), "Run", "Hurt", SubResource( 46 ), "Attack", "Hurt", SubResource( 47 ), "Hurt", "Attack", SubResource( 48 ), "Idle", "Attack", SubResource( 49 ), "Run", "Attack", SubResource( 50 ), "Attack", "Idle", SubResource( 51 ), "Attack", "Run", SubResource( 52 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -258.577, 226.516 )
+graph_offset = Vector2( 22.386, 119.537 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=87]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
 
-[sub_resource type="RectangleShape2D" id=88]
+[sub_resource type="RectangleShape2D" id=55]
 extents = Vector2( 144.5, 15.5 )
 
 [node name="Ranger" type="KinematicBody2D" groups=[
@@ -515,13 +532,13 @@ collision_layer = 4
 script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 55 )
+shape = SubResource( 1 )
 
 [node name="Effect" type="AnimatedSprite" parent="."]
 visible = false
 position = Vector2( 0.707092, -16.2635 )
 scale = Vector2( 0.2, 0.2 )
-frames = SubResource( 81 )
+frames = SubResource( 27 )
 animation = "Hit"
 
 [node name="Animations" type="Sprite" parent="."]
@@ -529,24 +546,29 @@ texture = ExtResource( 27 )
 hframes = 6
 region_rect = Rect2( 366, 37, 1, 0 )
 
-[node name="Attach_Area" type="Area2D" parent="Animations"]
+[node name="Arrow_Fire_Point" type="Node2D" parent="Animations"]
+position = Vector2( 17.9807, -9.2279 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Animations/Attach_Area"]
-position = Vector2( 171.633, -0.52977 )
-shape = SubResource( 91 )
+[node name="Attack_Area" type="Area2D" parent="Animations"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Animations/Attack_Area"]
+position = Vector2( 177.46, 1.05943 )
+shape = SubResource( 28 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Attack = SubResource( 82 )
-anims/Die = SubResource( 83 )
-anims/Hurt = SubResource( 84 )
-anims/Idle = SubResource( 85 )
-anims/Run = SubResource( 86 )
+anims/Attack = SubResource( 29 )
+anims/Die = SubResource( 30 )
+anims/Hurt = SubResource( 31 )
+anims/Idle = SubResource( 32 )
+anims/Run = SubResource( 33 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 44 )
+tree_root = SubResource( 53 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 87 )
+parameters/playback = SubResource( 54 )
 
 [node name="damage_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 19 )
@@ -558,12 +580,16 @@ stream = ExtResource( 22 )
 max_distance = 1000.0
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 0.529725, -3.57628e-07 )
-shape = SubResource( 88 )
+position = Vector2( 8.9407e-07, -3.57628e-07 )
+shape = SubResource( 55 )
 
 [node name="Follow_Target" parent="." instance=ExtResource( 25 )]
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]
+[connection signal="body_entered" from="Animations/Attack_Area" to="." method="_on_Attack_Area_body_entered"]
+[connection signal="body_exited" from="Animations/Attack_Area" to="." method="_on_Attack_Area_body_exited"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
 [connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

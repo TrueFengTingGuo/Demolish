@@ -1,23 +1,24 @@
 {
-    "1":{
+    "0":{
         "name": "NPC",
-        "expression":"Question",
-        "dialogue":"Can I do this",
-        "next_conversation": "",
+        "expression":"Natrual",
+        "dialogue":"I need you to find all the cargos for me",
         "decisions":{
-            "Ok":"1",
-            "No":"-1"
+            "How ?":"1",
+            "Fine":"-1"
         }
     },
 
-    "2":{
+    "1":{
         "name": "Player",
         "expression":"Natrual",
-        "dialogue":"Sure",
+        "dialogue":"but,how ?",
         "decisions":{
-            "Ok":"2",
-            "No":"-1"
+            "Ok":"-1"
         }
     }
+
+   
+
 
 }

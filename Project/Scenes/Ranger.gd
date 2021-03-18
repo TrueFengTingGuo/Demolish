@@ -1,6 +1,8 @@
 extends "res://Scenes/Enemy.gd"
 
 var warrior_init_hp = 20
+const ARROW_SCENE = preload("res://Scenes/Ranger_arrow.tscn")
+const ARROW_SPEED = Vector2(10,0)
 
 func _ready():
 	hp = warrior_init_hp
@@ -22,7 +24,6 @@ func _physics_process(delta):
 		$Effect.visible = true
 		$Effect.frame = 0
 		$Effect.play("Hit")
-		print($Effect.animation)
 		animation_state_machine.travel("Hurt")
 		hurt = false
 		
@@ -33,6 +34,7 @@ func _physics_process(delta):
 			animation_state_machine.travel("Idle")
 			velocity = move_and_slide(velocity, Vector2.UP)
 			snap_vector = SNAP_DIRECTION * SNAP_LENGTH
+			
 			if !is_attacking:
 				if attack and !hurt :
 					animation_state_machine.travel("Attack")
@@ -44,7 +46,7 @@ func _physics_process(delta):
 						#he is not moving
 						animation_state_machine.travel("Idle")	
 						
-					follow_target_sequence()
+					escape_from_target()
 		else:
 			velocity.y += GARAVITY
 			#slow down speed	
@@ -53,7 +55,6 @@ func _physics_process(delta):
 	
 
 	if hp <= 0:
-		print("died")
 		animation_state_machine.travel("Die")
 		set_physics_process(false)
 	
@@ -69,7 +70,7 @@ func take_heavy_damage(amplifier):
 		#animation_state_machine.travel("Shield_self")
 		hurt = true
 		var damage = 1 * amplifier
-		print("damage is " + str(damage))
+
 		if damage > 5:
 			hp -= damage
 		else:
@@ -77,23 +78,34 @@ func take_heavy_damage(amplifier):
 
 
 func _on_Effect_animation_finished():
-	#print("?")
+
 	$Effect.visible = false
 	pass
 
 #grab by player
 func on_grabed(force):
 	velocity += force
-	print(velocity)
 	
 func on_died():
 	queue_free()
-
+	
+func fire_arrow():
+	var arrow_instnace = ARROW_SCENE.instance()
+	get_parent().add_child(arrow_instnace)
+	arrow_instnace.set_arrow_init_info($Animations/Arrow_Fire_Point.global_position,$Animations.scale.x, ARROW_SPEED * $Animations.scale.x)
 func remove_from_targetable():
 	remove_from_group("Enemy")
 	remove_from_group("Ranger")
 	set_collision_layer_bit( 2, false )
 
+func _on_attack_start():
+	is_attacking  = true
+	fire_arrow()
+	
+	
+func _on_attack_finish():
+	is_attacking  = false
+	
 
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Player"):
@@ -102,3 +114,14 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if $Follow_Target.target_node == body:
 		$Follow_Target.deselcet_target()
+		fliping()
+
+
+func _on_Attack_Area_body_entered(body):
+	if body.is_in_group("Player"):
+		attack = true
+
+
+func _on_Attack_Area_body_exited(body):
+	if body.is_in_group("Player"):
+		attack = false

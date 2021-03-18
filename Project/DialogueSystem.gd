@@ -13,10 +13,13 @@ var current_decisions = []
 
 
 func start():
+	pass
+	
+func change_dialogue_file(new_dialogue_file):
+	dialogue_file = new_dialogue_file
 	init_dialogue()
 	
 func init_dialogue():
-	print(dialogue_file)
 	dialogues = load_dialogue(dialogue_file)
 	
 func load_dialogue(file_path) -> Dictionary:
@@ -36,6 +39,7 @@ func dialogue_start():
 	update_context()
 	
 func dialogue_next(next_conversation) -> bool:
+
 	if next_conversation == -1: # there is no more conversation
 		return false
 	current_index = next_conversation
