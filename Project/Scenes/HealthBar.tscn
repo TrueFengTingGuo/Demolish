@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Health_Bar/Health_red.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Health_Bar/Health_Bar.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/HealthBar.gd" type="Script" id=3]
+
+[node name="HealthBar" type="TextureProgress"]
+anchor_left = 0.031
+anchor_right = 0.031
+margin_left = -31.744
+margin_right = 11.256
+margin_bottom = 11.0
+rect_scale = Vector2( 1, 0.7 )
+value = 52.0
+rounded = true
+texture_under = ExtResource( 2 )
+texture_progress = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

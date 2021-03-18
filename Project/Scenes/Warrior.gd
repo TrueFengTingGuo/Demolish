@@ -3,10 +3,10 @@
 
 extends "res://Scenes/Enemy.gd"
 
-var warrior_init_hp = 20
+var _init_hp = 20
 func _ready():
-	hp = warrior_init_hp
-	init_hp = warrior_init_hp
+	hp = _init_hp
+	init_hp = _init_hp
 	animation_state_machine =$AnimationTree.get("parameters/playback")
 	
 func _physics_process(delta):
@@ -57,7 +57,7 @@ func remove_from_targetable():
 
 func _on_Vision_body_entered(body):
 	
-	if body.is_in_group("Healer") and  hp/warrior_init_hp < 0.2:
+	if body.is_in_group("Healer") and  hp/_init_hp < 0.2:
 		$Follow_Target.set_target(body)
 
 	elif body.is_in_group("Player"):

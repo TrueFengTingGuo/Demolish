@@ -12,7 +12,7 @@ var tip := Vector2(0,0)			# The global position the tip should be in
 								# moves.
 export (int, 0, 500) var push = 2
 const SPEED = 700	# The speed with which the chain moves
-const LINK_LENGTH = 200
+const LINK_LENGTH = 150
 
 
 var impulse_force = true
