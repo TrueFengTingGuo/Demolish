@@ -170,7 +170,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 167.325, 17.2116 )
+extents = Vector2( 103.233, 17.2116 )
 
 [sub_resource type="Animation" id=29]
 resource_name = "Attack"
@@ -488,6 +488,8 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=46]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=48]
 
@@ -522,7 +524,7 @@ graph_offset = Vector2( 22.386, 119.537 )
 [sub_resource type="AnimationNodeStateMachinePlayback" id=54]
 
 [sub_resource type="RectangleShape2D" id=55]
-extents = Vector2( 144.5, 15.5 )
+extents = Vector2( 193.666, 40.9143 )
 
 [node name="Ranger" type="KinematicBody2D" groups=[
 "Enemy",
@@ -542,8 +544,9 @@ frames = SubResource( 27 )
 animation = "Hit"
 
 [node name="Animations" type="Sprite" parent="."]
-texture = ExtResource( 27 )
-hframes = 6
+texture = ExtResource( 2 )
+hframes = 10
+frame = 9
 region_rect = Rect2( 366, 37, 1, 0 )
 
 [node name="Arrow_Fire_Point" type="Node2D" parent="Animations"]
@@ -554,7 +557,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Animations/Attack_Area"]
-position = Vector2( 177.46, 1.05943 )
+position = Vector2( 92.703, -0.529742 )
 shape = SubResource( 28 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -584,7 +587,7 @@ collision_layer = 0
 collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( 8.9407e-07, -3.57628e-07 )
+position = Vector2( -3.05176e-05, -1.56164e-05 )
 shape = SubResource( 55 )
 
 [node name="Follow_Target" parent="." instance=ExtResource( 25 )]
