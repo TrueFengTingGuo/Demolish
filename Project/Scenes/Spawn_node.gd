@@ -4,9 +4,9 @@ extends Node2D
 var randomNumberGenerator  
 
 export var spawn_type = "Warrior"
-export var warrior_number = 20
-
-
+export var warrior_number = 1
+export var _init_spawning_time = 3
+var current_spawning_time = 0
 export var active = false
 
 
@@ -25,6 +25,7 @@ func _ready():
 	var path = "res://Scenes/" + spawn_type + ".tscn"
 	_instance = load(path)
 	
+	current_spawning_time = _init_spawning_time
 	#warrior_instance = load("res://Scenes/Warrior.tscn")
 	#ranger_instance = load("res://Scenes/Ranger.tscn")
 	#warrior_number = randomNumberGenerator.randi_range (100,200)
@@ -41,16 +42,25 @@ func  _physics_process(_delta: float) -> void:
 		if child.is_in_group(spawn_type):
 			not_exist = false
 
-	if not_exist:
-		$AnimatedSprite.frame = 0
-		$AnimatedSprite.play("Spwan")
-
-		var new_instance = _instance.instance()
-		add_child(new_instance)
 	
-	"""	
+#	if not_exist:
+#		$AnimatedSprite.frame = 0
+#		$AnimatedSprite.play("Spwan")
+#
+#		var new_instance = _instance.instance()
+#		add_child(new_instance)
+
+	#when current_spawning_time goes to 0, spawn an enemy
+	current_spawning_time -= _delta
+	
+		
 	if warrior_number > 0 :
-		var new_warrior = warrior_instance.instance()
-		add_child(new_warrior)
-		warrior_number -= 1
-	"""
+		if current_spawning_time < 0:
+			current_spawning_time = _init_spawning_time
+			$AnimatedSprite.frame = 0
+			$AnimatedSprite.play("Spwan")
+
+			var new_instance = _instance.instance()
+			add_child(new_instance)
+			warrior_number -= 1
+

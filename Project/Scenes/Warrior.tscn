@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=2]
+[gd_scene load_steps=95 format=2]
 
 [ext_resource path="res://Assets/Knight/noBKG_KnightIdle_strip.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Warrior.gd" type="Script" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/10 - Shouting/Male/Alex Brodie/shouting_1_alex.wav" type="AudioStream" id=32]
 [ext_resource path="res://Assets/Music/Sword Wooshes/Heavy sword woosh 16.wav" type="AudioStream" id=33]
 [ext_resource path="res://Assets/Music/Sword Wooshes/Heavy sword woosh 9.wav" type="AudioStream" id=34]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=35]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 11.2255, 14.9535 )
@@ -165,15 +166,15 @@ region = Rect2( 1512, 1512, 378, 378 )
 
 [sub_resource type="SpriteFrames" id=27]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 19 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 8 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 18 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "Hit",
-"speed": 40.0
-}, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
 "name": "New Anim",
 "speed": 60.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 19 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 8 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 18 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Hit",
+"speed": 40.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=28]
@@ -970,6 +971,7 @@ animation = "Hit"
 [node name="Animations" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 15
+frame = 6
 
 [node name="Attack_Area" type="Area2D" parent="Animations"]
 position = Vector2( 10.3943, -3.93725 )
@@ -1040,6 +1042,14 @@ max_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
 shape = SubResource( 59 )
+
+[node name="HealthBar" parent="." instance=ExtResource( 35 )]
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = -19.6768
+margin_top = -27.4547
+margin_right = 23.3232
+margin_bottom = -16.4547
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]
 [connection signal="body_entered" from="Animations/Attack_Area" to="." method="_on_Attack_Area_body_entered"]
 [connection signal="body_entered" from="Animations/Attack_area2" to="." method="_on_Attack_area2_body_entered"]

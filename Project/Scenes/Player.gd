@@ -38,6 +38,7 @@ var sword = true
 var coins = 0
 var air_attack_amp = 0
 var hp = 100
+var _init_hp = 100
 
 func _ready():
 	GlobalAccess.Player = self
