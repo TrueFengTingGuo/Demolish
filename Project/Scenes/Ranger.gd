@@ -1,12 +1,12 @@
 extends "res://Scenes/Enemy.gd"
 
-var warrior_init_hp = 20
+var _init_hp = 20
 const ARROW_SCENE = preload("res://Scenes/Ranger_arrow.tscn")
 const ARROW_SPEED = Vector2(10,0)
 
 func _ready():
-	hp = warrior_init_hp
-	init_hp = warrior_init_hp
+	hp = _init_hp
+	init_hp = _init_hp
 	animation_state_machine =$AnimationTree.get("parameters/playback")
 	
 func _physics_process(delta):
@@ -110,7 +110,7 @@ func _on_attack_finish():
 func _on_Area2D_body_entered(body):
 	# if body.is_in_group("Player"):
 		# $Follow_Target.set_target(body)
-	if body.is_in_group("Healer") and  hp/warrior_init_hp < 0.2:
+	if body.is_in_group("Healer") and  hp/_init_hp < 0.2:
 		$Follow_Target.set_target(body)
 
 	elif body.is_in_group("Player"):
