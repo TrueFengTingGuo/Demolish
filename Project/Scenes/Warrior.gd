@@ -3,10 +3,10 @@
 
 extends "res://Scenes/Enemy.gd"
 
-var _init_hp = 20
 func _ready():
+	_init_hp = 20
 	hp = _init_hp
-	init_hp = _init_hp
+	
 	animation_state_machine =$AnimationTree.get("parameters/playback")
 	
 func _physics_process(delta):
