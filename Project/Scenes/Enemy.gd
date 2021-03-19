@@ -15,7 +15,7 @@ var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
 var velocity = Vector2(0,0)
 var animation_state_machine
 var hp = 20
-var init_hp = 20
+var _init_hp = 20
 
 #AI
 var found_player = true
@@ -97,9 +97,9 @@ func take_heavy_damage(amplifier):
 
 func get_healing():
 	print("healing")
-	hp+=0.1
+	hp+=1
 	
-	if (hp == init_hp):
+	if (hp == _init_hp):
 		hurt = false
 	else:
 		hurt = true
