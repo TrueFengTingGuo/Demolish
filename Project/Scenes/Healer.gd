@@ -3,14 +3,15 @@
 
 extends "res://Scenes/Enemy.gd"
 
-var healer_init_hp = 20
+
 var heal = false
 var running = true
 var is_hurt = false
+var single = null
 
 func _ready():
-	hp = healer_init_hp
-	init_hp = healer_init_hp
+	hp = _init_hp
+
 	animation_state_machine =$AnimationTree.get("parameters/playback")
 	
 func _physics_process(delta):
@@ -25,10 +26,6 @@ func _physics_process(delta):
 		
 	process_hurt()
 	
-	if (hp < healer_init_hp):
-		self.get_healing()
-		animation_state_machine.travel("Healing")
-	
 	if is_on_floor():
 		
 		on_floor_physics()
@@ -37,7 +34,8 @@ func _physics_process(delta):
 		
 		
 		if heal :
-			#print("HHH")		
+			#print("HHH")
+			single.gethealing()
 			running = false
 			animation_state_machine.travel("Healing")
 		elif(abs(velocity.x) > 40) and running :
@@ -60,7 +58,9 @@ func _physics_process(delta):
 		
 	process_died()
 		
-
+func stop_healing():
+	if heal == true:
+		heal = false
 
 func _on_Effect_animation_finished():
 	$Effect.visible = false
@@ -90,12 +90,18 @@ func _on_Area2D_body_exited(body):
 
 
 func _on_Healing_area_body_entered(body):
-	if body.is_in_group("Warrior") :
-		
-		if (body.hp < body.init_hp):
+	if body.is_in_group("Enemy") :
+		single = body
+		if (body.hp < body.hp):
 			print(body.hp)
 			body.get_healing()
 			heal = true
-		else:
-			heal = false
 		
+			
+		
+
+
+func _on_Healing_area_body_exited(body):
+	if body.is_in_group("Enemy") && single == body:
+		single = null
+		stop_healing()
