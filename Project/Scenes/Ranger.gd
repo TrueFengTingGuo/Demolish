@@ -108,13 +108,22 @@ func _on_attack_finish():
 	
 
 func _on_Area2D_body_entered(body):
-	if body.is_in_group("Player"):
+	# if body.is_in_group("Player"):
+		# $Follow_Target.set_target(body)
+	if body.is_in_group("Healer") and  hp/warrior_init_hp < 0.2:
+		$Follow_Target.set_target(body)
+
+	elif body.is_in_group("Player"):
 		$Follow_Target.set_target(body)
 
 func _on_Area2D_body_exited(body):
-	if $Follow_Target.target_node == body:
+	if $Follow_Target.target_node == body and body.is_in_group("Player"):
 		$Follow_Target.deselcet_target()
-		fliping()
+		if(!is_attacking):
+			velocity.x *= -1
+	elif $Follow_Target.target_node == body:
+		$Follow_Target.deselcet_target()
+		
 
 
 func _on_Attack_Area_body_entered(body):
@@ -125,3 +134,6 @@ func _on_Attack_Area_body_entered(body):
 func _on_Attack_Area_body_exited(body):
 	if body.is_in_group("Player"):
 		attack = false
+
+
+
