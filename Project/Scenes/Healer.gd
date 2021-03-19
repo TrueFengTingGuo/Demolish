@@ -60,7 +60,9 @@ func _physics_process(delta):
 		
 	process_died()
 		
-
+func stop_healing():
+	if heal == true:
+		heal = false
 
 func _on_Effect_animation_finished():
 	$Effect.visible = false
@@ -90,12 +92,17 @@ func _on_Area2D_body_exited(body):
 
 
 func _on_Healing_area_body_entered(body):
-	if body.is_in_group("Warrior") :
+	if body.is_in_group("Enemy") :
 		
 		if (body.hp < body.init_hp):
 			print(body.hp)
 			body.get_healing()
 			heal = true
-		else:
-			heal = false
 		
+			
+		
+
+
+func _on_Healing_area_body_exited(body):
+	if body.is_in_group("Enemy") :
+		stop_healing()

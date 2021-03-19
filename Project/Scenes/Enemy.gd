@@ -97,12 +97,13 @@ func take_heavy_damage(amplifier):
 
 func get_healing():
 	print("healing")
-	hp+=1
+	hp+=0.1
 	
 	if (hp == init_hp):
 		hurt = false
 	else:
 		hurt = true
+	
 
 
 					
