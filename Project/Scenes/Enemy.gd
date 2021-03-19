@@ -95,15 +95,14 @@ func take_heavy_damage(amplifier):
 		else:
 			hp -= 5
 
-func get_healing():
-	print("healing")
-	hp+=1
-	
-	if (hp == _init_hp):
-		hurt = false
-	else:
-		hurt = true
-	
+func get_healing(health):
+	#print("healing")
+	if hp > _init_hp:
+		hp = _init_hp
+		return false
+	else: 
+		hp += health
+	return true
 
 
 					
