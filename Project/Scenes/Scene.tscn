@@ -621,7 +621,6 @@ margin_top = 14.2952
 margin_right = 34.3806
 margin_bottom = 25.2952
 rect_scale = Vector2( 5.5921, 2.66729 )
-step = 1.0
 value = 56.0
 rounded = false
 hp_changingSpeed = 1

@@ -1,12 +1,11 @@
 extends "res://Scenes/Enemy.gd"
 
-var _init_hp = 20
 const ARROW_SCENE = preload("res://Scenes/Ranger_arrow.tscn")
 const ARROW_SPEED = Vector2(10,0)
 
 func _ready():
+	_init_hp = 20
 	hp = _init_hp
-	init_hp = _init_hp
 	animation_state_machine =$AnimationTree.get("parameters/playback")
 	
 func _physics_process(delta):
