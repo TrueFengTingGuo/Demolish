@@ -61,7 +61,8 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=11]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
-switch_mode = 1
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
@@ -70,6 +71,8 @@ switch_mode = 2
 auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=16]
 states/Die/node = SubResource( 1 )
@@ -688,7 +691,7 @@ volume_db = 5.0
 max_distance = 1000.0
 
 [node name="character_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 27 )
+stream = ExtResource( 23 )
 max_distance = 1000.0
 
 [node name="Area2D" type="Area2D" parent="."]

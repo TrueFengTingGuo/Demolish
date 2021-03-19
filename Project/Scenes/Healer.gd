@@ -35,9 +35,13 @@ func _physics_process(delta):
 		
 		if heal :
 			#print("HHH")
-			single.gethealing()
-			running = false
-			animation_state_machine.travel("Healing")
+			if single.get_healing(delta * 2):
+				
+				running = false
+				animation_state_machine.travel("Healing")
+			else:
+				heal = false
+				animation_state_machine.travel("Idle")
 		elif(abs(velocity.x) > 40) and running :
 			#he is running	
 			#print("RRR")
@@ -92,11 +96,12 @@ func _on_Area2D_body_exited(body):
 func _on_Healing_area_body_entered(body):
 	if body.is_in_group("Enemy") :
 		single = body
-		if (body.hp < body.hp):
-			print(body.hp)
-			body.get_healing()
+		if (body.hp < body._init_hp):
+			#print(body.hp)
 			heal = true
-		
+		else:
+			heal = false
+			single = null
 			
 		
 
