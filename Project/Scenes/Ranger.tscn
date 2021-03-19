@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://Assets/explosions and impact (extract.me)/impact5/png-sequence/spritesheet_ver1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Idle.png" type="Texture" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://Scenes/Follow_Target.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Run.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Attack.png" type="Texture" id=27]
+[ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=28]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 17.5222 )
@@ -591,6 +592,12 @@ position = Vector2( -3.05176e-05, -1.56164e-05 )
 shape = SubResource( 55 )
 
 [node name="Follow_Target" parent="." instance=ExtResource( 25 )]
+
+[node name="HealthBar" parent="." instance=ExtResource( 28 )]
+margin_left = -20.5892
+margin_top = -25.0
+margin_right = 22.4108
+margin_bottom = -14.0
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]
 [connection signal="body_entered" from="Animations/Attack_Area" to="." method="_on_Attack_Area_body_entered"]
 [connection signal="body_exited" from="Animations/Attack_Area" to="." method="_on_Attack_Area_body_exited"]
