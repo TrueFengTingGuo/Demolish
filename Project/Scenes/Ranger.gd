@@ -110,7 +110,9 @@ func _on_attack_finish():
 func _on_Area2D_body_entered(body):
 	# if body.is_in_group("Player"):
 		# $Follow_Target.set_target(body)
+
 	if body.is_in_group("Healer") and  hp/_init_hp < 0.2:
+
 		$Follow_Target.set_target(body)
 
 	elif body.is_in_group("Player"):

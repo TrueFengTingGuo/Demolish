@@ -971,6 +971,7 @@ animation = "Hit"
 [node name="Animations" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 15
+
 frame = 9
 
 [node name="Attack_Area" type="Area2D" parent="Animations"]

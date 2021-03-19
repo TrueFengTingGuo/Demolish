@@ -3,7 +3,6 @@
 
 extends "res://Scenes/Enemy.gd"
 
-
 func _ready():
 	_init_hp = 20
 	hp = _init_hp
