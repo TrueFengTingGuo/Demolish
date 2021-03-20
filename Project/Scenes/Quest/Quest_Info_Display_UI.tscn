@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes/Quest/Quest_Info_Display_UI.gd" type="Script" id=1]
+
+[node name="Text" type="Label" groups=[
+"Quesst_Info_Display_UI",
+]]
+margin_right = 212.0
+margin_bottom = 22.0
+text = "This is a long info  0/1"
+valign = 1
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

@@ -1,11 +1,13 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://Scenes/Cargo_NPC.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Quest/CargoQuest/Cargo_NPC.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Background/Layers/2.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Fonts/Mini3x5.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/2 - Confirmation/Male/Alex Brodie/confirmation_6_alex.wav" type="AudioStream" id=4]
 [ext_resource path="res://Assets/Villagers NPC Character Pack by RgsDev/16x16 Villager male 2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/6 - Miscellaneous/Male/Alex Brodie/miscellaneous_3_alex.wav" type="AudioStream" id=6]
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 10
