@@ -10,7 +10,7 @@ const SNAP_DIRECTION = Vector2.DOWN
 const SNAP_LENGTH = 12.0
 const FLOOR_ANGLE = deg2rad(45)
 const CHAIN_PULL = 20
-const ARROW_SCENE = preload("res://Scenes/Player_Arrow.tscn")
+const ARROW_SCENE = preload("res://Scenes/Player/Player_Arrow.tscn")
 const ARROW_SPEED = Vector2(15,0)
 
 
@@ -49,66 +49,65 @@ func _input(event):
 	#if player is play attack animation, then it should not get any input
 	if attack:
 		return
-	if event is InputEventMouseButton:
 
-		if event.button_index == BUTTON_RIGHT and event.pressed:
-			# We clicked the mouse -> shoot()
-			var target = get_global_mouse_position()
+	if Input.is_action_just_pressed("Shoot_Chain"):
+		# We clicked the mouse -> shoot()
+		var target = get_global_mouse_position()
 			
-			if position.direction_to(target).x > 0:
-				$Sprite.scale.x = 1
+		if position.direction_to(target).x > 0:
+			$Sprite.scale.x = 1
 
-			elif position.direction_to(target).x < 0:
-				$Sprite.scale.x = -1
+		elif position.direction_to(target).x < 0:
+			$Sprite.scale.x = -1
 
 				
-			$Chain.shoot(position.direction_to(target) * 0.5,self.global_position)
-		else:
+		$Chain.shoot(position.direction_to(target) * 0.5,self.global_position)
+	elif $Chain.hooked and !Input.is_action_pressed("Shoot_Chain"):
+			print("hooked")
 			# We released the mouse -> release()
-			if $Chain.hooked:
-				$Chain.release()
+			$Chain.release()
 		
-		if event.button_index == BUTTON_LEFT and event.pressed:
+	if Input.is_action_pressed("Attack"):
 			
-			attack = true
-			if $Chain.hooked:
+		attack = true
+		if $Chain.hooked:
 				$Chain.release()
 			
+
+	if Input.is_action_pressed("ui_down"):
+		get_down = true
 	else:
-		if Input.is_action_pressed("ui_down"):
-			get_down = true
-		else:
-			get_down = false
-			
-		if Input.is_action_pressed("ui_right"):	
-			go_right = true
-		else:
-			go_right = false
+		get_down = false
 		
-		if Input.is_action_pressed("ui_left"):	
-			go_left = true
-		else:
-			go_left = false
-			
-		if Input.is_action_just_pressed("ui_up"):	
-			
-			just_jump = true
-		else:
-			just_jump = false
+	if Input.is_action_pressed("ui_right"):	
+		go_right = true
+	else:
+		go_right = false
 		
-		if Input.is_action_pressed("ui_up"):	
-			jump = true
-		else:
-			jump = false
+	if Input.is_action_pressed("ui_left"):	
+		go_left = true
+	else:	
+		go_left = false
+		
+	if Input.is_action_just_pressed("ui_up"):	
+		
+		just_jump = true
+	else:
+		just_jump = false
+		
+	if Input.is_action_pressed("ui_up"):	
+		jump = true
+	else:
+		jump = false
+		
+	if Input.is_action_pressed("ui_space"):
+		space = true
+	else:
+		space = false
 			
-		if Input.is_action_pressed("ui_space"):
-			space = true
-		else:
-			space = false
-			
-		if Input.is_action_just_pressed("Switch_weapon"):
-			bow = !bow
-			sword = !sword
+	if Input.is_action_just_pressed("Switch_weapon"):
+		bow = !bow
+		sword = !sword
 
 		
 		

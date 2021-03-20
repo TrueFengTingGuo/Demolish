@@ -29,8 +29,9 @@ var collision_spot
 # shoot() shoots the chain in a given direction
 func shoot(dir: Vector2, player_location:Vector2) -> void:
 	
-	if reload:
+	if reload or flying or hooked:
 		return
+
 	direction = dir.normalized()
 	flying = true					
 	tip = player_location # reset the position to player position
@@ -85,60 +86,57 @@ func _process(_delta: float) -> void:
 
 func _physics_process(_delta: float) -> void:
 	$Tip.global_position = tip	
-	
 		
 	if flying:
 		
 		$Tip.move_and_slide(direction * SPEED, Vector2.UP,
 					false, 4, PI/4, false)
 		
-		for index in $Tip.get_slide_count():
-			var collision = $Tip.get_slide_collision(index)
-			
-			if collision.collider.is_in_group("Cargo"):
+		if !hooked:
+			for index in $Tip.get_slide_count():
+				var collision = $Tip.get_slide_collision(index)
 				hooked = true	# Got something!
-				flying = true	# Not flying anymore
-				hooked_cargo = true
-				grabbed_collision = collision
-				collision_spot = $Tip.global_position - collision.collider.global_position 
-				#$Tip.set_collision_mask_bit( 6, false )
-				
-			elif collision.collider.is_in_group('Wall'):
-				hooked = true	# Got something!
-				flying = false	# Not flying anymore	
-			elif collision.collider.is_in_group('Enemy'):# if hook collide with a enemy
+				if collision.collider.is_in_group("Cargo"):
 
-				hooked = true	# Got something!
-				flying = true	# Not flying anymore
-				hooked_enemy = true
-				grabbed_collision = collision
-				collision_spot = $Tip.global_position - collision.collider.global_position
-				
+					hooked_cargo = true
+					grabbed_collision = collision
+					collision_spot = $Tip.global_position - collision.collider.global_position 
+					#$Tip.set_collision_mask_bit( 6, false )
+					
+				elif collision.collider.is_in_group('Wall'):
+					flying = false	# Not flying anymore
+					collision_spot = $Tip.global_position - collision.collider.global_position
+				elif collision.collider.is_in_group('Enemy'):# if hook collide with a enemy
 
-		if to_local(tip).length() > LINK_LENGTH:
+					hooked_enemy = true
+					grabbed_collision = collision
+					collision_spot = $Tip.global_position - collision.collider.global_position
+					
+
+		if (to_local(tip).length() > LINK_LENGTH):
 			release()
-	
-	
-		if grabbed_collision != null:
-			
-			$Tip/CollisionShape2D.disabled = true
-			$Tip.global_position = grabbed_collision.collider.global_position + collision_spot
-			
-			if impulse_force:
-				var pull_dir = -200 * player_dir.direction_to(tip)
-				impulse_force = false
-				if grabbed_collision.collider.is_in_group('Enemy'):
-					grabbed_collision.collider.on_grabed(pull_dir)
-				elif grabbed_collision.collider.is_in_group('Cargo'):
-					grabbed_collision.collider.on_grabed(pull_dir)
 				
+		if hooked:
+			$Tip/CollisionShape2D.disabled = true
+			if grabbed_collision != null:
+							
+				$Tip.global_position = grabbed_collision.collider.global_position + collision_spot
+				
+				if impulse_force:
+					var pull_dir = -200 * player_dir.direction_to(tip)
+					impulse_force = false
+					if grabbed_collision.collider.is_in_group('Enemy'):
+						grabbed_collision.collider.on_grabed(pull_dir)
+					elif grabbed_collision.collider.is_in_group('Cargo'):
+						grabbed_collision.collider.on_grabed(pull_dir)
+					
 
 		
 		
 		tip = $Tip.global_position
 		
 	elif reload:
-
+		
 		$Tip/CollisionShape2D.disabled = true
 		direction = $Tip.global_position.direction_to(player_position).normalized()
 		$Tip.move_and_slide(direction * SPEED, Vector2.UP)

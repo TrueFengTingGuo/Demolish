@@ -18,10 +18,7 @@ func _ready():
 # Called when the node enters the scene tree for the first time.
 func _physics_process(delta):
 	var objectHit = move_and_collide(velocity)
-	print("self.global_position" )
-	print(self.global_position)	
-	print("velocity")
-	print(velocity)	
+
 	if objectHit:
 		var collider = objectHit.get_collider()
 
@@ -35,11 +32,10 @@ func _physics_process(delta):
 			queue_free()
 			
 func set_arrow_init_info(position,direction,speed):
-	print("set_arrow_init_info")
-	print(self.global_position)
+
 	$Sprite.scale.x = direction
-	print("update")
+
 	self.global_position = position
-	print(self.global_position)
+
 	velocity = speed * SPEED
 	

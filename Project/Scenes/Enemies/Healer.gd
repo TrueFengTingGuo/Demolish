@@ -1,7 +1,7 @@
 #Credit for making a platformer AI https://www.youtube.com/watch?v=WXC8eBCEbho
 
 
-extends "res://Scenes/Enemy.gd"
+extends "res://Scenes/Enemies/Enemy.gd"
 
 
 var heal = false

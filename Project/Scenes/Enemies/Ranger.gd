@@ -1,7 +1,7 @@
-extends "res://Scenes/Enemy.gd"
+extends "res://Scenes/Enemies/Enemy.gd"
 
 
-const ARROW_SCENE = preload("res://Scenes/Ranger_arrow.tscn")
+const ARROW_SCENE = preload("res://Scenes/Enemies/Ranger_arrow.tscn")
 const ARROW_SPEED = Vector2(10,0)
 
 func _ready():

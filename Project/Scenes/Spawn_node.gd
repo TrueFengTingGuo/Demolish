@@ -4,7 +4,7 @@ extends Node2D
 var randomNumberGenerator  
 
 export var spawn_type = "Warrior"
-export var warrior_number = 1
+export var enemy_number = 1
 export var _init_spawning_time = 3
 var current_spawning_time = 0
 export var active = false
@@ -22,13 +22,13 @@ var _instance_timer
 func _ready():
 	randomNumberGenerator = RandomNumberGenerator.new()
 	
-	var path = "res://Scenes/" + spawn_type + ".tscn"
+	var path = "res://Scenes/Enemies/" + spawn_type + ".tscn"
 	_instance = load(path)
 	
 	current_spawning_time = _init_spawning_time
 	#warrior_instance = load("res://Scenes/Warrior.tscn")
 	#ranger_instance = load("res://Scenes/Ranger.tscn")
-	#warrior_number = randomNumberGenerator.randi_range (100,200)
+	#enemy_number = randomNumberGenerator.randi_range (100,200)
 
 func  _physics_process(_delta: float) -> void:
 	
@@ -54,7 +54,7 @@ func  _physics_process(_delta: float) -> void:
 	current_spawning_time -= _delta
 	
 		
-	if warrior_number > 0 :
+	if enemy_number > 0 :
 		if current_spawning_time < 0:
 			current_spawning_time = _init_spawning_time
 			$AnimatedSprite.frame = 0
@@ -62,5 +62,5 @@ func  _physics_process(_delta: float) -> void:
 
 			var new_instance = _instance.instance()
 			add_child(new_instance)
-			warrior_number -= 1
+			enemy_number -= 1
 

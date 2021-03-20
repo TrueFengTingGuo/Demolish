@@ -10,7 +10,7 @@ var _instance
 func _ready():
 
 	
-	var path = "res://Scenes/Cargo.tscn"
+	var path = "res://Scenes/Quest/CargoQuest/Cargo.tscn"
 	_instance = load(path)
 
 
