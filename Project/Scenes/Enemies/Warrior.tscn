@@ -166,15 +166,15 @@ region = Rect2( 1512, 1512, 378, 378 )
 
 [sub_resource type="SpriteFrames" id=27]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 19 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 8 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 18 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
-"loop": true,
-"name": "Hit",
-"speed": 40.0
-}, {
 "frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ) ],
 "loop": true,
 "name": "New Anim",
 "speed": 60.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 19 ), ExtResource( 11 ), ExtResource( 20 ), ExtResource( 13 ), ExtResource( 22 ), ExtResource( 8 ), ExtResource( 21 ), ExtResource( 12 ), ExtResource( 18 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 9 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "Hit",
+"speed": 40.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=28]
@@ -926,22 +926,23 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=55]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id=57]
 states/Attack/node = SubResource( 38 )
-states/Attack/position = Vector2( 211, 318 )
+states/Attack/position = Vector2( 154, 362 )
 states/Die/node = SubResource( 39 )
 states/Die/position = Vector2( 546, 151 )
 states/Hurt/node = SubResource( 40 )
-states/Hurt/position = Vector2( 315, 52 )
+states/Hurt/position = Vector2( 372, 20 )
 states/Idle/node = SubResource( 41 )
 states/Idle/position = Vector2( 184, 132 )
 states/Run/node = SubResource( 42 )
-states/Run/position = Vector2( 422, 259 )
+states/Run/position = Vector2( 493, 335 )
 transitions = [ "Idle", "Hurt", SubResource( 43 ), "Hurt", "Idle", SubResource( 44 ), "Idle", "Die", SubResource( 45 ), "Hurt", "Die", SubResource( 46 ), "Idle", "Run", SubResource( 47 ), "Run", "Idle", SubResource( 48 ), "Run", "Hurt", SubResource( 49 ), "Hurt", "Run", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Attack", "Idle", SubResource( 52 ), "Run", "Attack", SubResource( 53 ), "Attack", "Run", SubResource( 54 ), "Attack", "Hurt", SubResource( 55 ), "Hurt", "Attack", SubResource( 56 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -306, 73.46 )
+graph_offset = Vector2( -269, -22.54 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=58]
 
@@ -971,7 +972,7 @@ animation = "Hit"
 [node name="Animations" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 15
-frame = 7
+frame = 5
 
 [node name="Attack_Area" type="Area2D" parent="Animations"]
 position = Vector2( 10.3943, -3.93725 )
