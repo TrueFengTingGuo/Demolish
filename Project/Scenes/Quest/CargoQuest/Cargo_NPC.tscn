@@ -7,9 +7,7 @@
 [ext_resource path="res://Assets/Villagers NPC Character Pack by RgsDev/16x16 Villager male 2.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/6 - Miscellaneous/Male/Alex Brodie/miscellaneous_3_alex.wav" type="AudioStream" id=6]
 
-
-
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=7]
 size = 10
 font_data = ExtResource( 3 )
 
@@ -28,7 +26,7 @@ animation = "Completion"
 [sub_resource type="AnimationNodeAnimation" id=6]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=8]
 switch_mode = 2
@@ -47,7 +45,7 @@ states/Completion/node = SubResource( 5 )
 states/Completion/position = Vector2( 533, 133 )
 states/Idle/node = SubResource( 6 )
 states/Idle/position = Vector2( 377, 44 )
-transitions = [ "Idle", "Cargo_not_inside", SubResource( 7 ), "Cargo_not_inside", "Idle", SubResource( 8 ), "Idle", "Completion", SubResource( 9 ), "Completion", "Idle", SubResource( 10 ) ]
+transitions = [ "Idle", "Cargo_not_inside", SubResource( 16 ), "Cargo_not_inside", "Idle", SubResource( 8 ), "Idle", "Completion", SubResource( 9 ), "Completion", "Idle", SubResource( 10 ) ]
 start_node = "Idle"
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=12]
@@ -134,7 +132,7 @@ margin_top = -11.5882
 margin_right = 75.2562
 margin_bottom = 4.41175
 grow_horizontal = 2
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 7 )
 text = "I need to find all the cargos"
 align = 1
 valign = 1
@@ -175,6 +173,7 @@ active = true
 parameters/playback = SubResource( 12 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/Cargo_not_inside = SubResource( 13 )
 anims/Completion = SubResource( 14 )
 anims/Idle = SubResource( 15 )

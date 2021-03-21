@@ -31,7 +31,7 @@ func _ready():
 
 	#create info for enemy
 	var info_instnace_enemy = INFO_PANEL.instance()
-	info_instnace_enemy.create_new_collecting("NPC Is Safe",0,enemy_number)
+	info_instnace_enemy.create_new_goal("NPC Is Safe",false)
 	quest_info["NPC Is Safe"] = info_instnace_enemy
 	
 
