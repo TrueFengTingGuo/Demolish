@@ -623,11 +623,11 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+[sub_resource type="AnimationNodeStateMachineTransition" id=59]
 
-[sub_resource type="AnimationNodeStateMachine" id=58]
+[sub_resource type="AnimationNodeStateMachine" id=60]
 states/Attack/node = SubResource( 35 )
 states/Attack/position = Vector2( 343, 487.71 )
 states/Die/node = SubResource( 36 )
@@ -640,14 +640,14 @@ states/Jump/node = SubResource( 39 )
 states/Jump/position = Vector2( 673.386, 627.537 )
 states/Run/node = SubResource( 40 )
 states/Run/position = Vector2( 982, 456 )
-transitions = [ "Idle", "Hurt", SubResource( 41 ), "Hurt", "Idle", SubResource( 42 ), "Idle", "Die", SubResource( 43 ), "Hurt", "Die", SubResource( 44 ), "Idle", "Run", SubResource( 45 ), "Run", "Idle", SubResource( 46 ), "Hurt", "Run", SubResource( 47 ), "Run", "Hurt", SubResource( 48 ), "Attack", "Hurt", SubResource( 49 ), "Hurt", "Attack", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Run", "Attack", SubResource( 52 ), "Attack", "Idle", SubResource( 53 ), "Attack", "Run", SubResource( 54 ), "Attack", "Die", SubResource( 55 ), "Idle", "Jump", SubResource( 56 ), "Jump", "Idle", SubResource( 57 ), "Run", "Jump", SubResource( 61 ), "Jump", "Run", SubResource( 62 ) ]
+transitions = [ "Idle", "Hurt", SubResource( 41 ), "Hurt", "Idle", SubResource( 42 ), "Idle", "Die", SubResource( 43 ), "Hurt", "Die", SubResource( 44 ), "Idle", "Run", SubResource( 45 ), "Run", "Idle", SubResource( 46 ), "Hurt", "Run", SubResource( 47 ), "Run", "Hurt", SubResource( 48 ), "Attack", "Hurt", SubResource( 49 ), "Hurt", "Attack", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Run", "Attack", SubResource( 52 ), "Attack", "Idle", SubResource( 53 ), "Attack", "Run", SubResource( 54 ), "Attack", "Die", SubResource( 55 ), "Idle", "Jump", SubResource( 56 ), "Jump", "Idle", SubResource( 57 ), "Run", "Jump", SubResource( 58 ), "Jump", "Run", SubResource( 59 ) ]
 start_node = "Idle"
 end_node = "Die"
 graph_offset = Vector2( 51.386, 107.537 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=59]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=61]
 
-[sub_resource type="RectangleShape2D" id=60]
+[sub_resource type="RectangleShape2D" id=62]
 extents = Vector2( 331.008, 40.9143 )
 
 [node name="Ranger" type="KinematicBody2D" groups=[
@@ -694,10 +694,10 @@ anims/Jump = SubResource( 33 )
 anims/Run = SubResource( 34 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 58 )
+tree_root = SubResource( 60 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 59 )
+parameters/playback = SubResource( 61 )
 
 [node name="Weapon" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 22 )
@@ -717,7 +717,7 @@ collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -3.05176e-05, -1.56164e-05 )
-shape = SubResource( 60 )
+shape = SubResource( 62 )
 
 [node name="Follow_Target" parent="." instance=ExtResource( 25 )]
 

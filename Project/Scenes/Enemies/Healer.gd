@@ -24,43 +24,43 @@ func _physics_process(delta):
 	#change the direction of the sprite
 	fliping()
 		
-	process_hurt()
+	
 	if hurt:
 		stop_healing()
+		process_hurt()
+	else:
+		if is_on_floor():
+			
+			if heal:
+				#print("HHH")
+				if single: 
+					if single.get_healing(delta * 2):
+						
+						$Follow_Target.deselcet_target()#stop it from moving
+						running = false
+						animation_state_machine.travel("Healing")
+					else:
+						heal = false
+						animation_state_machine.travel("Idle")
+			elif(abs(velocity.x) > 40) and running :
 
-
-	if is_on_floor():
-		
-		if heal:
-			#print("HHH")
-			if single: 
-				if single.get_healing(delta * 2):
+				animation_state_machine.travel("Run")	
+				heal = false	
 					
-					$Follow_Target.deselcet_target()#stop it from moving
-					running = false
-					animation_state_machine.travel("Healing")
-				else:
-					heal = false
-					animation_state_machine.travel("Idle")
-		elif(abs(velocity.x) > 40) and running :
-
-			animation_state_machine.travel("Run")	
-			heal = false	
+			else:			
+				animation_state_machine.travel("Idle")	
+			
+			if $Follow_Target.get_target():
+				if ($Follow_Target.get_target().is_in_group("Enemy")):		
+					follow_target_sequence()
+				elif $Follow_Target.get_target().is_in_group("Player"):
+					escape_from_target()
 				
-		else:			
-			animation_state_machine.travel("Idle")	
-		
-		if $Follow_Target.get_target():
-			if ($Follow_Target.get_target().is_in_group("Enemy")):		
-				follow_target_sequence()
-			elif $Follow_Target.get_target().is_in_group("Player"):
-				escape_from_target()
+			on_floor_physics()
+				
+		else:	
 			
-		on_floor_physics()
-			
-	else:	
-		
-		in_air_physics()
+			in_air_physics()
 		
 	process_died()
 		

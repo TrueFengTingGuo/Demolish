@@ -19,7 +19,7 @@ func create_new_goal(description,completion = false):
 			"description":description,
 			"completion": completion,
 			}
-	self.text = description + " "+ completion
+	self.text = description + " "+ str(completion)
 
 func update_collecting(current,goal = -1):
 	if goal == -1:

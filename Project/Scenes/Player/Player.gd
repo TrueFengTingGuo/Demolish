@@ -63,7 +63,7 @@ func _input(event):
 				
 		$Chain.shoot(position.direction_to(target) * 0.5,self.global_position)
 	elif $Chain.hooked and !Input.is_action_pressed("Shoot_Chain"):
-			print("hooked")
+
 			# We released the mouse -> release()
 			$Chain.release()
 		

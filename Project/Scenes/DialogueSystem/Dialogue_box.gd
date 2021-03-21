@@ -62,3 +62,17 @@ func _on_Cargo_NPC_endThisConversation():	#if there is no more conversation
 			child.queue_free()
 
 
+
+
+func _on_King_Of_Hill_NPC_endThisConversation():
+	self.visible = false
+	for child in $Container.get_children():
+		if child.is_in_group("Button"):
+			child.queue_free()
+
+
+func _on_King_Of_Hill_NPC_startThisConverstion(conversation_jason_file_path):
+	self.visible = true
+	$Dialogue_Player.change_dialogue_file(conversation_jason_file_path)
+	start_conversation()
+

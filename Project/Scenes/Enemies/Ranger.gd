@@ -47,7 +47,7 @@ func _physics_process(delta):
 							
 							if distance_between > 200:
 								follow_target_sequence()# safe distance
-							elif distance_between < 100:
+							elif distance_between < 180:
 								escape_from_target()# not safe, run
 						else:
 							follow_target_sequence()# safe distance
