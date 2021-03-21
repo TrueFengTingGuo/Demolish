@@ -625,7 +625,7 @@ margin_bottom = 105.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
-volume_db = -10.0
+volume_db = -15.0
 autoplay = true
 
 [node name="Push_Cargo_Quest" parent="." instance=ExtResource( 5 )]
