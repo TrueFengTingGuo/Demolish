@@ -1,4 +1,4 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=94 format=2]
 
 [ext_resource path="res://Assets/explosions and impact (extract.me)/impact5/png-sequence/spritesheet_ver1.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Idle.png" type="Texture" id=2]
@@ -21,13 +21,16 @@
 [ext_resource path="res://Assets/Music/Body_damage/Sword hit another sword 9.wav" type="AudioStream" id=19]
 [ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion15.png" type="Texture" id=20]
 [ext_resource path="res://Assets/explosions and impact (extract.me)/explosion1/png-sequence/explosion12.png" type="Texture" id=21]
-[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Male/Alex Brodie/damage_4_alex.wav" type="AudioStream" id=22]
+[ext_resource path="res://Assets/Music/Bow/Relasing Bow 3.wav" type="AudioStream" id=22]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Get Hit.png" type="Texture" id=23]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Death.png" type="Texture" id=24]
 [ext_resource path="res://Scenes/Follow_Target.tscn" type="PackedScene" id=25]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Run.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Huntress 2/Sprites/Character/Attack.png" type="Texture" id=27]
 [ext_resource path="res://Scenes/HealthBar.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Assets/Huntress 2/Sprites/Character/Jump.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/7 - Damage/Male/Sean Lenhart/damage_1_sean.wav" type="AudioStream" id=30]
+[ext_resource path="res://Assets/Music/Super Dialogue Audio Pack v1/Super Dialogue Audio Pack v1/Step 2 - Audio Files/8 - Death/Male/Sean Lenhart/death_6_sean.wav" type="AudioStream" id=31]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 17.5222 )
@@ -171,7 +174,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 103.233, 17.2116 )
+extents = Vector2( 154.325, 17.2116 )
 
 [sub_resource type="Animation" id=29]
 resource_name = "Attack"
@@ -219,7 +222,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.8, 1.6 ),
+"times": PoolRealArray( 0, 1.9 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -228,6 +231,34 @@ tracks/3/keys = {
 "args": [  ],
 "method": "_on_attack_finish"
 } ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "fire_arrow"
+} ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("Weapon")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 22 )
+} ],
+"times": PoolRealArray( 0.7 )
 }
 
 [sub_resource type="Animation" id=30]
@@ -297,6 +328,20 @@ tracks/4/keys = {
 "method": "on_died"
 } ]
 }
+tracks/5/type = "audio"
+tracks/5/path = NodePath("character_audio")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 31 )
+} ],
+"times": PoolRealArray( 0 )
+}
 
 [sub_resource type="Animation" id=31]
 resource_name = "Hurt"
@@ -348,6 +393,20 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 2 ]
+}
+tracks/4/type = "audio"
+tracks/4/path = NodePath("character_audio")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 30 )
+} ],
+"times": PoolRealArray( 0.1 )
 }
 
 [sub_resource type="Animation" id=32]
@@ -401,7 +460,57 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=33]
-resource_name = "Run"
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 29 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Animations:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Animations:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=34]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Animations:vframes")
@@ -452,80 +561,94 @@ tracks/3/keys = {
 "values": [ ExtResource( 26 ) ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=34]
+[sub_resource type="AnimationNodeAnimation" id=35]
 animation = "Attack"
 
-[sub_resource type="AnimationNodeAnimation" id=35]
+[sub_resource type="AnimationNodeAnimation" id=36]
 animation = "Die"
 
-[sub_resource type="AnimationNodeAnimation" id=36]
+[sub_resource type="AnimationNodeAnimation" id=37]
 animation = "Hurt"
 
-[sub_resource type="AnimationNodeAnimation" id=37]
+[sub_resource type="AnimationNodeAnimation" id=38]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=38]
+[sub_resource type="AnimationNodeAnimation" id=39]
+animation = "Jump"
+
+[sub_resource type="AnimationNodeAnimation" id=40]
 animation = "Run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=39]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=40]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
 switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=44]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=45]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=46]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=47]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=48]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=49]
+switch_mode = 2
+auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=51]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=52]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=53]
 switch_mode = 2
 auto_advance = true
 
-[sub_resource type="AnimationNodeStateMachine" id=53]
-states/Attack/node = SubResource( 34 )
+[sub_resource type="AnimationNodeStateMachineTransition" id=54]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=55]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=56]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=62]
+
+[sub_resource type="AnimationNodeStateMachine" id=58]
+states/Attack/node = SubResource( 35 )
 states/Attack/position = Vector2( 343, 487.71 )
-states/Die/node = SubResource( 35 )
+states/Die/node = SubResource( 36 )
 states/Die/position = Vector2( 982, 261 )
-states/Hurt/node = SubResource( 36 )
+states/Hurt/node = SubResource( 37 )
 states/Hurt/position = Vector2( 654, 138 )
-states/Idle/node = SubResource( 37 )
+states/Idle/node = SubResource( 38 )
 states/Idle/position = Vector2( 280, 261 )
-states/Run/node = SubResource( 38 )
-states/Run/position = Vector2( 994, 498 )
-transitions = [ "Idle", "Hurt", SubResource( 39 ), "Hurt", "Idle", SubResource( 40 ), "Idle", "Die", SubResource( 41 ), "Hurt", "Die", SubResource( 42 ), "Idle", "Run", SubResource( 43 ), "Run", "Idle", SubResource( 44 ), "Hurt", "Run", SubResource( 45 ), "Run", "Hurt", SubResource( 46 ), "Attack", "Hurt", SubResource( 47 ), "Hurt", "Attack", SubResource( 48 ), "Idle", "Attack", SubResource( 49 ), "Run", "Attack", SubResource( 50 ), "Attack", "Idle", SubResource( 51 ), "Attack", "Run", SubResource( 52 ) ]
+states/Jump/node = SubResource( 39 )
+states/Jump/position = Vector2( 673.386, 627.537 )
+states/Run/node = SubResource( 40 )
+states/Run/position = Vector2( 982, 456 )
+transitions = [ "Idle", "Hurt", SubResource( 41 ), "Hurt", "Idle", SubResource( 42 ), "Idle", "Die", SubResource( 43 ), "Hurt", "Die", SubResource( 44 ), "Idle", "Run", SubResource( 45 ), "Run", "Idle", SubResource( 46 ), "Hurt", "Run", SubResource( 47 ), "Run", "Hurt", SubResource( 48 ), "Attack", "Hurt", SubResource( 49 ), "Hurt", "Attack", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Run", "Attack", SubResource( 52 ), "Attack", "Idle", SubResource( 53 ), "Attack", "Run", SubResource( 54 ), "Attack", "Die", SubResource( 55 ), "Idle", "Jump", SubResource( 56 ), "Jump", "Idle", SubResource( 57 ), "Run", "Jump", SubResource( 61 ), "Jump", "Run", SubResource( 62 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( 22.386, 119.537 )
+graph_offset = Vector2( 51.386, 107.537 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=54]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=59]
 
-[sub_resource type="RectangleShape2D" id=55]
-extents = Vector2( 193.666, 40.9143 )
+[sub_resource type="RectangleShape2D" id=60]
+extents = Vector2( 331.008, 40.9143 )
 
 [node name="Ranger" type="KinematicBody2D" groups=[
 "Enemy",
@@ -554,25 +677,30 @@ region_rect = Rect2( 366, 37, 1, 0 )
 position = Vector2( 17.9807, -9.2279 )
 
 [node name="Attack_Area" type="Area2D" parent="Animations"]
+position = Vector2( 158.392, 0 )
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Animations/Attack_Area"]
-position = Vector2( 92.703, -0.529742 )
 shape = SubResource( 28 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/Attack = SubResource( 29 )
 anims/Die = SubResource( 30 )
 anims/Hurt = SubResource( 31 )
 anims/Idle = SubResource( 32 )
-anims/Run = SubResource( 33 )
+anims/Jump = SubResource( 33 )
+anims/Run = SubResource( 34 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 53 )
+tree_root = SubResource( 58 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 54 )
+parameters/playback = SubResource( 59 )
+
+[node name="Weapon" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 22 )
 
 [node name="damage_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 19 )
@@ -580,7 +708,7 @@ volume_db = 5.0
 max_distance = 1000.0
 
 [node name="character_audio" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 22 )
+stream = ExtResource( 30 )
 max_distance = 1000.0
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -589,7 +717,7 @@ collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2( -3.05176e-05, -1.56164e-05 )
-shape = SubResource( 55 )
+shape = SubResource( 60 )
 
 [node name="Follow_Target" parent="." instance=ExtResource( 25 )]
 

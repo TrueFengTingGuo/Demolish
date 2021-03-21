@@ -68,11 +68,8 @@ auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=15]
-switch_mode = 2
-auto_advance = true
 
 [sub_resource type="AnimationNodeStateMachine" id=16]
 states/Die/node = SubResource( 1 )
@@ -88,7 +85,7 @@ states/Run/position = Vector2( 870, 81 )
 transitions = [ "Idle", "Hurt", SubResource( 6 ), "Hurt", "Idle", SubResource( 7 ), "Idle", "Die", SubResource( 8 ), "Hurt", "Die", SubResource( 9 ), "Run", "Idle", SubResource( 10 ), "Idle", "Run", SubResource( 11 ), "Healing", "Idle", SubResource( 12 ), "Idle", "Healing", SubResource( 13 ), "Hurt", "Healing", SubResource( 14 ), "Healing", "Hurt", SubResource( 15 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( -53, 16.7853 )
+graph_offset = Vector2( 167, 66.7853 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=17]
 
@@ -493,7 +490,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="CircleShape2D" id=23]
-radius = 55.9562
+radius = 79.2921
 
 [sub_resource type="AtlasTexture" id=24]
 flags = 4
@@ -656,6 +653,7 @@ active = true
 parameters/playback = SubResource( 17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/Die = SubResource( 18 )
 anims/Healing = SubResource( 19 )
 anims/Hurt = SubResource( 20 )
@@ -667,11 +665,8 @@ texture = ExtResource( 18 )
 offset = Vector2( 25.651, -25.707 )
 
 [node name="Healing area" type="Area2D" parent="Animations"]
-visible = false
-position = Vector2( -0.420441, 0.420448 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Animations/Healing area"]
-position = Vector2( -25.6474, 24.8064 )
 shape = SubResource( 23 )
 
 [node name="Effect" type="AnimatedSprite" parent="."]
