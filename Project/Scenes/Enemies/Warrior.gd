@@ -18,7 +18,14 @@ func _physics_process(delta):
 	
 	#change the direction of the sprite
 	fliping()
-		
+	
+	#ask for help
+	if hp < _init_hp:
+		var healer = is_healer_nearby()
+		if healer != null:	
+			healer.team_ask_for_help(self)	
+			
+	
 	process_hurt()
 	
 	if is_on_floor():
@@ -56,11 +63,8 @@ func remove_from_targetable():
 	set_collision_layer_bit( 2, false )
 
 func _on_Vision_body_entered(body):
-	
-	if body.is_in_group("Healer") and  hp/_init_hp < 0.2:
-		$Follow_Target.set_target(body)
 
-	elif body.is_in_group("Player"):
+	if body.is_in_group("Player"):
 		$Follow_Target.set_target(body)
 		
 func _on_Vision_body_exited(body):
@@ -71,7 +75,6 @@ func _on_Attack_Area_body_entered(body):
 	if body.is_in_group("Player"):
 		body.take_damage()
 		body.create_a_force_on_player(100 * self.global_position.direction_to(body.global_position).normalized().x)
-
 
 func _on_Attack_area2_body_entered(body):
 	if body.is_in_group("Player"):

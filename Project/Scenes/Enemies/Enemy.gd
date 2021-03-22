@@ -49,6 +49,18 @@ func in_air_physics():
 	velocity.y = move_and_slide(velocity, Vector2.UP,
 					false, 4, PI/4, false).y
 					
+func is_player_nearby():
+	for body in $Vision.get_overlapping_bodies() :
+		if body.is_in_group("Player")and body != self:
+			return body
+	return null
+	
+func is_healer_nearby():
+	for body in $Vision.get_overlapping_bodies():
+		if body.is_in_group("Healer") and body != self:
+			return body
+	return null
+	
 func follow_target_sequence():
 	#AI follow the traget
 	$Follow_Target.follow_the_object(global_position)
@@ -103,9 +115,9 @@ func take_heavy_damage(amplifier):
 		else:
 			hp -= 5
 
-func get_healing(health):
+func get_healing(health = 0):
 	#print("healing")
-	if hp > _init_hp:
+	if hp >= _init_hp:
 		hp = _init_hp
 		return false
 	else: 

@@ -927,11 +927,11 @@ auto_advance = true
 [sub_resource type="AnimationNodeStateMachineTransition" id=56]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=60]
+[sub_resource type="AnimationNodeStateMachineTransition" id=57]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=61]
+[sub_resource type="AnimationNodeStateMachineTransition" id=58]
 
-[sub_resource type="AnimationNodeStateMachine" id=57]
+[sub_resource type="AnimationNodeStateMachine" id=59]
 states/Attack/node = SubResource( 38 )
 states/Attack/position = Vector2( 154, 362 )
 states/Die/node = SubResource( 39 )
@@ -942,14 +942,14 @@ states/Idle/node = SubResource( 41 )
 states/Idle/position = Vector2( 184, 132 )
 states/Run/node = SubResource( 42 )
 states/Run/position = Vector2( 493, 335 )
-transitions = [ "Idle", "Hurt", SubResource( 43 ), "Hurt", "Idle", SubResource( 44 ), "Idle", "Die", SubResource( 45 ), "Hurt", "Die", SubResource( 46 ), "Idle", "Run", SubResource( 47 ), "Run", "Idle", SubResource( 48 ), "Run", "Hurt", SubResource( 49 ), "Hurt", "Run", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Attack", "Idle", SubResource( 52 ), "Run", "Attack", SubResource( 53 ), "Attack", "Run", SubResource( 54 ), "Attack", "Hurt", SubResource( 55 ), "Hurt", "Attack", SubResource( 56 ), "Attack", "Die", SubResource( 60 ), "Run", "Die", SubResource( 61 ) ]
+transitions = [ "Idle", "Hurt", SubResource( 43 ), "Hurt", "Idle", SubResource( 44 ), "Idle", "Die", SubResource( 45 ), "Hurt", "Die", SubResource( 46 ), "Idle", "Run", SubResource( 47 ), "Run", "Idle", SubResource( 48 ), "Run", "Hurt", SubResource( 49 ), "Hurt", "Run", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Attack", "Idle", SubResource( 52 ), "Run", "Attack", SubResource( 53 ), "Attack", "Run", SubResource( 54 ), "Attack", "Hurt", SubResource( 55 ), "Hurt", "Attack", SubResource( 56 ), "Attack", "Die", SubResource( 57 ), "Run", "Die", SubResource( 58 ) ]
 start_node = "Idle"
 end_node = "Die"
 graph_offset = Vector2( -269, -22.54 )
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=58]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=60]
 
-[sub_resource type="RectangleShape2D" id=59]
+[sub_resource type="RectangleShape2D" id=61]
 extents = Vector2( 197.5, 33.7052 )
 
 [node name="Warrior" type="KinematicBody2D" groups=[
@@ -975,7 +975,7 @@ animation = "Hit"
 [node name="Animations" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 15
-frame = 3
+frame = 1
 
 [node name="Attack_Area" type="Area2D" parent="Animations"]
 position = Vector2( 10.3943, -3.93725 )
@@ -1024,10 +1024,10 @@ anims/Jump = SubResource( 36 )
 anims/Run = SubResource( 37 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 57 )
+tree_root = SubResource( 59 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 58 )
+parameters/playback = SubResource( 60 )
 
 [node name="damage_audio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 26 )
@@ -1045,7 +1045,7 @@ max_distance = 1000.0
 [node name="Vision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
-shape = SubResource( 59 )
+shape = SubResource( 61 )
 
 [node name="HealthBar" parent="." instance=ExtResource( 35 )]
 margin_left = -13.2034

@@ -643,7 +643,7 @@ states/Run/position = Vector2( 982, 456 )
 transitions = [ "Idle", "Hurt", SubResource( 41 ), "Hurt", "Idle", SubResource( 42 ), "Idle", "Die", SubResource( 43 ), "Hurt", "Die", SubResource( 44 ), "Idle", "Run", SubResource( 45 ), "Run", "Idle", SubResource( 46 ), "Hurt", "Run", SubResource( 47 ), "Run", "Hurt", SubResource( 48 ), "Attack", "Hurt", SubResource( 49 ), "Hurt", "Attack", SubResource( 50 ), "Idle", "Attack", SubResource( 51 ), "Run", "Attack", SubResource( 52 ), "Attack", "Idle", SubResource( 53 ), "Attack", "Run", SubResource( 54 ), "Attack", "Die", SubResource( 55 ), "Idle", "Jump", SubResource( 56 ), "Jump", "Idle", SubResource( 57 ), "Run", "Jump", SubResource( 58 ), "Jump", "Run", SubResource( 59 ) ]
 start_node = "Idle"
 end_node = "Die"
-graph_offset = Vector2( 51.386, 107.537 )
+graph_offset = Vector2( 42.386, 90.537 )
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=61]
 
@@ -668,9 +668,8 @@ frames = SubResource( 27 )
 animation = "Hit"
 
 [node name="Animations" type="Sprite" parent="."]
-texture = ExtResource( 2 )
-hframes = 10
-frame = 9
+texture = ExtResource( 27 )
+hframes = 6
 region_rect = Rect2( 366, 37, 1, 0 )
 
 [node name="Arrow_Fire_Point" type="Node2D" parent="Animations"]
@@ -711,11 +710,11 @@ max_distance = 1000.0
 stream = ExtResource( 30 )
 max_distance = 1000.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Vision" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 6
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Vision"]
 position = Vector2( -3.05176e-05, -1.56164e-05 )
 shape = SubResource( 62 )
 
@@ -729,5 +728,5 @@ margin_bottom = -10.9839
 [connection signal="animation_finished" from="Effect" to="." method="_on_Effect_animation_finished"]
 [connection signal="body_entered" from="Animations/Attack_Area" to="." method="_on_Attack_Area_body_entered"]
 [connection signal="body_exited" from="Animations/Attack_Area" to="." method="_on_Attack_Area_body_exited"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
-[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]
+[connection signal="body_entered" from="Vision" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Vision" to="." method="_on_Area2D_body_exited"]
