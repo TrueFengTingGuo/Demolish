@@ -261,7 +261,8 @@ func _physics_process(delta):
 			if attack:
 				attack = false
 				air_attack = false
-			
+		else:
+			animation_state_machine.travel("Hurt")	
 		give_gravity()
 	else:
 			
@@ -286,7 +287,8 @@ func _physics_process(delta):
 					animation_state_machine.travel("Fall")
 				else:
 					animation_state_machine.travel("Jump")
-				
+		else:
+			animation_state_machine.travel("Hurt")
 		give_gravity()
 		
 func give_gravity():
