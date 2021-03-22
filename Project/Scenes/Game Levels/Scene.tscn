@@ -623,12 +623,18 @@ position = Vector2( 12.0026, 274.909 )
 position = Vector2( -0.23597, 4.24741 )
 
 [node name="Spawn_node7" parent="King_Of_Hill_Quest" instance=ExtResource( 7 )]
-position = Vector2( -127.09, -200.762 )
+position = Vector2( 215.789, -24.5605 )
 spawn_type = "Healer"
 
 [node name="Spawn_node8" parent="King_Of_Hill_Quest" instance=ExtResource( 7 )]
 position = Vector2( 187.761, -50.9136 )
 spawn_type = "Ranger"
+
+[node name="Spawn_node10" parent="King_Of_Hill_Quest" instance=ExtResource( 7 )]
+position = Vector2( 252.051, -60.438 )
+
+[node name="Spawn_node11" parent="King_Of_Hill_Quest" instance=ExtResource( 7 )]
+position = Vector2( 192.523, -31.0711 )
 
 [node name="Spawn_node9" parent="King_Of_Hill_Quest" instance=ExtResource( 7 )]
 position = Vector2( -109.13, -7.69882 )

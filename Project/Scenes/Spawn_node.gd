@@ -3,7 +3,7 @@ extends Node2D
 
 var randomNumberGenerator  
 
-export var spawn_type = "Warrior"
+export (String,"Warrior","Ranger","Healer") var spawn_type = "Warrior"
 export var enemy_number = 1
 export var _init_spawning_time = 3
 export var active = false

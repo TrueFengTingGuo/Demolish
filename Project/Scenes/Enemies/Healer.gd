@@ -78,12 +78,13 @@ func stop_healing():
 
 func team_ask_for_help(body):
 	
-	if $Follow_Target.get_target().is_in_group("Enemy"):
-		
-		if $Follow_Target.get_target().get_healing():
+	if $Follow_Target.get_target():
+		if $Follow_Target.get_target().is_in_group("Enemy"):
+			
+			if $Follow_Target.get_target().get_healing():
 
-			$Follow_Target.set_target(body)
-		return
+				$Follow_Target.set_target(body)
+			return
 	$Follow_Target.set_target(body)
 func _on_Effect_animation_finished():
 	$Effect.visible = false
