@@ -21,14 +21,14 @@ func update(host,delta):
 	if host.go_right and host.velocity.x < 0:
 
 		host.velocity.y = host.JUMPFORCE
-		host.velocity.x = 3.5 * host.SPEED
+		host.velocity.x = 0.5 * host.SPEED
 
 		host.flip_sprite(1)#Sprite image flip 
 		
 	elif host.go_left  and host.velocity.x > 0:	
 			
 		host.velocity.y = host.JUMPFORCE
-		host.velocity.x = -3.5 * host.SPEED
+		host.velocity.x = -0.5 * host.SPEED
 
 		host.flip_sprite(-1)#Sprite image flip 
 		

@@ -6,7 +6,7 @@ const Action = preload("res://Scenes/AI_states/Action.gd")
 const Observation = preload("res://Scenes/AI_states/Observation.gd")
 
 
-const SPEED = 30
+const SPEED = 180
 const GARAVITY = 5
 const JUMPFORCE = -200
 const VELOCITY_X_LIMIT = 180
@@ -89,17 +89,7 @@ func _physics_process(delta):
 	
 	# Make sure we are in our limits
 	velocity.x = clamp(velocity.x, -VELOCITY_X_LIMIT, VELOCITY_X_LIMIT)
-	
 
-
-	if $Sprite/Detect_top_wall.is_colliding():
-		print("top bad")
-		$Q_Table.current_action.Reward -= 10
-	
-	if $Sprite/Detect_side_wall.is_colliding():
-		print("side bad")
-		$Q_Table.current_action.Reward -= 10
-		
 	if goabl_reached:
 		_on_Timer_timeout()
 		
@@ -202,7 +192,20 @@ func handle_next_move(data_array):
 		go_left = true
 	else:
 		go_left = false	
-
+	
+	if nameOfNext == "LeftJump":
+		go_left = true
+		jump = true
+	else:
+		go_left = false	
+		jump = false
+		
+	if nameOfNext == "RightJump":
+		go_right = true
+		jump = true
+	else:
+		go_right = false	
+		jump = false
 		
 func _on_Timer_timeout():
 	
@@ -221,16 +224,25 @@ func _on_Timer_timeout():
 
 	var x_diff = new_Position[0] - goal[0]
 	var y_diff = new_Position[1] - goal[1]
-	var distance = sqrt(x_diff * x_diff + y_diff * y_diff)
-	$Q_Table.current_action.Reward  = -0.01* distance 
+	var distance = 0.2 * sqrt(x_diff * x_diff + y_diff * y_diff)
+	$Q_Table.current_action.Reward  = -0.1* distance 
 	
-	#if $Q_Table.current_action.Name == "Jump":
-	#	$Q_Table.current_action.Reward -= 1
+	if $Q_Table.current_action.Name == "Jump" or $Q_Table.current_action.Name == "RightJump":
+		$Q_Table.current_action.Reward -= 3
+	
+	if $Sprite/Detect_top_wall.is_colliding() :
 		
-	if current_state.name == "In_Air":
-		$Q_Table.current_action.Reward -= 1
+		$Q_Table.current_action.Reward -= 3
+	
+	if $Sprite/Detect_side_wall.is_colliding() and $Q_Table.current_action.Name != "In_Air":
+
+		$Q_Table.current_action.Reward -= 3
 		
-	#$Q_Table.current_action.Reward += lock_down_release_detect_and_reward(self.global_position)
+	#$Q_Table.current_action.Reward += lock_down_release_detect_and_reward(self.global_position)		
+	#if current_state.name == "In_Air":
+	#	$Q_Table.current_action.Reward -= 3
+	print($Q_Table.current_action.Reward)
+	
 		
 	if goabl_reached:
 		goabl_reached = false
@@ -240,18 +252,21 @@ func _on_Timer_timeout():
 		handle_next_move(data_array)
 
 	#print($Q_Table.next_Observation.Position)
-
-	$Q_Table.learn()
-	var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
-	#if current_state.name != "In_Air":			
-	handle_next_move(data_array)
+	if $Q_Table.current_action.Name != "In_Air":
+		$Q_Table.learn()
+		var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
+		#if current_state.name != "In_Air":			
+		handle_next_move(data_array)
 
 	#set the next time coutn
-	$Timer.wait_time = 0.05
+	$Timer.wait_time = 0.08
 
 func lock_down_release_detect_and_reward(currentPosition:Vector2):
 
 	if current_lock_down_position.distance_to(currentPosition) > 10:
 		current_lock_down_position = currentPosition 
-		return 10
+		return 1
 	return -1
+
+func trail_count():
+	return $Q_Table.trail_count

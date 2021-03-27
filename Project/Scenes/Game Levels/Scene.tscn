@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Assets/Fonts/Round9x13.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scenes/DialogueSystem/Dialogue_box.tscn" type="PackedScene" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Scenes/Enemies/SpeedRun_AI.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Scenes/Quest/RacingQuest/Racing_Quest.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Scenes/Quest/RacingQuest/Racing_Track_Point.tscn" type="PackedScene" id=25]
+[ext_resource path="res://example_ChartGraph/line_chart_continous.tscn" type="PackedScene" id=26]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -688,13 +689,22 @@ position = Vector2( -273.711, -123.387 )
 cargot_num = 2
 
 [node name="Racing_Quest" parent="." instance=ExtResource( 24 )]
-position = Vector2( -44.8853, 261.731 )
+position = Vector2( -65.674, 354.965 )
 
 [node name="SpeedRun_AI" parent="Racing_Quest" instance=ExtResource( 23 )]
-position = Vector2( -32.1301, 94.4919 )
+position = Vector2( -2.52196, -0.632217 )
 
 [node name="Racing_Track_Point" parent="Racing_Quest" instance=ExtResource( 25 )]
-position = Vector2( 226.617, -8.19385 )
+position = Vector2( 141.572, -42.2117 )
+
+[node name="line_chart_continous" parent="Racing_Quest" instance=ExtResource( 26 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -70.1885
+margin_top = -122.037
+margin_right = -70.1885
+margin_bottom = -122.037
+rect_scale = Vector2( 0.209196, 0.200159 )
 [connection signal="body_entered" from="Fall Zone" to="Player" method="_on_Fall_Zone_body_entered"]
 [connection signal="endThisConversation" from="King_Of_Hill_Quest/King_Of_Hill_NPC" to="UI/Dialogue" method="_on_King_Of_Hill_NPC_endThisConversation"]
 [connection signal="startThisConverstion" from="King_Of_Hill_Quest/King_Of_Hill_NPC" to="UI/Dialogue" method="_on_King_Of_Hill_NPC_startThisConverstion"]

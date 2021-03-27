@@ -7,16 +7,18 @@ var ID = 0
 var Position = []
 var State = ''
 var Actions = []
-
+var view_count = 0
 func _init(id, position, state):
 	ID = id
 	Position = position
 	State = state
 	
-	Actions = [Action.new("Left", -1),Action.new("Right", -1),Action.new("Idle", -1), Action.new("Jump", -1)]
+	Actions = [Action.new("Left", -1),Action.new("Right", -1),Action.new("LeftJump", -1),Action.new("RightJump", -1),Action.new("Idle", -1), Action.new("Jump", -1)]
 
 #find the best action among all actions
 func best_action():
+	
+	view_count += 1
 	var the_best = Actions[0]
 	
 	#find the best action with the highest q value
@@ -50,3 +52,7 @@ func find_action(searched_action):
 			return count
 		count += 1	
 	return count
+
+func print_actions():
+	for action in Actions:
+		print(action.Name, " has value of ", action.Q_Value)

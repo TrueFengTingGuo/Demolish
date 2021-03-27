@@ -3,7 +3,7 @@ const Action = preload("res://Scenes/AI_states/Action.gd")
 const Observation = preload("res://Scenes/AI_states/Observation.gd")
 
 export var learning_rate = 0.1
-export var Discount_rate = 0.3
+export var Discount_rate = 1
 var Q_Table = []
 var trail_count = 0
 
@@ -11,6 +11,8 @@ var starter_observation: Observation = null
 var current_Observation: Observation  = null
 var next_Observation: Observation = null 
 var current_action : Action	 = null
+
+var per_cell_gap = 2
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -25,6 +27,7 @@ func trail_start(newObservation = null):
 		return next_perfered_action(newObservation)
 		
 	return next_perfered_action(starter_observation)
+	
 func get_currentObservation():
 	return current_Observation
 	
@@ -53,7 +56,7 @@ func next_perfered_action(observation: Observation):
 
 	
 func trail_end():
-	current_action.Reward += 100
+	current_action.Reward += 20
 	learn()
 	current_Observation = null
 	
@@ -69,12 +72,15 @@ func learn():
 	#print("current_Observation Position ",current_Observation.Position)
 	current_action.Q_Value = current_action.Q_Value + learning_rate * (current_action.Reward + Discount_rate * next_Observation.best_action().Q_Value -  current_action.Q_Value )
 	#print("current_action.Reward ", current_action.Reward)
-	#print("current_action.Q_Value ", current_action.Q_Value)
-	#print("current_Observation id ",current_Observation.ID)
-	#print("current_Observation position ",current_Observation.Position)
+#	print("current_action.Q_Value ", current_action.Q_Value)
+#	print("current_Observation id ",current_Observation.ID)
+#	print("current_Observation position ",current_Observation.Position)
+#
+	print("current_Observation actions ")
+	current_Observation.print_actions()
 	#print("current_Observation",find_observation_by_ID(current_Observation))
 	#print("current_action.Name ", current_action.Name)
-	#print()
+	print()
 #	print(Q_Table[find_observation_by_ID(current_Observation)].Position)
 	Q_Table[find_observation_by_ID(current_Observation)].add_or_change_action(current_action) 
 
@@ -115,7 +121,12 @@ func find_observation_by_ID(observation):
 func find_observation_by_position(Position):
 	var index = 0
 	for each_observation in Q_Table:
-		if Position == each_observation.Position:
+		
+		var each_observation_position = each_observation.Position
+		var x_diff = Position[0] - each_observation_position[0]
+		var y_diff = Position[1] - each_observation_position[1]
+		var distance = sqrt(x_diff * x_diff + y_diff * y_diff)
+		if per_cell_gap >= distance:
 			return index
 		index += 1
 		
@@ -173,15 +184,15 @@ func load_Q_Table():
 		var new_actions_array = []
 		
 		var new_actions = the_observation["Actions"]
-		for action in the_observation["Actions"]:
+		for action in new_actions:
 
-			var newAction = Action.new(new_actions[action],int(new_actions[action]["Next_Observation_ID"]))
-			newAction.Q_Value = int(new_actions[action]["Q_Value"])
+			var newAction = Action.new(action,int(new_actions[action]["Next_Observation_ID"]))
+			newAction.Q_Value = float(new_actions[action]["Q_Value"])
 			newAction.Reward = int(new_actions[action]["Reward"])
 			new_actions_array.append(newAction)
 		
 
-		var new_observation = Observation.new(int(observation),the_observation["Position"],the_observation["State"])
+		var new_observation = Observation.new(Q_Table.size(),the_observation["Position"],the_observation["State"])
 		new_observation.Actions = new_actions_array
 		Q_Table.append(new_observation) 
 	
