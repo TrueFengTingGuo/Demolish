@@ -25,7 +25,7 @@ func update(host, _delta):
 		emit_signal("finished", "Idle")
 
 			
-	host.velocity.x = lerp(host.velocity.x,0,0.1)
+	host.velocity.x = lerp(host.velocity.x,0,0.7)
 	host.invincible_toggle(false)#player takes no damage
 	
 	host.velocity = host.move_and_slide_with_snap(host.velocity, host.snap_vector ,host.FLOOR_NORMAL,false, 4, PI/4, false)
