@@ -11,6 +11,7 @@ func _ready():
 	pass # Replace with function body.
 
 func enter(host):
+	host.jump = false
 	host.velocity.y = host.JUMPFORCE	
 	host.snap_vector = Vector2.ZERO * host.SNAP_LENGTH
 	emit_signal("finished", "In_Air")

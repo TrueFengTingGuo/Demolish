@@ -4,24 +4,21 @@ func enter(host):
 	host.animation_state_machine.travel("Run")
 
 func handle_input(host,event):
-			
-				
-	if host.jump:	
-		emit_signal("finished", "Jump")
-						
-	if host.get_down:
-		pass
+	pass
 		
 		
 func update(host, _delta):
-
+	if host.jump:	
+		
+		emit_signal("finished", "Jump")
 	if host.go_right:
-
+			#host.go_right = false
+		
 			host.velocity.x += host.SPEED
 			host.flip_sprite(1)#Sprite image flip 
 
 	elif host.go_left:	
-			
+			#host.go_left = false
 			host.velocity.x -= host.SPEED
 			host.flip_sprite(-1)	#Sprite image flip
 	else:

@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
 signal state_changed
-var current_state = null
 
-var pervious_state = null
+const Action = preload("res://Scenes/AI_states/Action.gd")
+const Observation = preload("res://Scenes/AI_states/Observation.gd")
 
 
 const SPEED = 30
@@ -15,11 +15,14 @@ const SNAP_DIRECTION = Vector2.DOWN
 const SNAP_LENGTH = 12.0
 const FLOOR_ANGLE = deg2rad(45)
 const CHAIN_PULL = 20
-const ARROW_SCENE = preload("res://Scenes/Player_Arrow.tscn")
 const ARROW_SPEED = Vector2(15,0)
 
 
 var animation_state_machine
+var current_state = null
+var pervious_state = null
+
+
 var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
 var chain_velocity = Vector2(0,0)
 var velocity = Vector2(0,0)
@@ -36,9 +39,13 @@ var hurt = false
 var invincible = false
 
 var coins = 0
+var goal = [0,0]
+var goabl_reached = false
 var air_attack_amp = 0
 var hp = 100
 
+var next_observation_is_known = false
+var current_lock_down_position = Vector2(0,0)
 
 onready var states = {
 	"Idle": $State/Idle,
@@ -55,8 +62,8 @@ func _ready():
 		current_state = $State/In_Air
 	else:
 		current_state = $State/Idle
+		
 	pervious_state = current_state
-	
 	
 	for state_node in $State.get_children():
 		
@@ -64,16 +71,39 @@ func _ready():
 
 	GlobalAccess.Player = self
 	animation_state_machine =$AnimationTree.get("parameters/playback")
-		
+	
+	
+	var position = [int(global_position.x),int(global_position.y)]
+	var state = current_state
+	var newObservation = Observation.new($Q_Table.Q_Table.size(), position, state)
+	
+	var data_array =$Q_Table.trail_start(newObservation)
+	handle_next_move(data_array)
+	$Timer.start()
+	
+
+
 func _physics_process(delta):
 	
-	grab_hook_effect_player_velocity()
+	#grab_hook_effect_player_velocity()
 	
 	# Make sure we are in our limits
 	velocity.x = clamp(velocity.x, -VELOCITY_X_LIMIT, VELOCITY_X_LIMIT)
+	
+
+
+	if $Sprite/Detect_top_wall.is_colliding():
+		print("top bad")
+		$Q_Table.current_action.Reward -= 10
+	
+	if $Sprite/Detect_side_wall.is_colliding():
+		print("side bad")
+		$Q_Table.current_action.Reward -= 10
+		
+	if goabl_reached:
+		_on_Timer_timeout()
+		
 	current_state.update(self,delta)
-	#print(velocity.x)
-	#print(current_state.name)
 	
 func _change_state(state_name):
 	
@@ -86,48 +116,6 @@ func _change_state(state_name):
 	current_state = states[state_name]	
 	
 	current_state.enter(self)
-	
-func _input(event):
-	
-	if event is InputEventMouseButton:
-
-		if event.button_index == BUTTON_RIGHT and event.pressed:
-			# We clicked the mouse -> shoot()
-			var target = get_global_mouse_position()
-			
-			if position.direction_to(target).x > 0:
-				$Sprite.scale.x = 1
-
-			elif position.direction_to(target).x < 0:
-				$Sprite.scale.x = -1
-
-				
-			$Chain.shoot(position.direction_to(target) * 0.5,self.global_position)
-		else:
-			# We released the mouse -> release()
-			if $Chain.hooked:
-				$Chain.release()
-				
-				
-	
-	if Input.is_action_just_pressed("ui_up"):
-		jump = true
-	else:
-		jump = false
-		
-	if Input.is_action_pressed("ui_right"):
-		go_right = true
-	else:
-		go_right = false
-		
-	if Input.is_action_pressed("ui_left"):
-		go_left = true
-	else:
-		go_left = false	
-		
-					
-	current_state.handle_input(self,event)
-
 
 
 func flip_sprite(value):
@@ -144,11 +132,12 @@ func give_gravity():
 	velocity.x = lerp(velocity.x,0,0.01)
 	velocity.y = move_and_slide(velocity, Vector2.UP,
 					false, 4, PI/4, false).y
-					
+				
 func get_Chain():
 	return $Chain		
 			
 func grab_hook_effect_player_velocity():
+	
 	$Chain.player_position = self.global_position
 	if $Chain.hooked:
 		snap_vector = Vector2.ZERO * SNAP_LENGTH
@@ -184,3 +173,85 @@ func grab_hook_effect_player_velocity():
 
 		
 	velocity += chain_velocity
+
+func handle_next_move(data_array): 
+	if data_array[0]:
+		#next observation is known to AI		
+
+		next_observation_is_known = true
+	else:
+		
+		#next observation is unknown to AI
+		next_observation_is_known = false
+	
+	var next_move: Action = data_array[1]
+	var nameOfNext = next_move.Name
+
+	#print(nameOfNext)
+	if nameOfNext == "Jump":
+		jump = true
+	else:
+		jump = false
+			
+	if nameOfNext == "Right":
+		go_right = true
+	else:
+		go_right = false
+			
+	if nameOfNext == "Left":
+		go_left = true
+	else:
+		go_left = false	
+
+		
+func _on_Timer_timeout():
+	
+	var new_Position = [int(global_position.x),int(global_position.y)]	
+	var index_in_Q_table = $Q_Table.find_observation_by_position(new_Position)
+	if index_in_Q_table == -1:
+		
+		var new_ID = $Q_Table.Q_Table.size()
+		var a_new_Observation = Observation.new(new_ID,new_Position,current_state.name)
+		index_in_Q_table = $Q_Table.add_or_change_observation(a_new_Observation)
+		$Q_Table.current_action.Next_Observation_ID = index_in_Q_table
+		$Q_Table.Q_Table[$Q_Table.find_observation_by_ID($Q_Table.current_Observation)].add_or_change_action($Q_Table.current_action) 
+	
+	$Q_Table.next_Observation = $Q_Table.Q_Table[index_in_Q_table]
+
+
+	var x_diff = new_Position[0] - goal[0]
+	var y_diff = new_Position[1] - goal[1]
+	var distance = sqrt(x_diff * x_diff + y_diff * y_diff)
+	$Q_Table.current_action.Reward  = -0.01* distance 
+	
+	#if $Q_Table.current_action.Name == "Jump":
+	#	$Q_Table.current_action.Reward -= 1
+		
+	if current_state.name == "In_Air":
+		$Q_Table.current_action.Reward -= 1
+		
+	#$Q_Table.current_action.Reward += lock_down_release_detect_and_reward(self.global_position)
+		
+	if goabl_reached:
+		goabl_reached = false
+		$Q_Table.trail_end()
+		$Q_Table.save_Q_Table()
+		var data_array = $Q_Table.trail_start()
+		handle_next_move(data_array)
+
+	#print($Q_Table.next_Observation.Position)
+
+	$Q_Table.learn()
+	var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
+	#if current_state.name != "In_Air":			
+	handle_next_move(data_array)
+
+	#set the next time coutn
+	$Timer.wait_time = 0.05
+
+func lock_down_release_detect_and_reward(currentPosition:Vector2):
+
+	if current_lock_down_position.distance_to(currentPosition) > 10:
+		current_lock_down_position = currentPosition 
+		return 10
+	return -1

@@ -7,17 +7,16 @@ func _ready():
 func enter(host):
 	host.animation_state_machine.travel("Idle")
 
-
-func handle_input(host,event):	
-	
-	if host.jump:		
-		emit_signal("finished", "Jump")
 		
 			
 func update(host, _delta):
-	
+
+	if host.jump:		
+		emit_signal("finished", "Jump")
+		
 	if host.go_right or host.go_left:	
 		emit_signal("finished", "Run")
+		
 		
 	host.velocity.x = lerp(host.velocity.x,0,0.1)
 	host.invincible_toggle(false)#player takes no damage

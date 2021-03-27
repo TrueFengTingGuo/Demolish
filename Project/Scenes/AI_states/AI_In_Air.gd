@@ -16,11 +16,11 @@ func enter(host):
 func handle_input(host,event):
 		
 		if host.go_right:
-
+			host.go_right = false
 			host.flip_sprite(1)
 
 		if host.go_left:	
-
+			host.go_left = false
 			host.flip_sprite(-1)
 
 			

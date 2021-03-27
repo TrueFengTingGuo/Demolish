@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scenes/Chain.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/AI_states/AI_State_Machine.gd" type="Script" id=2]
@@ -8,11 +8,12 @@
 [ext_resource path="res://Scenes/AI_states/AI_Idle.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/AI_states/AI_In_Air.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/AI_states/AI_Run.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Enemies/Q_Table.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8.1393, 13.973 )
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "Fall"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -27,8 +28,7 @@ tracks/0/keys = {
 "values": [ 22, 22 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "values": [ 0, 3 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Jump"
 length = 0.5
 tracks/0/type = "value"
@@ -59,7 +59,7 @@ tracks/0/keys = {
 "values": [ 16, 21 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "Run"
 length = 0.5
 loop = true
@@ -76,7 +76,7 @@ tracks/0/keys = {
 "values": [ 8, 12 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=6]
 resource_name = "Wall_slide"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -91,20 +91,24 @@ tracks/0/keys = {
 "values": [ 29, 31 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=10]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "Fall"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "Idle"
 
-[sub_resource type="AnimationNodeAnimation" id=11]
+[sub_resource type="AnimationNodeAnimation" id=9]
 animation = "Jump"
 
-[sub_resource type="AnimationNodeAnimation" id=12]
+[sub_resource type="AnimationNodeAnimation" id=10]
 animation = "Run"
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "Wall_slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=13]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=14]
 
@@ -124,28 +128,27 @@ animation = "Wall_slide"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=22]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=23]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=24]
-
-[sub_resource type="AnimationNodeStateMachine" id=4]
-states/Fall/node = SubResource( 10 )
+[sub_resource type="AnimationNodeStateMachine" id=23]
+states/Fall/node = SubResource( 7 )
 states/Fall/position = Vector2( 483, 352 )
-states/Idle/node = SubResource( 3 )
+states/Idle/node = SubResource( 8 )
 states/Idle/position = Vector2( 467, 55 )
-states/Jump/node = SubResource( 11 )
+states/Jump/node = SubResource( 9 )
 states/Jump/position = Vector2( 257, 182 )
-states/Run/node = SubResource( 12 )
+states/Run/node = SubResource( 10 )
 states/Run/position = Vector2( 661, 207 )
-states/Wall_slide/node = SubResource( 13 )
+states/Wall_slide/node = SubResource( 11 )
 states/Wall_slide/position = Vector2( 292, 363 )
-transitions = [ "Idle", "Jump", SubResource( 14 ), "Jump", "Fall", SubResource( 15 ), "Fall", "Idle", SubResource( 16 ), "Jump", "Wall_slide", SubResource( 17 ), "Fall", "Wall_slide", SubResource( 18 ), "Wall_slide", "Fall", SubResource( 19 ), "Wall_slide", "Jump", SubResource( 20 ), "Idle", "Run", SubResource( 21 ), "Run", "Idle", SubResource( 22 ), "Run", "Jump", SubResource( 23 ), "Jump", "Run", SubResource( 24 ) ]
+transitions = [ "Idle", "Jump", SubResource( 12 ), "Jump", "Fall", SubResource( 13 ), "Fall", "Idle", SubResource( 14 ), "Jump", "Wall_slide", SubResource( 15 ), "Fall", "Wall_slide", SubResource( 16 ), "Wall_slide", "Fall", SubResource( 17 ), "Wall_slide", "Jump", SubResource( 18 ), "Idle", "Run", SubResource( 19 ), "Run", "Idle", SubResource( 20 ), "Run", "Jump", SubResource( 21 ), "Jump", "Run", SubResource( 22 ) ]
 start_node = "Idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=5]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=24]
 
-[node name="SpeedRun_AI" type="KinematicBody2D"]
-collision_layer = 4
+[node name="SpeedRun_AI" type="KinematicBody2D" groups=[
+"Racer",
+]]
+collision_layer = 2
+collision_mask = 9
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -158,22 +161,37 @@ vframes = 11
 hframes = 7
 frame = 1
 
+[node name="Detect_side_wall" type="RayCast2D" parent="Sprite"]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 10 )
+collide_with_areas = true
+
+[node name="Detect_top_wall" type="RayCast2D" parent="Sprite"]
+rotation = -3.14159
+enabled = true
+cast_to = Vector2( 0, 13 )
+collide_with_areas = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Fall = SubResource( 6 )
-anims/Idle = SubResource( 2 )
-anims/Jump = SubResource( 7 )
-anims/Run = SubResource( 8 )
-anims/Wall_slide = SubResource( 9 )
+anims/Fall = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jump = SubResource( 4 )
+anims/Run = SubResource( 5 )
+anims/Wall_slide = SubResource( 6 )
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 4 )
+tree_root = SubResource( 23 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 5 )
+parameters/playback = SubResource( 24 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="Chain" parent="." instance=ExtResource( 1 )]
+
+[node name="Q_Table" type="Node" parent="."]
+script = ExtResource( 9 )
 
 [node name="State" type="Node" parent="."]
 
@@ -191,3 +209,8 @@ script = ExtResource( 8 )
 
 [node name="Wall_Slide" type="Node" parent="State"]
 script = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.1
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
