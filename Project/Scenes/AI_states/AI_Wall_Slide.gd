@@ -18,21 +18,21 @@ func update(host,delta):
 
 	host.animation_state_machine.travel("Wall_slide")
 	
-	if Input.is_action_pressed("ui_right") and Input.is_action_pressed("ui_up")and host.velocity.x < 0:
+	if host.go_right and host.velocity.x < 0:
 
 		host.velocity.y = host.JUMPFORCE
 		host.velocity.x = 3.5 * host.SPEED
 
 		host.flip_sprite(1)#Sprite image flip 
 		
-	elif Input.is_action_pressed("ui_left") and Input.is_action_pressed("ui_up")and host.velocity.x > 0:	
+	elif host.go_left  and host.velocity.x > 0:	
 			
 		host.velocity.y = host.JUMPFORCE
 		host.velocity.x = -3.5 * host.SPEED
 
 		host.flip_sprite(-1)#Sprite image flip 
 		
-	elif Input.is_action_pressed("ui_up") and not Input.is_action_pressed("ui_left") and not Input.is_action_pressed("ui_right"):
+	elif host.jump and not host.go_left and not host.go_right:
 		host.velocity.y = lerp(host.velocity.y,0,0.3)		
 			
 	host.give_gravity()

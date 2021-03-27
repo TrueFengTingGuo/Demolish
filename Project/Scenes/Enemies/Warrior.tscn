@@ -975,7 +975,6 @@ animation = "Hit"
 [node name="Animations" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 15
-frame = 1
 
 [node name="Attack_Area" type="Area2D" parent="Animations"]
 position = Vector2( 10.3943, -3.93725 )
