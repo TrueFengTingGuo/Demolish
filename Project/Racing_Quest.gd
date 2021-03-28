@@ -11,8 +11,9 @@ func _ready():
 		track_Points.append(child)
 		
 func _physics_process(delta):
-	$line_chart_continous.give_new_info($SpeedRun_AI.trail_count())
-	
+	$line_chart_continous.give_trail_info($SpeedRun_AI.trail_count())
+	$line_chart_continous.give_current_action_value($SpeedRun_AI/Q_Table.current_action.Q_Value)
+
 	if reached == true:
 		$SpeedRun_AI.global_position = self.global_position
 		$SpeedRun_AI.goabl_reached = true
