@@ -9,7 +9,7 @@ var new_info = 0
 func _ready():
 	chart_graph.initialize(chart_graph.LABELS_TO_SHOW.NO_LABEL,
 	{
-		stock = Color(0.58, 0.92, 0.07)
+		Rate = Color(0.58, 0.92, 0.07)
 	})
 	chart_graph.set_labels(7)
 
@@ -18,16 +18,19 @@ func _ready():
 #	pass
 
 func give_new_info(_info:int):
-	old_info = _info
+	new_info = _info
 	
 func _on_Timer_timeout():
 	
-	if old_info != new_info:
-		old_info = new_info
+	
+	var new_rate = new_info - old_info
+	
 	chart_graph.create_new_point({
 			label = String(x),
 			values = {
-			  stock = old_info*100
+			  Rate = new_rate
 			}
-		})	
-	x = x + 1
+		})
+	if old_info != new_info:
+		old_info = new_info
+	x = x + 10

@@ -13,7 +13,7 @@ func _init(id, position, state):
 	Position = position
 	State = state
 	
-	Actions = [Action.new("Left", -1),Action.new("Right", -1),Action.new("LeftJump", -1),Action.new("RightJump", -1),Action.new("Idle", -1), Action.new("Jump", -1)]
+	Actions = [Action.new("Left", -1),Action.new("Right", -1),Action.new("LeftJump", -1),Action.new("RightJump", -1), Action.new("Jump", -1),Action.new("Idle", -1)]
 
 #find the best action among all actions
 func best_action():
@@ -38,7 +38,7 @@ func add_or_change_action(searched_action:Action):
 			#print(action.Q_Value)
 			#print(action.Next_Observation_ID)
 			action.Q_Value = searched_action.Q_Value
-			action.Reward = searched_action.Reward
+			#action.Reward = searched_action.Reward
 			action.Next_Observation_ID = searched_action.Next_Observation_ID
 			#print(action.Name)
 			#print(action.Q_Value)
