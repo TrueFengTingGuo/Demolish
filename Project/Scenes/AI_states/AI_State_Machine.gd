@@ -95,6 +95,9 @@ func _physics_process(delta):
 	if goabl_reached:
 		_on_Timer_timeout()
 	
+	continues_reward()
+	
+	
 	if !stopwatch_stopped:
 		stopwatch += delta
 		
@@ -226,8 +229,7 @@ func observe_enviornment():
 	$Q_Table.next_Observation = $Q_Table.Q_Table[index_in_Q_table]
 	
 func calculate_reward():
-	if $Q_Table.current_action.Name == "Jump" or $Q_Table.current_action.Name == "RightJump" or $Q_Table.current_action.Name == "LeftJump":
-		$Q_Table.current_action.Reward -= 2
+
 
 	if $Sprite/Detect_top_wall.is_colliding() :	
 		$Q_Table.current_action.Reward -= 0.5
@@ -252,8 +254,11 @@ func calculate_reward():
 	$Q_Table.current_action.Reward  -= 0.1 * new_distance
 	
 	#less step, less punish
-	$Q_Table.current_action.Reward -= 0.1
-	
+	$Q_Table.current_action.Reward -= 0.05
+
+func continues_reward():
+	if current_state.name == "In_Air":
+		$Q_Table.current_action.Reward -= 0.5
 		
 func _on_Timer_timeout():
 	
@@ -266,13 +271,17 @@ func _on_Timer_timeout():
 		handle_next_move(data_array)
 
 	if current_state.name != "In_Air":
+
 		observe_enviornment()
 		calculate_reward()
+		print($Q_Table.current_action.Reward)
 		$Q_Table.learn()
-			
+	
 		var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
 		handle_next_move(data_array)
+		
 	
+		
 	#set the next time coutn
 	$Timer.wait_time = 0.1
 
