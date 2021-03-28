@@ -227,30 +227,35 @@ func observe_enviornment():
 	
 func calculate_reward():
 	if $Q_Table.current_action.Name == "Jump" or $Q_Table.current_action.Name == "RightJump" or $Q_Table.current_action.Name == "LeftJump":
-		$Q_Table.current_action.Reward -= 5
+		$Q_Table.current_action.Reward -= 2
 
 	if $Sprite/Detect_top_wall.is_colliding() :	
-		$Q_Table.current_action.Reward -= 1
+		$Q_Table.current_action.Reward -= 0.5
+	
+	if $Sprite/Detect_side_wall.is_colliding() :	
+		$Q_Table.current_action.Reward -= 0.5
 		
 	var x_diff = $Q_Table.next_Observation.Position[0] - goal[0]
 	var y_diff = $Q_Table.next_Observation.Position[1] - goal[1]
 	var new_distance = 1 * sqrt(x_diff * x_diff + y_diff * y_diff)
+	
 	x_diff = $Q_Table.current_Observation.Position[0] - goal[0]
 	y_diff = $Q_Table.current_Observation.Position[1] - goal[1]
 	var old_distance = 1 * sqrt(x_diff * x_diff + y_diff * y_diff)
+	
 	var distance_diff =  old_distance - new_distance
 	
+	#action getting closer to goal, gain reward
 	$Q_Table.current_action.Reward  += clamp(distance_diff, -2, 2)
-	$Q_Table.current_action.Reward  -= clamp(new_distance, 0 , 2)
+	
+	#closer to goal, less punish
+	$Q_Table.current_action.Reward  -= 0.1 * new_distance
+	
+	#less step, less punish
 	$Q_Table.current_action.Reward -= 0.1
-	if $Sprite/Detect_side_wall.is_colliding():
-		$Q_Table.current_action.Reward -= 1
+	
 		
 func _on_Timer_timeout():
-	
-
-	observe_enviornment()
-	calculate_reward()
 	
 	if goabl_reached:
 		goabl_reached = false		
@@ -259,11 +264,14 @@ func _on_Timer_timeout():
 		var data_array = $Q_Table.trail_start()
 		stopwatch_start()
 		handle_next_move(data_array)
-	else:
+
+	if current_state.name != "In_Air":
+		observe_enviornment()
+		calculate_reward()
 		$Q_Table.learn()
 			
-	var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
-	handle_next_move(data_array)
+		var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
+		handle_next_move(data_array)
 	
 	#set the next time coutn
 	$Timer.wait_time = 0.1

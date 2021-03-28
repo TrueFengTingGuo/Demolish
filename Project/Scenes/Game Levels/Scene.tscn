@@ -704,7 +704,7 @@ margin_left = -105.111
 margin_top = -96.6384
 margin_right = -105.111
 margin_bottom = -96.6384
-rect_scale = Vector2( 0.209196, 0.200159 )
+rect_scale = Vector2( 0.249195, 0.280159 )
 [connection signal="body_entered" from="Fall Zone" to="Player" method="_on_Fall_Zone_body_entered"]
 [connection signal="endThisConversation" from="King_Of_Hill_Quest/King_Of_Hill_NPC" to="UI/Dialogue" method="_on_King_Of_Hill_NPC_endThisConversation"]
 [connection signal="startThisConverstion" from="King_Of_Hill_Quest/King_Of_Hill_NPC" to="UI/Dialogue" method="_on_King_Of_Hill_NPC_startThisConverstion"]

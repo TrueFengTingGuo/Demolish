@@ -75,9 +75,9 @@ func trail_end(stopwatch_value):
 			
 		stopwatch_reward = 0.7 * time_diff
 		
-	current_action.Reward += clamp(stopwatch_reward, -10, 20)
+	current_action.Reward += clamp(stopwatch_reward, -5, 20)
 		#print("bad round reward is",  +0.7 * time_diff)
-	current_action.Reward += 20
+	current_action.Reward += 40
 	#print("current_action ", current_action.Name )
 	#print("reach goal and give final reward ", current_action.Reward )
 	#print()
