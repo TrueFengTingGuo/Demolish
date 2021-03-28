@@ -6,10 +6,10 @@ const Action = preload("res://Scenes/AI_states/Action.gd")
 const Observation = preload("res://Scenes/AI_states/Observation.gd")
 
 
-const SPEED = 180
+const SPEED = 250
 const GARAVITY = 5
 const JUMPFORCE = -200
-const VELOCITY_X_LIMIT = 180
+const VELOCITY_X_LIMIT = 250
 const FLOOR_NORMAL = Vector2.UP
 const SNAP_DIRECTION = Vector2.DOWN
 const SNAP_LENGTH = 12.0
@@ -46,6 +46,8 @@ var hp = 100
 
 var next_observation_is_known = false
 var current_lock_down_position = Vector2(0,0)
+var stopwatch = 0
+var stopwatch_stopped = false
 
 onready var states = {
 	"Idle": $State/Idle,
@@ -76,7 +78,7 @@ func _ready():
 	var position = [int(global_position.x),int(global_position.y)]
 	var state = current_state
 	var newObservation = Observation.new($Q_Table.Q_Table.size(), position, state)
-	
+	stopwatch_start()
 	var data_array =$Q_Table.trail_start(newObservation)
 	handle_next_move(data_array)
 	$Timer.start()
@@ -92,6 +94,9 @@ func _physics_process(delta):
 
 	if goabl_reached:
 		_on_Timer_timeout()
+	
+	if !stopwatch_stopped:
+		stopwatch += delta
 		
 	current_state.update(self,delta)
 	
@@ -206,61 +211,72 @@ func handle_next_move(data_array):
 	else:
 		go_right = false	
 		jump = false
-		
-func _on_Timer_timeout():
-	
+
+func observe_enviornment():
 	var new_Position = [int(global_position.x),int(global_position.y)]	
 	var index_in_Q_table = $Q_Table.find_observation_by_position(new_Position)
 	if index_in_Q_table == -1:
-		
+			
 		var new_ID = $Q_Table.Q_Table.size()
 		var a_new_Observation = Observation.new(new_ID,new_Position,current_state.name)
 		index_in_Q_table = $Q_Table.add_or_change_observation(a_new_Observation)
 		$Q_Table.current_action.Next_Observation_ID = index_in_Q_table
 		$Q_Table.Q_Table[$Q_Table.find_observation_by_ID($Q_Table.current_Observation)].add_or_change_action($Q_Table.current_action) 
-	
+		
 	$Q_Table.next_Observation = $Q_Table.Q_Table[index_in_Q_table]
+	
+func calculate_reward():
+	if $Q_Table.current_action.Name == "Jump" or $Q_Table.current_action.Name == "RightJump" or $Q_Table.current_action.Name == "LeftJump":
+		$Q_Table.current_action.Reward -= 5
 
+	if $Sprite/Detect_top_wall.is_colliding() :	
+		$Q_Table.current_action.Reward -= 1
+		
+	var x_diff = $Q_Table.next_Observation.Position[0] - goal[0]
+	var y_diff = $Q_Table.next_Observation.Position[1] - goal[1]
+	var new_distance = 1 * sqrt(x_diff * x_diff + y_diff * y_diff)
+	x_diff = $Q_Table.current_Observation.Position[0] - goal[0]
+	y_diff = $Q_Table.current_Observation.Position[1] - goal[1]
+	var old_distance = 1 * sqrt(x_diff * x_diff + y_diff * y_diff)
+	var distance_diff =  old_distance - new_distance
+	
+	$Q_Table.current_action.Reward  += clamp(distance_diff, -2, 2)
+	$Q_Table.current_action.Reward  -= clamp(new_distance, 0 , 2)
+	$Q_Table.current_action.Reward -= 0.1
+	if $Sprite/Detect_side_wall.is_colliding():
+		$Q_Table.current_action.Reward -= 1
+		
+func _on_Timer_timeout():
+	
 
-	var x_diff = new_Position[0] - goal[0]
-	var y_diff = new_Position[1] - goal[1]
-	var distance = 0.2 * sqrt(x_diff * x_diff + y_diff * y_diff)
-	$Q_Table.current_action.Reward  = -0.1* distance 
+	observe_enviornment()
+	calculate_reward()
 	
-	if $Q_Table.current_action.Name == "Jump" or $Q_Table.current_action.Name == "RightJump":
-		$Q_Table.current_action.Reward -= 3
-	
-	if $Sprite/Detect_top_wall.is_colliding() :
-		
-		$Q_Table.current_action.Reward -= 3
-	
-	if $Sprite/Detect_side_wall.is_colliding() and $Q_Table.current_action.Name != "In_Air":
-
-		$Q_Table.current_action.Reward -= 3
-		
-	#$Q_Table.current_action.Reward += lock_down_release_detect_and_reward(self.global_position)		
-	#if current_state.name == "In_Air":
-	#	$Q_Table.current_action.Reward -= 3
-	print($Q_Table.current_action.Reward)
-	
-		
 	if goabl_reached:
-		goabl_reached = false
-		$Q_Table.trail_end()
+		goabl_reached = false		
+		$Q_Table.trail_end(stopwatch_stop())
 		$Q_Table.save_Q_Table()
 		var data_array = $Q_Table.trail_start()
+		stopwatch_start()
 		handle_next_move(data_array)
-
-	#print($Q_Table.next_Observation.Position)
-	if $Q_Table.current_action.Name != "In_Air":
+	else:
 		$Q_Table.learn()
-		var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
-		#if current_state.name != "In_Air":			
-		handle_next_move(data_array)
-
+			
+	var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
+	handle_next_move(data_array)
+	
 	#set the next time coutn
-	$Timer.wait_time = 0.08
+	$Timer.wait_time = 0.1
 
+func stopwatch_start():
+	stopwatch_stopped = false
+	stopwatch = 0
+
+func stopwatch_stop():
+	stopwatch_stopped = true
+
+	return stopwatch
+	
 func lock_down_release_detect_and_reward(currentPosition:Vector2):
 
 	if current_lock_down_position.distance_to(currentPosition) > 10:

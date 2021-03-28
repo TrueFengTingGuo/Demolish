@@ -13,6 +13,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 autostart = true
 
 [node name="CGLine" type="ReferenceRect" parent="."]
@@ -26,4 +27,5 @@ __meta__ = {
 }
 limit_x_count = 10
 label_font = ExtResource( 2 )
+line_width = 10.0
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

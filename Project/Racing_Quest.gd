@@ -12,6 +12,7 @@ func _ready():
 		
 func _physics_process(delta):
 	$line_chart_continous.give_new_info($SpeedRun_AI.trail_count())
+	
 	if reached == true:
 		$SpeedRun_AI.global_position = self.global_position
 		$SpeedRun_AI.goabl_reached = true

@@ -11,17 +11,21 @@ var starter_observation: Observation = null
 var current_Observation: Observation  = null
 var next_Observation: Observation = null 
 var current_action : Action	 = null
+var pervoius_stopwatch = 0
 
-var per_cell_gap = 2
+
+var per_cell_gap = 3
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
 func trail_start(newObservation = null):
+	trail_count += 1
 	if newObservation:
 		starter_observation = newObservation
-		trail_count += 1
+		
 		load_Q_Table()
 		add_or_change_observation(newObservation)
 		return next_perfered_action(newObservation)
@@ -37,6 +41,7 @@ func get_nextObservation():
 func next_perfered_action(observation: Observation):
 	
 	var next_action : Action = observation.best_action()
+	next_action.Reward = 0
 	
 	current_action = next_action
 	current_Observation = observation
@@ -55,16 +60,34 @@ func next_perfered_action(observation: Observation):
 	return [true,next_action]
 
 	
-func trail_end():
+func trail_end(stopwatch_value):
+		
+	var time_diff = pervoius_stopwatch - stopwatch_value
+	var stopwatch_reward = 0
+	
+	if pervoius_stopwatch > stopwatch_value:
+		stopwatch_reward = 0.6 * time_diff
+		pervoius_stopwatch = stopwatch_value
+		#print("good round reward is", 0.6 * time_diff)
+	else:
+		if pervoius_stopwatch == 0:			
+			pervoius_stopwatch = stopwatch_value
+			
+		stopwatch_reward = 0.7 * time_diff
+		
+	current_action.Reward += clamp(stopwatch_reward, -10, 20)
+		#print("bad round reward is",  +0.7 * time_diff)
 	current_action.Reward += 20
+	#print("current_action ", current_action.Name )
+	#print("reach goal and give final reward ", current_action.Reward )
+	#print()
+	
 	learn()
 	current_Observation = null
 	
 func learn():
 	if !current_Observation:
 		return
-		
-	var best_action = current_Observation.best_action()
 
 	#print(" current_action.Q_Value was", current_action.Q_Value)
 	#bellman equation	
@@ -72,15 +95,16 @@ func learn():
 	#print("current_Observation Position ",current_Observation.Position)
 	current_action.Q_Value = current_action.Q_Value + learning_rate * (current_action.Reward + Discount_rate * next_Observation.best_action().Q_Value -  current_action.Q_Value )
 	#print("current_action.Reward ", current_action.Reward)
-#	print("current_action.Q_Value ", current_action.Q_Value)
+	#print("current_action.Name ", current_action.Name)
+	#print("current_action.Q_Value ", current_action.Q_Value)
 #	print("current_Observation id ",current_Observation.ID)
 #	print("current_Observation position ",current_Observation.Position)
 #
-	print("current_Observation actions ")
-	current_Observation.print_actions()
+	#print("current_Observation actions ")
+	#current_Observation.print_actions()
 	#print("current_Observation",find_observation_by_ID(current_Observation))
 	#print("current_action.Name ", current_action.Name)
-	print()
+	#print()
 #	print(Q_Table[find_observation_by_ID(current_Observation)].Position)
 	Q_Table[find_observation_by_ID(current_Observation)].add_or_change_action(current_action) 
 

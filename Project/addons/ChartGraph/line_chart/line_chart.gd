@@ -7,12 +7,12 @@ var max_y_value = 1.0
 
 export(Color) var grid_color = Color('#b111171c')
 export(Texture) var dot_texture = preload("res://addons/ChartGraph/graph-plot-white.png")
-export var line_width = 2.0
+export var line_width = 1.0
 export(Color) var default_chart_color = Color('#ccffffff')
 
 var end_point_position = Vector2.ZERO
 
-onready var interline_color = Color(grid_color.r, grid_color.g, grid_color.b, grid_color.a * 0.5)
+onready var interline_color = Color(grid_color.r, grid_color.g, grid_color.b, grid_color.a * 1)
 
 func _draw():
 	draw_line_chart()
