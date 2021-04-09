@@ -10,14 +10,11 @@ var coin = 0
 func _init():
 	GlobalAccess.lvlManager = self
 
-func _ready():
-	
-	$UI/Gold_Count.text =  "X " + String(coin)
-	
-	
 func _physics_process(delta):
 	#update the hp of player in UI
-	$UI.change_player_hp($Player.hp)
+	$UI.change_player_hp(playerObject.hp)
+	$UI/Gold_Count.text =  "X " + String(playerObject.coins)
+
 
 func change_active_quest(quest):
 	if active_quest == quest:
@@ -25,12 +22,12 @@ func change_active_quest(quest):
 	
 	if active_quest != null:
 		active_quest.quest_active = false
+	
 	active_quest = quest
 	quest_is_active = active_quest.quest_active
+	
 	$UI.add_infos_about_quest(active_quest.quest_info)
-	print("add")
 
-func _on_coin_collected():
-	coin += 1
-	_ready()
-
+func update_coin():
+	$UI/Gold_Count.text =  "X " + String(playerObject.coins)
+	

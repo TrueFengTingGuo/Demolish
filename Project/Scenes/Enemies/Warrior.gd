@@ -4,7 +4,7 @@
 extends "res://Scenes/Enemies/Enemy.gd"
 
 func _ready():
-	_init_hp = 20
+	_init_hp = 30
 	hp = _init_hp
 	
 	animation_state_machine =$AnimationTree.get("parameters/playback")

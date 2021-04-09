@@ -5,7 +5,6 @@ signal state_changed
 const Action = preload("res://Scenes/AI_states/Action.gd")
 const Observation = preload("res://Scenes/AI_states/Observation.gd")
 
-
 const SPEED = 250
 const GARAVITY = 5
 const JUMPFORCE = -200
@@ -15,13 +14,11 @@ const SNAP_DIRECTION = Vector2.DOWN
 const SNAP_LENGTH = 12.0
 const FLOOR_ANGLE = deg2rad(45)
 const CHAIN_PULL = 20
-const ARROW_SPEED = Vector2(15,0)
 
 
 var animation_state_machine
 var current_state = null
 var pervious_state = null
-
 
 var snap_vector = SNAP_DIRECTION * SNAP_LENGTH
 var chain_velocity = Vector2(0,0)
@@ -34,14 +31,14 @@ var go_right = false
 var go_left = false
 var jump = false
 var just_jump = false
-var space = false
 var hurt = false
 var invincible = false
 
 var coins = 0
-var goal = [0,0]
-var goabl_reached = false
-var air_attack_amp = 0
+var pervious_coin_num = 0
+
+var goal = [0,0] # the final destination
+var goal_reached = false
 var hp = 100
 
 var next_observation_is_known = false
@@ -92,7 +89,7 @@ func _physics_process(delta):
 	# Make sure we are in our limits
 	velocity.x = clamp(velocity.x, -VELOCITY_X_LIMIT, VELOCITY_X_LIMIT)
 
-	if goabl_reached:
+	if goal_reached:
 		_on_Timer_timeout()
 	
 	continues_reward()
@@ -255,6 +252,10 @@ func calculate_reward():
 	
 	#less step, less punish
 	$Q_Table.current_action.Reward -= 0.05
+	
+	if pervious_coin_num < coins:
+		$Q_Table.current_action.Reward += 10 * (coins - pervious_coin_num)
+		pervious_coin_num = coins
 
 func continues_reward():
 	if current_state.name == "In_Air":
@@ -262,23 +263,22 @@ func continues_reward():
 		
 func _on_Timer_timeout():
 	
-	if goabl_reached:
-		goabl_reached = false		
+	if goal_reached:
+		goal_reached = false		
 		$Q_Table.trail_end(stopwatch_stop())
 		$Q_Table.save_Q_Table()
-		var data_array = $Q_Table.trail_start()
+		
 		stopwatch_start()
-		handle_next_move(data_array)
+		handle_next_move($Q_Table.trail_start())
 
 	if current_state.name != "In_Air":
 
 		observe_enviornment()
 		calculate_reward()
-		print($Q_Table.current_action.Reward)
+		
 		$Q_Table.learn()
 	
-		var data_array = $Q_Table.next_perfered_action($Q_Table.next_Observation)
-		handle_next_move(data_array)
+		handle_next_move($Q_Table.next_perfered_action($Q_Table.next_Observation))
 		
 	
 		
@@ -291,15 +291,8 @@ func stopwatch_start():
 
 func stopwatch_stop():
 	stopwatch_stopped = true
-
 	return stopwatch
-	
-func lock_down_release_detect_and_reward(currentPosition:Vector2):
 
-	if current_lock_down_position.distance_to(currentPosition) > 10:
-		current_lock_down_position = currentPosition 
-		return 1
-	return -1
 
 func trail_count():
 	return $Q_Table.trail_count

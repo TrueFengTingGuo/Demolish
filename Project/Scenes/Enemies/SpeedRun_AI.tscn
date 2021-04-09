@@ -146,10 +146,28 @@ start_node = "Idle"
 
 [node name="SpeedRun_AI" type="KinematicBody2D" groups=[
 "Racer",
+"Racer_AI",
 ]]
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 2 )
+
+[node name="State" type="Node" parent="."]
+
+[node name="Idle" type="Node" parent="State"]
+script = ExtResource( 6 )
+
+[node name="In_Air" type="Node" parent="State"]
+script = ExtResource( 7 )
+
+[node name="Jump" type="Node" parent="State"]
+script = ExtResource( 4 )
+
+[node name="Run" type="Node" parent="State"]
+script = ExtResource( 8 )
+
+[node name="Wall_Slide" type="Node" parent="State"]
+script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.420471, 2.73292 )
@@ -159,6 +177,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 3 )
 vframes = 11
 hframes = 7
+frame = 2
 
 [node name="Detect_side_wall" type="RayCast2D" parent="Sprite"]
 rotation = -1.5708
@@ -191,23 +210,6 @@ parameters/playback = SubResource( 24 )
 
 [node name="Q_Table" type="Node" parent="."]
 script = ExtResource( 9 )
-
-[node name="State" type="Node" parent="."]
-
-[node name="Idle" type="Node" parent="State"]
-script = ExtResource( 6 )
-
-[node name="In_Air" type="Node" parent="State"]
-script = ExtResource( 7 )
-
-[node name="Jump" type="Node" parent="State"]
-script = ExtResource( 4 )
-
-[node name="Run" type="Node" parent="State"]
-script = ExtResource( 8 )
-
-[node name="Wall_Slide" type="Node" parent="State"]
-script = ExtResource( 5 )
 
 [node name="Timer" type="Timer" parent="."]
 process_mode = 0
