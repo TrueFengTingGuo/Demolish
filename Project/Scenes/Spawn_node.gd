@@ -19,8 +19,6 @@ func _ready():
 	
 	var path = "res://Scenes/Enemies/" + spawn_type + ".tscn"
 	_instance = load(path)
-	
-	current_spawning_time = _init_spawning_time
 	#warrior_instance = load("res://Scenes/Warrior.tscn")
 	#ranger_instance = load("res://Scenes/Ranger.tscn")
 	#enemy_number = randomNumberGenerator.randi_range (100,200)

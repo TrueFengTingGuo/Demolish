@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Racing_Quest.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Quest/RacingQuest/Racing_Quest.gd" type="Script" id=1]
 
 [node name="Racing_Quest" type="Node2D"]
 script = ExtResource( 1 )

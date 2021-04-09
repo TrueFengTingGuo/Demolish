@@ -61,29 +61,10 @@ func next_perfered_action(observation: Observation):
 
 	
 func trail_end(stopwatch_value):
-		
-#	var time_diff = pervoius_stopwatch - stopwatch_value
-#	var stopwatch_reward = 0
-#
-#	if pervoius_stopwatch > stopwatch_value:
-#		stopwatch_reward = 0.6 * time_diff
-#		pervoius_stopwatch = stopwatch_value
-#		#print("good round reward is", 0.6 * time_diff)
-#	else:
-#		if pervoius_stopwatch == 0:			
-#			pervoius_stopwatch = stopwatch_value
-#
-#		stopwatch_reward = 0.7 * time_diff
-#
-#	current_action.Reward += clamp(stopwatch_reward, -5, 20)
-		#print("bad round reward is",  +0.7 * time_diff)
 	current_action.Reward += 40
-	#print("current_action ", current_action.Name )
-	#print("reach goal and give final reward ", current_action.Reward )
-	#print()
-	
 	learn()
 	current_Observation = null
+
 	
 func learn():
 	if !current_Observation:

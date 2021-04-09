@@ -382,15 +382,15 @@ func fire_arrow():
 	get_parent().add_child(arrow_instnace)
 	
 	
-	
+
 func _on_Attack_area_body_entered(body):
 
 	if body.is_in_group("Enemy"):
-		body.take_damage()
+		body.take_damage(3)
 		body.velocity += 30* self.global_position.direction_to(body.global_position).normalized()
 
 func _on_Dash_attack_area_body_entered(body):
 	if body.is_in_group("Enemy"):
 		#print(0.004 *air_attack_amp)
-		body.take_heavy_damage(0.004 * air_attack_amp)
+		body.take_heavy_damage(0.04 * air_attack_amp,5)
 		body.velocity += 60 * self.global_position.direction_to(body.global_position).normalized()

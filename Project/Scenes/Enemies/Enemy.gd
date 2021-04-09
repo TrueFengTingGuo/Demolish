@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-
+var COIN = preload("res://Scenes/Coin.tscn")
 export var SPEED = 20
 const GARAVITY = 5
 const JUMPFORCE = -200
@@ -98,22 +98,22 @@ func process_hurt():
 		hurt = false
 
 		
-func take_damage():
+func take_damage(damage):
 	if (hp > 0):
 		hurt = true
-		hp -= 2
+		hp -= damage
 	#animation_state_machine.travel("Shield_self")
 	
-func take_heavy_damage(amplifier):
+func take_heavy_damage(amplifier,damage):
 	if (hp > 0):
 		#animation_state_machine.travel("Shield_self")
 		hurt = true
-		var damage = 1 * amplifier
+		var output_damage = damage * amplifier
 
-		if damage > 5:
-			hp -= damage
+		if output_damage > 15:
+			hp -= output_damage
 		else:
-			hp -= 5
+			hp -= 15
 
 func get_healing(health = 0):
 	#print("healing")
@@ -131,5 +131,8 @@ func on_grabed(force):
 	
 	
 func on_died():
+	var new_coin = COIN.instance()
+	get_parent().add_child(new_coin)
+	new_coin.global_position = self.global_position
 	queue_free()
 			

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Game Levels/Finish_Line.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Health_Bar/Health_Bar.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Finish_Line" type="Area2D"]
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( -0.61202, 2.46686 )
+texture = ExtResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_Finish_Line_body_entered"]

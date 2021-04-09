@@ -5,7 +5,7 @@ const ARROW_SCENE = preload("res://Scenes/Enemies/Ranger_arrow.tscn")
 const ARROW_SPEED = Vector2(10,0)
 
 func _ready():
-	_init_hp = 10
+	_init_hp = 20
 	SPEED = 20
 	VELOCITY_X_LIMIT = 250
 	hp = _init_hp
@@ -71,24 +71,6 @@ func _physics_process(delta):
 		animation_state_machine.travel("Die")
 		set_physics_process(false)
 	
-func take_damage():
-	if (hp > 0):
-		hurt = true
-		hp -= 2
-
-		#animation_state_machine.travel("Shield_self")
-	
-func take_heavy_damage(amplifier):
-	if (hp > 0):
-		#animation_state_machine.travel("Shield_self")
-		hurt = true
-		var damage = 1 * amplifier
-
-		if damage > 5:
-			hp -= damage
-		else:
-			hp -= 5
-
 
 func _on_Effect_animation_finished():
 
@@ -99,9 +81,7 @@ func _on_Effect_animation_finished():
 func on_grabed(force):
 	velocity += force
 	
-func on_died():
-	queue_free()
-	
+
 func fire_arrow():
 	var arrow_instnace = ARROW_SCENE.instance()
 	get_parent().add_child(arrow_instnace)
