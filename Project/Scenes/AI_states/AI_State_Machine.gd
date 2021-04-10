@@ -40,6 +40,7 @@ var pervious_coin_num = 0
 var goal = [0,0] # the final destination
 var goal_reached = false
 var hp = 100
+var reset_ai = true
 
 var next_observation_is_known = false
 var current_lock_down_position = Vector2(0,0)
@@ -90,10 +91,16 @@ func _physics_process(delta):
 	velocity.x = clamp(velocity.x, -VELOCITY_X_LIMIT, VELOCITY_X_LIMIT)
 
 	if goal_reached:
+		velocity = Vector2(0,0)
 		_on_Timer_timeout()
 	
+	#reset ai to orignal position
+	if reset_ai:
+		velocity = Vector2(0,0)
+		reset_ai = false
+		$Q_Table.trail_reset()
+		
 	continues_reward()
-	
 	
 	if !stopwatch_stopped:
 		stopwatch += delta
@@ -182,7 +189,7 @@ func handle_next_move(data_array):
 	var next_move: Action = data_array[1]
 	var nameOfNext = next_move.Name
 
-	#print(nameOfNext)
+
 	if nameOfNext == "Jump":
 		jump = true
 	else:
@@ -254,6 +261,7 @@ func calculate_reward():
 	$Q_Table.current_action.Reward -= 0.05
 	
 	if pervious_coin_num < coins:
+		
 		$Q_Table.current_action.Reward += 10 * (coins - pervious_coin_num)
 		pervious_coin_num = coins
 
@@ -280,8 +288,6 @@ func _on_Timer_timeout():
 	
 		handle_next_move($Q_Table.next_perfered_action($Q_Table.next_Observation))
 		
-	
-		
 	#set the next time coutn
 	$Timer.wait_time = 0.1
 
@@ -292,7 +298,6 @@ func stopwatch_start():
 func stopwatch_stop():
 	stopwatch_stopped = true
 	return stopwatch
-
 
 func trail_count():
 	return $Q_Table.trail_count

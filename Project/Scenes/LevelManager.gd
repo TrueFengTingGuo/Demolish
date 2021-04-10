@@ -15,7 +15,6 @@ func _physics_process(delta):
 	$UI.change_player_hp(playerObject.hp)
 	$UI/Gold_Count.text =  "X " + String(playerObject.coins)
 
-
 func change_active_quest(quest):
 	if active_quest == quest:
 		return

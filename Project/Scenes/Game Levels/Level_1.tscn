@@ -659,45 +659,6 @@ position = Vector2( 1354.24, -17.5021 )
 [node name="Coin44" parent="Coins" instance=ExtResource( 12 )]
 position = Vector2( 1370.97, -37.675 )
 
-[node name="Coin45" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1713.6, 259.157 )
-
-[node name="Coin46" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1713.6, 251.598 )
-
-[node name="Coin47" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1713.6, 251.598 )
-
-[node name="Coin48" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1696.61, 249.674 )
-
-[node name="Coin49" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1682.61, 254.157 )
-
-[node name="Coin50" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1582.04, 179.009 )
-
-[node name="Coin51" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1556.44, 164.009 )
-
-[node name="Coin52" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1551.44, 127.204 )
-
-[node name="Coin53" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1628.94, 60 )
-
-[node name="Coin54" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1649.87, 60 )
-
-[node name="Coin55" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1670.63, 60 )
-
-[node name="Coin56" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1607.86, -25.0915 )
-
-[node name="Coin57" parent="Coins" instance=ExtResource( 12 )]
-position = Vector2( 1607.86, -40.0915 )
-
 [node name="Coin58" parent="Coins" instance=ExtResource( 12 )]
 position = Vector2( 1633.94, -172.166 )
 
@@ -1059,6 +1020,7 @@ cargot_num = 2
 
 [node name="Racing_Quest" parent="." instance=ExtResource( 20 )]
 position = Vector2( 1566.67, 311.1 )
+time_to_rest = 30
 
 [node name="SpeedRun_AI" parent="Racing_Quest" instance=ExtResource( 5 )]
 position = Vector2( 1.44653, -6.98184 )
@@ -1069,14 +1031,95 @@ position = Vector2( 72.2083, -403.691 )
 [node name="line_chart_continous" parent="Racing_Quest" instance=ExtResource( 17 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -130.796
-margin_top = -174.147
-margin_right = -130.796
-margin_bottom = -174.147
+margin_left = -349.58
+margin_top = -169.147
+margin_right = -349.58
+margin_bottom = -169.147
 rect_scale = Vector2( 0.249195, 0.280159 )
 
 [node name="Coin_Spawning_Point" parent="Racing_Quest" instance=ExtResource( 6 )]
 position = Vector2( 46.5366, -64.9087 )
+
+[node name="Coin_Spawning_Point2" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 46.5366, -7.62939e-06 )
+
+[node name="Coin_Spawning_Point3" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 46.5366, -25.4818 )
+
+[node name="Coin_Spawning_Point4" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 46.5366, -46.4429 )
+
+[node name="Coin_Spawning_Point5" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 83.197, -70.3765 )
+
+[node name="Coin_Spawning_Point6" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 109.197, -70.3765 )
+
+[node name="Coin_Spawning_Point7" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 128.697, -70.3765 )
+
+[node name="Coin_Spawning_Point8" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 83.197, -103.288 )
+
+[node name="Coin_Spawning_Point9" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 61.64, -123.288 )
+
+[node name="Coin_Spawning_Point10" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 26.4465, -134.61 )
+
+[node name="Coin_Spawning_Point11" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( -10.2311, -152.61 )
+
+[node name="Coin_Spawning_Point12" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( -23.5535, -169.147 )
+
+[node name="Coin_Spawning_Point13" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( -23.5535, -190.331 )
+
+[node name="Coin_Spawning_Point14" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( -23.5535, -206.1 )
+
+[node name="Coin_Spawning_Point15" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( -23.5535, -224.6 )
+
+[node name="Coin_Spawning_Point16" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( -10.2311, -246.1 )
+
+[node name="Coin_Spawning_Point17" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 1.4465, -256.359 )
+
+[node name="Coin_Spawning_Point18" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 54.5366, -261.1 )
+
+[node name="Coin_Spawning_Point19" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 83.197, -261.1 )
+
+[node name="Coin_Spawning_Point20" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 109.197, -261.1 )
+
+[node name="Coin_Spawning_Point21" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 109.197, -261.1 )
+
+[node name="Coin_Spawning_Point22" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 90.697, -285.359 )
+
+[node name="Coin_Spawning_Point23" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 72.2699, -296.805 )
+
+[node name="Coin_Spawning_Point24" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 46.5366, -319.218 )
+
+[node name="Coin_Spawning_Point25" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 46.5366, -333.602 )
+
+[node name="Coin_Spawning_Point26" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 46.5366, -348.775 )
+
+[node name="Coin_Spawning_Point27" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 46.5366, -363.775 )
+
+[node name="Coin_Spawning_Point28" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 54.5366, -374.379 )
 
 [node name="Finish_Line" parent="." instance=ExtResource( 13 )]
 position = Vector2( 731.547, -481.577 )

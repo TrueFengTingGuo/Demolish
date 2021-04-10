@@ -16,11 +16,6 @@ var pervoius_stopwatch = 0
 
 var per_cell_gap = 3
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
 func trail_start(newObservation = null):
 	trail_count += 1
 	if newObservation:
@@ -64,32 +59,20 @@ func trail_end(stopwatch_value):
 	current_action.Reward += 40
 	learn()
 	current_Observation = null
+	
+func trail_reset():
 
+	learn()
+	current_Observation = null
+	return next_perfered_action(starter_observation)
 	
 func learn():
 	if !current_Observation:
 		return
-
-	#print(" current_action.Q_Value was", current_action.Q_Value)
-	#bellman equation	
-	#print("next_Observation",next_Observation.Position)	
-	#print("current_Observation Position ",current_Observation.Position)
 	current_action.Q_Value = current_action.Q_Value + learning_rate * (current_action.Reward + Discount_rate * next_Observation.best_action().Q_Value -  current_action.Q_Value )
-	#print("current_action.Reward ", current_action.Reward)
-	#print("current_action.Name ", current_action.Name)
-	#print("current_action.Q_Value ", current_action.Q_Value)
-#	print("current_Observation id ",current_Observation.ID)
-#	print("current_Observation position ",current_Observation.Position)
-#
-	#print("current_Observation actions ")
-	#current_Observation.print_actions()
-	#print("current_Observation",find_observation_by_ID(current_Observation))
-	#print("current_action.Name ", current_action.Name)
-	#print()
-#	print(Q_Table[find_observation_by_ID(current_Observation)].Position)
+		
 	Q_Table[find_observation_by_ID(current_Observation)].add_or_change_action(current_action) 
 
-	#Q_Table[find_observation_by_ID(current_Observation)] = current_Observation
 	
 
 #add a new pair of a state and an action
@@ -110,7 +93,7 @@ func add_or_change_observation(observation: Observation):
 		return index
 		
 	#if it doesnt exists, add it to the array of observations
-	#print("new")
+
 	Q_Table.append(observation) 
 	return find_observation_by_ID(observation)
 
