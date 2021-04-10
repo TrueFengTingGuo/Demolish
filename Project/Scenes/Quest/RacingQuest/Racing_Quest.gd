@@ -28,13 +28,11 @@ func _physics_process(delta):
 		$SpeedRun_AI.global_position = self.global_position
 		$SpeedRun_AI.goal_reached = true
 		refresh_coins()
-		reached = false
+		reached = false		
+		#reset the countdown for reseting ai position
+		$Timer.wait_time = time_to_rest
+
 		
-	if rest_ai == true:
-		rest_ai = false
-		refresh_coins()
-		$SpeedRun_AI.global_position = self.global_position
-		$SpeedRun_AI.reset_ai = true
 		
 	if track_Points.size() > 0:
 		$SpeedRun_AI.goal = [track_Points[0].global_position.x,track_Points[0].global_position.y]
@@ -50,7 +48,7 @@ func refresh_coins():
 
 
 func _on_Timer_timeout():
-	if !reached and !rest_ai:
-		rest_ai = true
-		
+	refresh_coins()
+	$SpeedRun_AI.global_position = self.global_position
+	$SpeedRun_AI.reset_ai = true	
 	$Timer.wait_time = time_to_rest

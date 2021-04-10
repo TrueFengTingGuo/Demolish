@@ -177,6 +177,7 @@ shape = SubResource( 1 )
 texture = ExtResource( 3 )
 vframes = 11
 hframes = 7
+frame = 1
 
 [node name="Detect_side_wall" type="RayCast2D" parent="Sprite"]
 rotation = -1.5708

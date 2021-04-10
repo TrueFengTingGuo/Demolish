@@ -262,7 +262,7 @@ func calculate_reward():
 	
 	if pervious_coin_num < coins:
 		
-		$Q_Table.current_action.Reward += 10 * (coins - pervious_coin_num)
+		$Q_Table.current_action.Reward += 3 * (coins - pervious_coin_num)
 		pervious_coin_num = coins
 
 func continues_reward():
@@ -274,8 +274,6 @@ func _on_Timer_timeout():
 	if goal_reached:
 		goal_reached = false		
 		$Q_Table.trail_end(stopwatch_stop())
-		$Q_Table.save_Q_Table()
-		
 		stopwatch_start()
 		handle_next_move($Q_Table.trail_start())
 
