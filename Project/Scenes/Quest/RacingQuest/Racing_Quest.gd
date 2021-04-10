@@ -1,11 +1,12 @@
 extends Node2D
 
-
+export var time_to_rest = 30
 var track_Points = []
 var coin_spawning_point = []
 signal goal_reached
 
 var reached = false
+var rest_ai = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for child in get_children():
@@ -17,7 +18,7 @@ func _ready():
 			coin_spawning_point.append(child)	
 
 	refresh_coins()
-		
+	$Timer.start()	
 func _physics_process(delta):
 	
 	$line_chart_continous.give_trail_info($SpeedRun_AI.trail_count())
@@ -28,6 +29,12 @@ func _physics_process(delta):
 		$SpeedRun_AI.goal_reached = true
 		refresh_coins()
 		reached = false
+		
+	if rest_ai == true:
+		rest_ai = false
+		refresh_coins()
+		$SpeedRun_AI.global_position = self.global_position
+		$SpeedRun_AI.reset_ai = true
 		
 	if track_Points.size() > 0:
 		$SpeedRun_AI.goal = [track_Points[0].global_position.x,track_Points[0].global_position.y]
@@ -40,3 +47,10 @@ func refresh_coins():
 		
 	for point in coin_spawning_point:
 		point.spawn_coin()
+
+
+func _on_Timer_timeout():
+	if !reached and !rest_ai:
+		rest_ai = true
+		
+	$Timer.wait_time = time_to_rest
