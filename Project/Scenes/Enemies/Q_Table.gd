@@ -58,11 +58,13 @@ func next_perfered_action(observation: Observation):
 func trail_end(stopwatch_value):
 	current_action.Reward += 40
 	learn()
+	save_Q_Table()
 	current_Observation = null
 	
 func trail_reset():
 
 	learn()
+	save_Q_Table()
 	current_Observation = null
 	return next_perfered_action(starter_observation)
 	
@@ -73,7 +75,6 @@ func learn():
 		
 	Q_Table[find_observation_by_ID(current_Observation)].add_or_change_action(current_action) 
 
-	
 
 #add a new pair of a state and an action
 func add_or_change_observation(observation: Observation):
