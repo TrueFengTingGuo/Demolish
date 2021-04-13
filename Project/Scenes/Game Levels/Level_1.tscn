@@ -1052,6 +1052,12 @@ position = Vector2( 46.5366, -46.4429 )
 [node name="Coin_Spawning_Point13" parent="Racing_Quest" instance=ExtResource( 6 )]
 position = Vector2( -3.24249e-05, -190.331 )
 
+[node name="Coin_Spawning_Point16" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 3.48215, -127.1 )
+
+[node name="Coin_Spawning_Point17" parent="Racing_Quest" instance=ExtResource( 6 )]
+position = Vector2( 15.369, -127.1 )
+
 [node name="Coin_Spawning_Point14" parent="Racing_Quest" instance=ExtResource( 6 )]
 position = Vector2( -0.517855, -207.1 )
 

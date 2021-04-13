@@ -29,6 +29,7 @@ func give_trail_info(_info:int):
 	new_trail_info = _info
 
 func give_current_action_value(_info:float):
+	
 	new_action_value_info += _info
 	
 
@@ -37,8 +38,9 @@ func _on_Timer_timeout():
 	
 	var new_rate = new_trail_info - old_trail_info
 	
-
-	var rescale_new_action_value_info = 0.001 * new_action_value_info
+	
+	var rescale_new_action_value_info = 0.001 * (new_action_value_info - old_action_value_info)
+	old_action_value_info = new_action_value_info
 	rescale_new_action_value_info = clamp(rescale_new_action_value_info,-10,10)
 	
 	var rescale_total = new_trail_info% 20
