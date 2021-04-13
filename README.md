@@ -38,9 +38,9 @@ tasks to be implemented:
 
 # In Game Footage
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_3.gif)
-- AI training
+- AI Q-learning
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_4.gif)
 - Character Movement
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/Game_demo.gif)
-- Combat
+- AI simple reflex agent
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_5.gif)
