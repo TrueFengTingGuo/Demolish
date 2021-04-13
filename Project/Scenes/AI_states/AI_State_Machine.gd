@@ -42,10 +42,8 @@ var goal_reached = false
 var hp = 100
 var reset_ai = true
 
-var next_observation_is_known = false
+
 var current_lock_down_position = Vector2(0,0)
-var stopwatch = 0
-var stopwatch_stopped = false
 
 onready var states = {
 	"Idle": $State/Idle,
@@ -76,7 +74,7 @@ func _ready():
 	var position = [int(global_position.x),int(global_position.y)]
 	var state = current_state
 	var newObservation = Observation.new($Q_Table.Q_Table.size(), position, state)
-	stopwatch_start()
+
 	var data_array =$Q_Table.trail_start(newObservation)
 	handle_next_move(data_array)
 	$Timer.start()
@@ -92,18 +90,18 @@ func _physics_process(delta):
 
 	if goal_reached:
 		velocity = Vector2(0,0)
-		_on_Timer_timeout()
-	
+		goal_reached = false		
+		$Q_Table.trail_end()
+		handle_next_move($Q_Table.trail_start())
+			
 	#reset ai to orignal position
 	if reset_ai:
 		velocity = Vector2(0,0)
 		reset_ai = false
 		$Q_Table.trail_reset()
 		
-	continues_reward()
+	continues_reward(delta)
 	
-	if !stopwatch_stopped:
-		stopwatch += delta
 		
 	current_state.update(self,delta)
 	
@@ -172,21 +170,12 @@ func grab_hook_effect_player_velocity():
 	else:
 		# Not hooked -> no chain velocity
 		chain_velocity = Vector2(0,0)
-
-		
+			
 	velocity += chain_velocity
 
 func handle_next_move(data_array): 
-	if data_array[0]:
-		#next observation is known to AI		
-
-		next_observation_is_known = true
-	else:
-		
-		#next observation is unknown to AI
-		next_observation_is_known = false
 	
-	var next_move: Action = data_array[1]
+	var next_move: Action = data_array
 	var nameOfNext = next_move.Name
 
 
@@ -220,15 +209,19 @@ func handle_next_move(data_array):
 		jump = false
 
 func observe_enviornment():
-	var new_Position = [int(global_position.x),int(global_position.y)]	
-	var index_in_Q_table = $Q_Table.find_observation_by_position(new_Position)
+
+	var new_Position = [int(global_position.x),int(global_position.y)]	#grab the current position of the ai
+	var index_in_Q_table = $Q_Table.find_observation_by_position(new_Position)# see if I can find the position in the q table
+	
+	#if the position is not in the q table, create a new state in q table
 	if index_in_Q_table == -1:
 			
 		var new_ID = $Q_Table.Q_Table.size()
 		var a_new_Observation = Observation.new(new_ID,new_Position,current_state.name)
+		a_new_Observation.add_or_change_action($Q_Table.current_action) 
 		index_in_Q_table = $Q_Table.add_or_change_observation(a_new_Observation)
-		$Q_Table.current_action.Next_Observation_ID = index_in_Q_table
-		$Q_Table.Q_Table[$Q_Table.find_observation_by_ID($Q_Table.current_Observation)].add_or_change_action($Q_Table.current_action) 
+		$Q_Table.current_action.Next_Observation_ID = index_in_Q_table # i need to store this because godot is using pass by reference
+		#$Q_Table.Q_Table[$Q_Table.find_observation_by_ID($Q_Table.current_Observation)].add_or_change_action($Q_Table.current_action) 
 		
 	$Q_Table.next_Observation = $Q_Table.Q_Table[index_in_Q_table]
 	
@@ -258,44 +251,31 @@ func calculate_reward():
 	$Q_Table.current_action.Reward  -= 0.1 * new_distance
 	
 	#less step, less punish
-	$Q_Table.current_action.Reward -= 0.05
+	$Q_Table.current_action.Reward -= 0.1
 	
 	if pervious_coin_num < coins:
 		
-		$Q_Table.current_action.Reward += 3 * (coins - pervious_coin_num)
+		$Q_Table.current_action.Reward += 10 * (coins - pervious_coin_num)
 		pervious_coin_num = coins
 
-func continues_reward():
+#reward based on the time
+func continues_reward(delta):
 	if current_state.name == "In_Air":
-		$Q_Table.current_action.Reward -= 0.5
-		
+		$Q_Table.current_action.Reward -= 10 * delta
+
+#check the current state when the time runs out
 func _on_Timer_timeout():
-	
-	if goal_reached:
-		goal_reached = false		
-		$Q_Table.trail_end(stopwatch_stop())
-		stopwatch_start()
-		handle_next_move($Q_Table.trail_start())
 
 	if current_state.name != "In_Air":
 
-		observe_enviornment()
-		calculate_reward()
-		
+		observe_enviornment()# check the current state
+		calculate_reward()	#check the reward
 		$Q_Table.learn()
 	
 		handle_next_move($Q_Table.next_perfered_action($Q_Table.next_Observation))
 		
 	#set the next time coutn
 	$Timer.wait_time = 0.1
-
-func stopwatch_start():
-	stopwatch_stopped = false
-	stopwatch = 0
-
-func stopwatch_stop():
-	stopwatch_stopped = true
-	return stopwatch
 
 func trail_count():
 	return $Q_Table.trail_count

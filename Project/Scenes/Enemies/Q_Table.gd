@@ -7,15 +7,16 @@ export var Discount_rate = 1
 var Q_Table = []
 var trail_count = 0
 
-var starter_observation: Observation = null
+#observation is a position paired with all its actions
+var starter_observation: Observation = null #started observation of the ai
 var current_Observation: Observation  = null
 var next_Observation: Observation = null 
 var current_action : Action	 = null
-var pervoius_stopwatch = 0
 
 
-var per_cell_gap = 3
+var per_cell_gap = 5 #unify how many positions as one
 
+# it can take the start position
 func trail_start(newObservation = null):
 	trail_count += 1
 	if newObservation:
@@ -29,10 +30,12 @@ func trail_start(newObservation = null):
 	
 func get_currentObservation():
 	return current_Observation
-	
+
+#observation is state paired with all its actions	
 func get_nextObservation():
 	return next_Observation
-	
+
+#optimal policy
 func next_perfered_action(observation: Observation):
 	
 	var next_action : Action = observation.best_action()
@@ -47,27 +50,28 @@ func next_perfered_action(observation: Observation):
 		next_Observation = Observation.new(Q_Table.size(), [0,0], "None")#next_Observation here needs to filling informations
 		#add_or_change_observation(next_Observation)
 		add_or_change_observation(next_Observation)
-		return [false,next_action] #return a false because the perfered action lead to an unknown observation
+		return next_action #return a false because the perfered action lead to an unknown observation
 	
 	#next state is known.
 	#next_Observation = Q_Table[next_action.Next_Observation_ID]
-	
-	return [true,next_action]
+	return next_action
 
-	
-func trail_end(stopwatch_value):
+#ai reaches the goal	
+func trail_end():
 	current_action.Reward += 40
 	learn()
 	save_Q_Table()
 	current_Observation = null
-	
+
+#reset the position of the ai
 func trail_reset():
 
 	learn()
 	save_Q_Table()
 	current_Observation = null
 	return next_perfered_action(starter_observation)
-	
+
+#do q-learning
 func learn():
 	if !current_Observation:
 		return
