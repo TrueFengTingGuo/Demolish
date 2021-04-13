@@ -8,13 +8,13 @@
 - Two swappable weapons
 - Three enemies
 - Grab hook
-- 
+
 # Try It Out
 [Download the game](https://github.com/TrueFengTingGuo/Demolish/releases/tag/v0.2.8)
 
 
-
 # In Game Footage
+- Sneak peak
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_3.gif)
 - AI Q-learning
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_4.gif)
