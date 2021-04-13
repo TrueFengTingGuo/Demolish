@@ -17,6 +17,7 @@
 - Sneak peak
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_3.gif)
 - AI Q-learning
+- [Traning footage](https://www.youtube.com/watch?v=0vdAtCa4nFg)
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_4.gif)
 - Character Movement
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/Game_demo.gif)
