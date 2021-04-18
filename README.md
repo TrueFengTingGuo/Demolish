@@ -10,7 +10,7 @@
 - Grab hook
 
 # Try It Out
-[Download the game](https://github.com/TrueFengTingGuo/Demolish/releases/tag/v0.2.8)
+[Download the game](https://github.com/TrueFengTingGuo/Demolish/releases/tag/v1.0.0)
 
 
 # In Game Footage
