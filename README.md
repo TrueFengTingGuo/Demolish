@@ -35,3 +35,8 @@ game in the form of tasks.
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/Game_demo.gif)
 - AI simple reflex agent
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_5.gif)
+
+# Contributions 
+Fengting Guo:  build game, design Q-learning algorithm, Q-learning algorithm implementation, combine position, participate in writing report
+Zhenqing Lang:  Q-learning algorithm implementation (create Q-table, calculate Q-value), agent train, test, participate in writing report
+Ziwen Wang:  Q-learning algorithm implementation (reward), agent train,  Modify the rewards based on the test results, participate in writing report
