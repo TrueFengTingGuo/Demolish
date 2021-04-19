@@ -17,7 +17,7 @@
 - Sneak peak
 ![](https://github.com/TrueFengTingGuo/Demolish/blob/main/Game%20Demo/game%20demo_3.gif)
 - AI Q-learning
-  After our discussion, we decided to implement AI in the game in the form of tasks.
+  We decided to implement AI in the game in the form of tasks.
 After we investigate many games in the market, we found that most AIs don't pick the
 optimal solution to achieve a goal. From our observation, the game’s AIs are just simple
 reflex agents which only follow fixed policy. One reason that single-player experience is less
