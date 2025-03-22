@@ -1,5 +1,5 @@
 # Demolish
-2d Platform game
+2d Platform game made with Godot
 
 # Features
 - Dialogue box
